@@ -256,49 +256,13 @@ void mondossier::sauvegarder_dossier(){
 qDebug()<<curUv+curNote+curSem+curposs;
         }
 }
+void mondossier::ajoutExigence(){ Tools::switch_current_item(ui->liste_choix_uv, ui->liste_exigences); }
+void mondossier::ajoutPreference(){ Tools::switch_current_item(ui->liste_choix_uv, ui->liste_preferences); }
+void mondossier::ajoutRejet(){ Tools::switch_current_item(ui->liste_choix_uv, ui->liste_rejets); }
 
-
-void mondossier::ajoutExigence(){
-    if (ui->liste_choix_uv->currentItem() != NULL){
-        ui->liste_exigences->addItem(ui->liste_choix_uv->currentItem()->text());
-        delete ui->liste_choix_uv->currentItem();
-    }
-}
-
-void mondossier::ajoutPreference(){
-    if (ui->liste_choix_uv->currentItem() != NULL){
-        ui->liste_preferences->addItem(ui->liste_choix_uv->currentItem()->text());
-        delete ui->liste_choix_uv->currentItem();
-    }
-}
-
-void mondossier::ajoutRejet(){
-    if (ui->liste_choix_uv->currentItem() != NULL){
-        ui->liste_rejets->addItem(ui->liste_choix_uv->currentItem()->text());
-        delete ui->liste_choix_uv->currentItem();
-    }
-}
-
-void mondossier::supprExigence(){
-    if (ui->liste_exigences->currentItem() != NULL){
-        ui->liste_choix_uv->addItem(ui->liste_exigences->currentItem()->text());
-        delete ui->liste_exigences->currentItem();
-    }
-}
-
-void mondossier::supprRejet(){
-    if (ui->liste_rejets->currentItem() != NULL){
-        ui->liste_choix_uv->addItem(ui->liste_rejets->currentItem()->text());
-        delete ui->liste_rejets->currentItem();
-    }
-}
-
-void mondossier::supprPreference(){
-    if (ui->liste_preferences->currentItem() != NULL){
-        ui->liste_choix_uv->addItem(ui->liste_preferences->currentItem()->text());
-        delete ui->liste_preferences->currentItem();
-    }
-}
+void mondossier::supprExigence(){ Tools::switch_current_item(ui->liste_exigences, ui->liste_choix_uv); }
+void mondossier::supprRejet(){ Tools::switch_current_item(ui->liste_rejets, ui->liste_choix_uv); }
+void mondossier::supprPreference(){ Tools::switch_current_item(ui->liste_preferences, ui->liste_choix_uv); }
 
 mondossier::~mondossier()
 {
