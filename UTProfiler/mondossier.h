@@ -31,7 +31,7 @@ private:
     Filieres *filieres;
     Cursus *cursus;
     Semestre *semestres;
-    uvmnger *uvmnger;
+    Uvmnger *uvmnger;
 
 public slots:
     void ajoutUV();
