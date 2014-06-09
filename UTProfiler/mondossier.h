@@ -21,6 +21,8 @@ class mondossier : public QDialog
 public:
     explicit mondossier(QWidget *parent = 0);
     ~mondossier();
+    void remplirchoix();
+    void rempliruvsuivies();
 
 private:
     QString numerodossier;
@@ -52,6 +54,7 @@ public slots:
     void enable_filiere();
     void enable_credits();
     void sauvegarder_dossier();
+    void suppr_UV_suivies();
 };
 
 

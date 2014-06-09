@@ -35,14 +35,7 @@ map<QString,QString> uvmnger::getPossibiliteFromUv(const QString& Uv){
     return map_pos_uv;
 }
 
-/*
-map<QString,QString>::iterator p;
-for(p = map_pos_uv.begin(); p != map_pos_uv.end(); p++)
-{
-  qDebug() <<"first : "<< p->first ;
-  qDebug()  <<"second : "<<p->second;
-}
-*/
+
 
 /*
 QStringList uvmnger::getPossibiliteFromUv(const QString& Uv){
