@@ -1,0 +1,7 @@
+<RCC>
+    <qresource prefix="/images">
+        <file>utc.jpg</file>
+        <file>bandeau_utc.jpg</file>
+        <file>fond_pg.png</file>
+    </qresource>
+</RCC>
