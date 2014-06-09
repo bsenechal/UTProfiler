@@ -14,6 +14,8 @@ mondossier::mondossier(QWidget *parent) :
     semestres = Semestre::getInstance();
     QSqlQuery query;
     c = Connexion::getInstance();
+    uvmnger = uvmnger::getInstance();
+
 
     ui->sauvegarder_modif->hide();
     ui->modif_semestre->hide();
@@ -81,12 +83,26 @@ mondossier::mondossier(QWidget *parent) :
     QObject::connect(ui->sauvegarder_modif, SIGNAL(clicked()), this, SLOT(sauvegarder_modif()));
     QObject::connect(ui->onglets_dossier, SIGNAL(currentChanged(int)), this, SLOT(maj_dossier()));
     QObject::connect(ui->comboBox_cursus, SIGNAL(currentIndexChanged(int)), this, SLOT(enable_branche()));
+    QObject::connect(ui->liste_selection_UV, SIGNAL(currentRowChanged(int)), this, SLOT(enable_credits()));
     //QObject::connect(ui->comboBox_branche, SIGNAL(clicked()), this, SLOT(enable_filiere()));
     QTimer::singleShot(0, this, SLOT(maj_dossier()));
     this->maj_dossier();
 }
 
 /* A modifier */
+
+void mondossier::enable_credits() {
+    QString curUv = ui->liste_selection_UV->currentItem()->text();
+    qDebug()<< curUv;
+
+    ui->comboBox_credits->clear();
+    ui->comboBox_credits->addItem("");
+    qDebug()<<uvmnger->getPossibiliteFromUv(ui->liste_selection_UV->currentItem()->text());
+    ui->comboBox_credits->addItems(uvmnger->getPossibiliteFromUv(ui->liste_selection_UV->currentItem()->text()));
+    ui->comboBox_credits->setEnabled(true);
+}
+
+
 void mondossier::enable_filiere() {
     ui->comboBox_filiere->clear();
     ui->comboBox_filiere->addItem("");

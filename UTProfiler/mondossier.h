@@ -8,6 +8,7 @@
 #include "cursus.h"
 #include "branches.h"
 #include "semestre.h"
+#include "uvmnger.h"
 
 namespace Ui {
 class mondossier;
@@ -30,6 +31,7 @@ private:
     Filieres *filieres;
     Cursus *cursus;
     Semestre *semestres;
+    uvmnger *uvmnger;
 
 public slots:
     void ajoutUV();
@@ -45,6 +47,8 @@ public slots:
     void modifier_infos();
     void enable_branche();
     void enable_filiere();
+    void enable_credits();
+
 };
 
 
