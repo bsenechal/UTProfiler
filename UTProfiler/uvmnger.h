@@ -14,7 +14,8 @@ class uvmnger : public Singleton<uvmnger>
     uvmnger();
 
 public:
-    QStringList getPossibiliteFromUv(const QString& Uv);
+    map<QString,QString> getPossibiliteFromUv(const QString& Uv);
+    //QStringList getPossibiliteFromUv(const QString& Uv);
 };
 
 

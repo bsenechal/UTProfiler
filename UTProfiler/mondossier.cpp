@@ -81,6 +81,7 @@ mondossier::mondossier(QWidget *parent) :
     QObject::connect(ui->modif_info, SIGNAL(clicked()), this, SLOT(modifier_infos()));
     QObject::connect(ui->modif_cursus, SIGNAL(currentIndexChanged(int)), this, SLOT(enable_branche()));
     QObject::connect(ui->sauvegarder_modif, SIGNAL(clicked()), this, SLOT(sauvegarder_modif()));
+    QObject::connect(ui->sauvegarder_dossier, SIGNAL(clicked()), this, SLOT(sauvegarder_dossier()));
     QObject::connect(ui->onglets_dossier, SIGNAL(currentChanged(int)), this, SLOT(maj_dossier()));
     QObject::connect(ui->comboBox_cursus, SIGNAL(currentIndexChanged(int)), this, SLOT(enable_branche()));
     QObject::connect(ui->liste_selection_UV, SIGNAL(currentRowChanged(int)), this, SLOT(enable_credits()));
@@ -92,13 +93,21 @@ mondossier::mondossier(QWidget *parent) :
 /* A modifier */
 
 void mondossier::enable_credits() {
+    QStringList combinaisons;
     QString curUv = ui->liste_selection_UV->currentItem()->text();
     qDebug()<< curUv;
 
     ui->comboBox_credits->clear();
     ui->comboBox_credits->addItem("");
-    qDebug()<<uvmnger->getPossibiliteFromUv(ui->liste_selection_UV->currentItem()->text());
-    ui->comboBox_credits->addItems(uvmnger->getPossibiliteFromUv(ui->liste_selection_UV->currentItem()->text()));
+
+    map_pos_uv = uvmnger->getPossibiliteFromUv(ui->liste_selection_UV->currentItem()->text());
+    map<QString,QString>::iterator p;
+    for(p = map_pos_uv.begin(); p != map_pos_uv.end(); p++)
+    {
+        combinaisons<<p->first;
+    }
+
+    ui->comboBox_credits->addItems(combinaisons);
     ui->comboBox_credits->setEnabled(true);
 }
 
@@ -124,11 +133,13 @@ void mondossier::enable_branche() {
 }
 
 void mondossier::ajoutUV() {
+
     if (ui->liste_selection_UV->currentItem() != NULL) {
         ui->liste_uv_suivies->addItem(ui->liste_selection_UV->currentItem()->text());
         ui->liste_notes->addItem(ui->comboBox_note->currentText());
         ui->liste_semestres->addItem(ui->comboBox_semestre->currentText());
         ui->liste_credits->addItem(ui->comboBox_credits->currentText());
+        ui->liste_possibilite_uv->addItem(map_pos_uv[ui->comboBox_credits->currentText()]);
     }
 }
 
@@ -237,6 +248,17 @@ void mondossier::sauvegarder_choix(){
     for (int i = 0; i < ui->liste_rejets->count(); i++) {
             QString curUv = ui->liste_rejets->item(i)->text();
             db->execute("INSERT INTO choixUv (id_dossier, UV, choix)VALUES ("+this->numerodossier+",'"+curUv+"', 'rejet')");
+        }
+}
+
+void mondossier::sauvegarder_dossier(){
+
+    for (int i = 0; i < ui->liste_uv_suivies->count(); i++) {
+            QString curUv = ui->liste_uv_suivies->item(i)->text();
+            QString curNote = ui->liste_notes->item(i)->text();
+            QString curSem = ui->liste_semestres->item(i)->text();
+            QString curposs = ui->liste_possibilite_uv->item(i)->text();
+qDebug()<<curUv+curNote+curSem+curposs;
         }
 }
 
