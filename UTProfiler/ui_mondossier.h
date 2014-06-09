@@ -91,6 +91,8 @@ public:
     QLabel *label_9;
     QListWidget *liste_credits;
     QLabel *label_18;
+    QPushButton *sauvegarder_dossier;
+    QListWidget *liste_possibilite_uv;
     QWidget *choix;
     QPushButton *add_exigence;
     QLabel *label_titre_choix;
@@ -388,6 +390,12 @@ public:
         label_18 = new QLabel(tab_info_perso);
         label_18->setObjectName(QStringLiteral("label_18"));
         label_18->setGeometry(QRect(800, 90, 71, 16));
+        sauvegarder_dossier = new QPushButton(tab_info_perso);
+        sauvegarder_dossier->setObjectName(QStringLiteral("sauvegarder_dossier"));
+        sauvegarder_dossier->setGeometry(QRect(750, 350, 141, 31));
+        liste_possibilite_uv = new QListWidget(tab_info_perso);
+        liste_possibilite_uv->setObjectName(QStringLiteral("liste_possibilite_uv"));
+        liste_possibilite_uv->setGeometry(QRect(790, 10, 91, 71));
         onglets_dossier->addTab(tab_info_perso, QString());
         fond_2->raise();
         label_cursus_2->raise();
@@ -415,6 +423,8 @@ public:
         label_9->raise();
         liste_credits->raise();
         label_18->raise();
+        sauvegarder_dossier->raise();
+        liste_possibilite_uv->raise();
         choix = new QWidget();
         choix->setObjectName(QStringLiteral("choix"));
         add_exigence = new QPushButton(choix);
@@ -549,6 +559,7 @@ public:
         label_branche_2->setText(QApplication::translate("mondossier", "Branche", 0));
         label_9->setText(QApplication::translate("mondossier", "Credits", 0));
         label_18->setText(QApplication::translate("mondossier", "Credits", 0));
+        sauvegarder_dossier->setText(QApplication::translate("mondossier", "Sauvegarder", 0));
         onglets_dossier->setTabText(onglets_dossier->indexOf(tab_info_perso), QApplication::translate("mondossier", "Saisir Dossier", 0));
         add_exigence->setText(QApplication::translate("mondossier", ">", 0));
         label_titre_choix->setText(QApplication::translate("mondossier", "Mes Choix", 0));

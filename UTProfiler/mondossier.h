@@ -32,6 +32,9 @@ private:
     Cursus *cursus;
     Semestre *semestres;
     uvmnger *uvmnger;
+    map<QString,QString> map_pos_uv;
+    map<QString, map<QString, QString> > uvsuivies;
+
 
 public slots:
     void ajoutUV();
@@ -48,7 +51,7 @@ public slots:
     void enable_branche();
     void enable_filiere();
     void enable_credits();
-
+    void sauvegarder_dossier();
 };
 
 

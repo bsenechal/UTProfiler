@@ -961,6 +961,29 @@
       <string>Credits</string>
      </property>
     </widget>
+    <widget class="QPushButton" name="sauvegarder_dossier">
+     <property name="geometry">
+      <rect>
+       <x>750</x>
+       <y>350</y>
+       <width>141</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Sauvegarder</string>
+     </property>
+    </widget>
+    <widget class="QListWidget" name="liste_possibilite_uv">
+     <property name="geometry">
+      <rect>
+       <x>790</x>
+       <y>10</y>
+       <width>91</width>
+       <height>71</height>
+      </rect>
+     </property>
+    </widget>
     <zorder>fond_2</zorder>
     <zorder>label_cursus_2</zorder>
     <zorder>comboBox_cursus</zorder>
@@ -987,6 +1010,8 @@
     <zorder>label_9</zorder>
     <zorder>liste_credits</zorder>
     <zorder>label_18</zorder>
+    <zorder>sauvegarder_dossier</zorder>
+    <zorder>liste_possibilite_uv</zorder>
    </widget>
    <widget class="QWidget" name="choix">
     <attribute name="title">
