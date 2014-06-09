@@ -14,7 +14,7 @@ mondossier::mondossier(QWidget *parent) :
     semestres = Semestre::getInstance();
     QSqlQuery query;
     c = Connexion::getInstance();
-    uvmnger = uvmnger::getInstance();
+    uvmnger = Uvmnger::getInstance();
 
 
     ui->sauvegarder_modif->hide();
@@ -58,14 +58,14 @@ mondossier::mondossier(QWidget *parent) :
     QObject::connect(ui->sauvegarder_modif, SIGNAL(clicked()), this, SLOT(sauvegarder_modif()));
     QObject::connect(ui->sauvegarder_dossier, SIGNAL(clicked()), this, SLOT(sauvegarder_dossier()));
     QObject::connect(ui->onglets_dossier, SIGNAL(currentChanged(int)), this, SLOT(maj_dossier()));
-    QObject::connect(ui->comboBox_cursus, SIGNAL(currentIndexChanged(int)), this, SLOT(enable_branche()));
+    QObject::connect(ui->comboBox_cursus, SIGNAL(currentIndexChanged(int)), this, SLOT(add_critere_cursus()));
+    QObject::connect(ui->comboBox_branche, SIGNAL(currentIndexChanged(int)), this, SLOT(add_critere_branche()));
+    QObject::connect(ui->comboBox_filiere, SIGNAL(currentIndexChanged(int)), this, SLOT(add_critere_filiere()));
     QObject::connect(ui->liste_selection_UV, SIGNAL(currentRowChanged(int)), this, SLOT(enable_credits()));
-    //QObject::connect(ui->comboBox_branche, SIGNAL(clicked()), this, SLOT(enable_filiere()));
     QTimer::singleShot(0, this, SLOT(maj_dossier()));
     this->maj_dossier();
 }
 
-/* A modifier */
 
 void mondossier::enable_credits() {
     QStringList combinaisons;
@@ -87,25 +87,22 @@ void mondossier::enable_credits() {
 }
 
 
-void mondossier::enable_filiere() {
-    ui->comboBox_filiere->clear();
-    ui->comboBox_filiere->addItem("");
-    ui->comboBox_filiere->addItems(filieres->getFilieresFromBranche(ui->comboBox_branche->currentText()));
-    ui->comboBox_filiere->setEnabled(true);
+void mondossier::add_critere_filiere() {
+    Tools::maj_liste(ui->liste_selection_UV, db->execute("SELECT u.Code FROM UV u, assoc_branche_uv a, branche b, assoc_filiere_uv afu, filiere f WHERE u.code = a.code_uv AND b.nom = a.nom_branche AND afu.code_uv = u.code AND afu.nom_filiere = f.nom AND b.nom_cursus = '" + ui->comboBox_cursus->currentText() + "' AND b.nom = '" + ui->comboBox_branche->currentText() + "' AND f.nom = '" + ui->comboBox_filiere->currentText() + "';"));
 }
 
-void mondossier::enable_branche() {
-    ui->comboBox_branche->clear();
-    ui->comboBox_branche->addItem("");
-    ui->comboBox_branche->addItems(branches->getBranchesFromCursus(ui->comboBox_cursus->currentText()));
-    ui->comboBox_branche->setEnabled(true);
+void mondossier::add_critere_branche() {
+   Tools::enable_combobox(ui->comboBox_filiere, filieres->getFilieresFromBranche(ui->comboBox_branche->currentText()));
 
-    //On pourra surcharger ça
-    ui->modif_branche->clear();
-    ui->modif_branche->addItem("");
-    ui->modif_branche->addItems(branches->getBranchesFromCursus(ui->modif_cursus->currentText()));
-    ui->modif_branche->setEnabled(true);
+   Tools::maj_liste(ui->liste_selection_UV, db->execute("SELECT a.code_uv FROM assoc_branche_uv a, branche b WHERE b.nom = a.nom_branche AND b.nom_cursus = '" + ui->comboBox_cursus->currentText() + "' AND b.nom = '" + ui->comboBox_branche->currentText() + "';"));
 }
+
+void mondossier::add_critere_cursus() {
+    Tools::enable_combobox(ui->comboBox_branche, branches->getBranchesFromCursus(ui->comboBox_cursus->currentText()));
+
+    Tools::maj_liste(ui->liste_selection_UV, db->execute("SELECT a.code_uv FROM assoc_branche_uv a, branche b WHERE b.nom = a.nom_branche AND b.nom_cursus = '" + ui->comboBox_cursus->currentText() + "';"));
+}
+
 
 void mondossier::ajoutUV() {
 
@@ -119,8 +116,6 @@ void mondossier::ajoutUV() {
 }
 
 void mondossier::maj_dossier() {
-
-
     QSqlQuery query;
 
     ui->login->clear();
@@ -241,49 +236,13 @@ db->execute("INSERT INTO UV_suivies (semestre, note, id_acatu, id_dossier)VALUES
         }
 
 }
+void mondossier::ajoutExigence(){ Tools::switch_current_item(ui->liste_choix_uv, ui->liste_exigences); }
+void mondossier::ajoutPreference(){ Tools::switch_current_item(ui->liste_choix_uv, ui->liste_preferences); }
+void mondossier::ajoutRejet(){ Tools::switch_current_item(ui->liste_choix_uv, ui->liste_rejets); }
 
-
-void mondossier::ajoutExigence(){
-    if (ui->liste_choix_uv->currentItem() != NULL){
-        ui->liste_exigences->addItem(ui->liste_choix_uv->currentItem()->text());
-        delete ui->liste_choix_uv->currentItem();
-    }
-}
-
-void mondossier::ajoutPreference(){
-    if (ui->liste_choix_uv->currentItem() != NULL){
-        ui->liste_preferences->addItem(ui->liste_choix_uv->currentItem()->text());
-        delete ui->liste_choix_uv->currentItem();
-    }
-}
-
-void mondossier::ajoutRejet(){
-    if (ui->liste_choix_uv->currentItem() != NULL){
-        ui->liste_rejets->addItem(ui->liste_choix_uv->currentItem()->text());
-        delete ui->liste_choix_uv->currentItem();
-    }
-}
-
-void mondossier::supprExigence(){
-    if (ui->liste_exigences->currentItem() != NULL){
-        ui->liste_choix_uv->addItem(ui->liste_exigences->currentItem()->text());
-        delete ui->liste_exigences->currentItem();
-    }
-}
-
-void mondossier::supprRejet(){
-    if (ui->liste_rejets->currentItem() != NULL){
-        ui->liste_choix_uv->addItem(ui->liste_rejets->currentItem()->text());
-        delete ui->liste_rejets->currentItem();
-    }
-}
-
-void mondossier::supprPreference(){
-    if (ui->liste_preferences->currentItem() != NULL){
-        ui->liste_choix_uv->addItem(ui->liste_preferences->currentItem()->text());
-        delete ui->liste_preferences->currentItem();
-    }
-}
+void mondossier::supprExigence(){ Tools::switch_current_item(ui->liste_exigences, ui->liste_choix_uv); }
+void mondossier::supprRejet(){ Tools::switch_current_item(ui->liste_rejets, ui->liste_choix_uv); }
+void mondossier::supprPreference(){ Tools::switch_current_item(ui->liste_preferences, ui->liste_choix_uv); }
 
 
 void mondossier::remplirchoix(){
