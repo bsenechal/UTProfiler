@@ -128,6 +128,7 @@ void mondossier::ajoutUV() {
         ui->liste_uv_suivies->addItem(ui->liste_selection_UV->currentItem()->text());
         ui->liste_notes->addItem(ui->comboBox_note->currentText());
         ui->liste_semestres->addItem(ui->comboBox_semestre->currentText());
+        ui->liste_credits->addItem(ui->comboBox_credits->currentText());
     }
 }
 

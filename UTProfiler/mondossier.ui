@@ -668,7 +668,7 @@
     <widget class="QLabel" name="label_2">
      <property name="geometry">
       <rect>
-       <x>470</x>
+       <x>430</x>
        <y>90</y>
        <width>81</width>
        <height>16</height>
@@ -681,7 +681,7 @@
     <widget class="QLabel" name="label_3">
      <property name="geometry">
       <rect>
-       <x>600</x>
+       <x>560</x>
        <y>90</y>
        <width>51</width>
        <height>16</height>
@@ -707,9 +707,9 @@
     <widget class="QComboBox" name="comboBox_note">
      <property name="geometry">
       <rect>
-       <x>270</x>
+       <x>240</x>
        <y>190</y>
-       <width>91</width>
+       <width>101</width>
        <height>22</height>
       </rect>
      </property>
@@ -730,7 +730,7 @@
     <widget class="Line" name="line">
      <property name="geometry">
       <rect>
-       <x>430</x>
+       <x>410</x>
        <y>80</y>
        <width>20</width>
        <height>291</height>
@@ -766,7 +766,7 @@
     <widget class="QListWidget" name="liste_uv_suivies">
      <property name="geometry">
       <rect>
-       <x>470</x>
+       <x>430</x>
        <y>120</y>
        <width>91</width>
        <height>201</height>
@@ -776,7 +776,7 @@
     <widget class="QListWidget" name="liste_notes">
      <property name="geometry">
       <rect>
-       <x>590</x>
+       <x>550</x>
        <y>120</y>
        <width>91</width>
        <height>201</height>
@@ -825,9 +825,9 @@
     <widget class="QComboBox" name="comboBox_semestre">
      <property name="geometry">
       <rect>
-       <x>270</x>
+       <x>240</x>
        <y>250</y>
-       <width>91</width>
+       <width>101</width>
        <height>22</height>
       </rect>
      </property>
@@ -835,7 +835,7 @@
     <widget class="QListWidget" name="liste_semestres">
      <property name="geometry">
       <rect>
-       <x>710</x>
+       <x>670</x>
        <y>120</y>
        <width>91</width>
        <height>201</height>
@@ -845,7 +845,7 @@
     <widget class="QLabel" name="label_7">
      <property name="geometry">
       <rect>
-       <x>720</x>
+       <x>680</x>
        <y>90</y>
        <width>71</width>
        <height>16</height>
@@ -918,9 +918,9 @@
     <widget class="QComboBox" name="comboBox_credits">
      <property name="geometry">
       <rect>
-       <x>270</x>
+       <x>240</x>
        <y>310</y>
-       <width>91</width>
+       <width>131</width>
        <height>22</height>
       </rect>
      </property>
@@ -931,6 +931,29 @@
        <x>270</x>
        <y>290</y>
        <width>81</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Credits</string>
+     </property>
+    </widget>
+    <widget class="QListWidget" name="liste_credits">
+     <property name="geometry">
+      <rect>
+       <x>790</x>
+       <y>120</y>
+       <width>91</width>
+       <height>201</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_18">
+     <property name="geometry">
+      <rect>
+       <x>800</x>
+       <y>90</y>
+       <width>71</width>
        <height>16</height>
       </rect>
      </property>
@@ -962,6 +985,8 @@
     <zorder>label_branche_2</zorder>
     <zorder>comboBox_credits</zorder>
     <zorder>label_9</zorder>
+    <zorder>liste_credits</zorder>
+    <zorder>label_18</zorder>
    </widget>
    <widget class="QWidget" name="choix">
     <attribute name="title">
