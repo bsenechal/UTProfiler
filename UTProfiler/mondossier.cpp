@@ -14,7 +14,7 @@ mondossier::mondossier(QWidget *parent) :
     semestres = Semestre::getInstance();
     QSqlQuery query;
     c = Connexion::getInstance();
-    uvmnger = Uvmnger::getInstance();
+    uvmnger = uvmnger::getInstance();
 
 
     ui->sauvegarder_modif->hide();
