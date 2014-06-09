@@ -3,14 +3,14 @@
 #include <iterator>
 
 
-uvmnger::uvmnger()
+Uvmnger::Uvmnger()
 {
     db = dbmanager::getInstance();
     this->liste_uv = db->getColonne("SELECT code FROM UV;");
 }
 
 
-map<QString,QString> uvmnger::getPossibiliteFromUv(const QString& Uv){
+map<QString,QString> Uvmnger::getPossibiliteFromUv(const QString& Uv){
     std::map<QString,QString> map_pos_uv;
 
 
