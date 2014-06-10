@@ -23,7 +23,7 @@
     </rect>
    </property>
    <property name="currentIndex">
-    <number>1</number>
+    <number>2</number>
    </property>
    <widget class="QWidget" name="mes_infos">
     <attribute name="title">
@@ -681,7 +681,7 @@
     <widget class="QLabel" name="label_3">
      <property name="geometry">
       <rect>
-       <x>560</x>
+       <x>540</x>
        <y>90</y>
        <width>51</width>
        <height>16</height>
@@ -776,7 +776,7 @@
     <widget class="QListWidget" name="liste_notes">
      <property name="geometry">
       <rect>
-       <x>550</x>
+       <x>530</x>
        <y>120</y>
        <width>91</width>
        <height>201</height>
@@ -835,7 +835,7 @@
     <widget class="QListWidget" name="liste_semestres">
      <property name="geometry">
       <rect>
-       <x>670</x>
+       <x>630</x>
        <y>120</y>
        <width>91</width>
        <height>201</height>
@@ -845,7 +845,7 @@
     <widget class="QLabel" name="label_7">
      <property name="geometry">
       <rect>
-       <x>680</x>
+       <x>640</x>
        <y>90</y>
        <width>71</width>
        <height>16</height>
@@ -941,7 +941,7 @@
     <widget class="QListWidget" name="liste_credits">
      <property name="geometry">
       <rect>
-       <x>790</x>
+       <x>730</x>
        <y>120</y>
        <width>91</width>
        <height>201</height>
@@ -951,7 +951,7 @@
     <widget class="QLabel" name="label_18">
      <property name="geometry">
       <rect>
-       <x>800</x>
+       <x>740</x>
        <y>90</y>
        <width>71</width>
        <height>16</height>
@@ -984,6 +984,19 @@
       </rect>
      </property>
     </widget>
+    <widget class="QPushButton" name="suppri_UV_suivies">
+     <property name="geometry">
+      <rect>
+       <x>830</x>
+       <y>120</y>
+       <width>31</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>X</string>
+     </property>
+    </widget>
     <zorder>fond_2</zorder>
     <zorder>label_cursus_2</zorder>
     <zorder>comboBox_cursus</zorder>
@@ -1012,6 +1025,7 @@
     <zorder>label_18</zorder>
     <zorder>sauvegarder_dossier</zorder>
     <zorder>liste_possibilite_uv</zorder>
+    <zorder>suppri_UV_suivies</zorder>
    </widget>
    <widget class="QWidget" name="choix">
     <attribute name="title">

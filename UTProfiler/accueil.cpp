@@ -10,7 +10,6 @@
  * \fn Accueil::Accueil(QWidget *parent)
  * \param QWidget *parent
  * \brief Constructeur de la classe Accueil
- *
  */
 
 Accueil::Accueil(QWidget *parent) :
@@ -92,6 +91,7 @@ void Accueil::affiche_uv() {
     }
 
    query = db->execute("SELECT u.code, u.description, b.nom FROM UV u, branche b, assoc_branche_uv a WHERE a.code_uv = u.code AND a.nom_branche = b.nom AND b.nom IN (" + res.left(res.size()-1) + ");");
+qDebug()<<"voici le contenu de IN : " << res.left(res.size()-1);
 
    while (query.next()){
        QStringList dispo = db->getColonne("SELECT nom_disponibilite FROM assoc_disponibilite_uv WHERE code_uv  = '" + query.value(0).toString() + "';");
@@ -102,12 +102,6 @@ void Accueil::affiche_uv() {
        liste[nom_cursus]->addItem(query.value(0).toString() + "    -    "  + query.value(1).toString() + "    -    " + query.value(2).toString() + "    - Disponible en : " + d.left(d.size()-3));
    }
 }
-
-/**
- * \fn Accueil::connexionUser()
- * \brief Permet la connexion d'un utilisateur
- * \return void
- */
 
 void Accueil::connexionUser() {
         QSqlQuery query;
@@ -135,11 +129,7 @@ void Accueil::connexionUser() {
         }
 }
 
-/**
- * \fn Accueil::inscriptionUser()
- * \brief Lance le formulaire d'inscription
- * \return void
- */
+
 void Accueil::inscriptionUser() {
     Inscription i;
     i.exec();
