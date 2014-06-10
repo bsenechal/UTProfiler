@@ -12,10 +12,8 @@ mondossier::mondossier(QWidget *parent) :
     branches = Branches::getInstance();
     db = dbmanager::getInstance();
     semestres = Semestre::getInstance();
-    QSqlQuery query;
     c = Connexion::getInstance();
     uvm = uvmnger::getInstance();
-
 
     ui->sauvegarder_modif->hide();
     ui->modif_semestre->hide();
@@ -28,17 +26,8 @@ mondossier::mondossier(QWidget *parent) :
     ui->modif_nom->hide();
     ui->modif_prenom->hide();
 
-
-/*/////////////////////////////////Remplacer par c->getLogin()    <<< ne marche pas !!*/
-    query = db->execute("SELECT id_dossier FROM Dossier WHERE login_etudiant='damartin';");
-     while(query.next()) {
-         this->numerodossier=query.value(0).toString();
-     }
-
-
     remplirchoix();
     rempliruvsuivies();
-
 
     ui->comboBox_cursus->addItem("");
     ui->comboBox_cursus->addItems(cursus->getListe_cursus());
@@ -62,15 +51,10 @@ mondossier::mondossier(QWidget *parent) :
     QObject::connect(ui->comboBox_cursus, SIGNAL(currentIndexChanged(int)), this, SLOT(add_critere_cursus()));
     QObject::connect(ui->comboBox_branche, SIGNAL(currentIndexChanged(int)), this, SLOT(add_critere_branche()));
     QObject::connect(ui->comboBox_filiere, SIGNAL(currentIndexChanged(int)), this, SLOT(add_critere_filiere()));
-    QTimer::singleShot(0, this, SLOT(maj_dossier()));
 }
-
-/* A modifier */
 
 void mondossier::enable_credits() {
     QStringList combinaisons;
-    QString curUv = ui->liste_selection_UV->currentItem()->text();
-    qDebug()<< curUv;
 
     ui->comboBox_credits->clear();
     ui->comboBox_credits->addItem("");
@@ -121,9 +105,13 @@ void mondossier::ajoutUV() {
 }
 
 void mondossier::maj_dossier() {
-
-
     QSqlQuery query;
+
+    query = db->execute("SELECT id_dossier FROM Dossier WHERE login_etudiant='" + c->getLogin() + "';");
+
+    if(query.next()) {
+        this->numerodossier=query.value(0).toString();
+    }
 
     ui->login->clear();
     ui->nom->clear();
@@ -214,6 +202,7 @@ void mondossier::modifier_infos() {
 }
 
 void mondossier::sauvegarder_choix(){
+
     try {
         db->execute("BEGIN;");
         db->execute("DELETE FROM choixUv WHERE id_dossier="+this->numerodossier+";");
@@ -235,6 +224,7 @@ void mondossier::sauvegarder_choix(){
     catch (UTProfilerException u) {
         db->execute("ROLLBACK;");
     }
+
 }
 
 void mondossier::sauvegarder_dossier(){
@@ -304,7 +294,7 @@ void mondossier::remplirchoix(){
 
 void mondossier::rempliruvsuivies(){
     QSqlQuery query;
-
+    if (!this->numerodossier.isNull()) {
     //Fenetre des UVs suivies
     query = db->execute("SELECT code_uv, note,  semestre, nom_categorie, nbcredits, assoc_categorie_UV.id_acatu FROM UV_suivies, assoc_categorie_UV WHERE UV_suivies.id_acatu=assoc_categorie_UV.id_acatu AND UV_suivies.id_dossier="+this->numerodossier+" ORDER BY assoc_categorie_UV.id_acatu;");
 
@@ -340,9 +330,7 @@ void mondossier::rempliruvsuivies(){
     ui->liste_semestres->addItem(semestre);
     ui->liste_credits->addItem(maligne);
     ui->liste_possibilite_uv->addItem(idsvg);
-
-
-
+    }
     //Fin UVs suivies
 }
 
