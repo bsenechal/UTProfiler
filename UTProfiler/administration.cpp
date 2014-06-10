@@ -205,8 +205,8 @@ void Administration::sauvegarder_role() {
 
 void Administration::modif_ajout_dispo_uv() { add_to_list(ui->liste_modif_dispo_dispo_uv, ui->liste_modif_dispo_choisie_uv); }
 void Administration::modif_retire_dispo_uv() { add_to_list(ui->liste_modif_dispo_choisie_uv, ui->liste_modif_dispo_dispo_uv); }
-void Administration::modif_ajout_branche_uv() { add_to_list(ui->liste_modif_branche_dispo_uv, ui->liste_modif_branche_choisie_uv); }
-void Administration::modif_retire_branche_uv() { add_to_list(ui->liste_modif_branche_choisie_uv, ui->liste_modif_branche_dispo_uv); }
+void Administration::modif_ajout_branche_uv() {/*add_categorie(ui->liste_modif_branche_dispo_uv, ui->liste_modif_branche_choisie_uv, ui->ajout_obligation_uv->text()); */}
+void Administration::modif_retire_branche_uv() {/* add_to_list(ui->liste_modif_branche_choisie_uv, ui->liste_modif_branche_dispo_uv, ui->liste_ajout_obligation_uv); */}
 void Administration::modif_ajout_filiere_uv() { add_to_list(ui->liste_modif_filiere_dispo_uv, ui->liste_modif_filiere_choisie_uv); }
 void Administration::modif_retire_filiere_uv() { add_to_list(ui->liste_modif_filiere_choisie_uv, ui->liste_modif_filiere_dispo_uv); }
 void Administration::modif_ajout_categorie_uv() { add_categorie(ui->liste_modif_categorie_dispo_uv, ui->liste_modif_categorie_choisie_uv, ui->liste_modif_credits_uv, ui->modif_credit_uv->text()); }
@@ -1043,7 +1043,3 @@ void Administration::maj_etudiant() {
 
     }
 }
-
-
-
-

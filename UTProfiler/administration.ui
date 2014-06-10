@@ -45,7 +45,7 @@
       </rect>
      </property>
      <property name="currentIndex">
-      <number>2</number>
+      <number>0</number>
      </property>
      <widget class="QWidget" name="ajout_uv">
       <property name="geometry">
@@ -53,7 +53,7 @@
         <x>0</x>
         <y>0</y>
         <width>861</width>
-        <height>329</height>
+        <height>350</height>
        </rect>
       </property>
       <attribute name="label">
@@ -367,9 +367,9 @@
       <widget class="QGroupBox" name="group_ajout_branche_uv">
        <property name="geometry">
         <rect>
-         <x>610</x>
-         <y>180</y>
-         <width>251</width>
+         <x>230</x>
+         <y>10</y>
+         <width>341</width>
          <height>161</height>
         </rect>
        </property>
@@ -379,7 +379,7 @@
        <widget class="QLabel" name="label_ajout_branche_choisie_uv">
         <property name="geometry">
          <rect>
-          <x>150</x>
+          <x>190</x>
           <y>20</y>
           <width>101</width>
           <height>16</height>
@@ -392,7 +392,7 @@
        <widget class="QPushButton" name="retire_branche_uv">
         <property name="geometry">
          <rect>
-          <x>100</x>
+          <x>120</x>
           <y>100</y>
           <width>31</width>
           <height>31</height>
@@ -418,7 +418,7 @@
        <widget class="QListWidget" name="liste_ajout_branche_choisie_uv">
         <property name="geometry">
          <rect>
-          <x>150</x>
+          <x>190</x>
           <y>40</y>
           <width>71</width>
           <height>111</height>
@@ -438,7 +438,7 @@
        <widget class="QPushButton" name="ajout_branche_uv">
         <property name="geometry">
          <rect>
-          <x>100</x>
+          <x>120</x>
           <y>60</y>
           <width>31</width>
           <height>31</height>
@@ -446,6 +446,58 @@
         </property>
         <property name="text">
          <string>&gt;</string>
+        </property>
+       </widget>
+       <widget class="QListWidget" name="liste_ajout_obligation_uv">
+        <property name="geometry">
+         <rect>
+          <x>280</x>
+          <y>40</y>
+          <width>41</width>
+          <height>111</height>
+         </rect>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_liste_ajout_obligation_uv">
+        <property name="geometry">
+         <rect>
+          <x>280</x>
+          <y>20</y>
+          <width>81</width>
+          <height>16</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Obligation</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_ajout_obligation_uv">
+        <property name="geometry">
+         <rect>
+          <x>100</x>
+          <y>10</y>
+          <width>71</width>
+          <height>20</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>% obligation</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+        </property>
+       </widget>
+       <widget class="QSpinBox" name="ajout_obligation_uv">
+        <property name="geometry">
+         <rect>
+          <x>120</x>
+          <y>30</y>
+          <width>42</width>
+          <height>22</height>
+         </rect>
+        </property>
+        <property name="value">
+         <number>50</number>
         </property>
        </widget>
       </widget>
@@ -465,8 +517,8 @@
       <widget class="QGroupBox" name="group_ajout_dispo_uv">
        <property name="geometry">
         <rect>
-         <x>320</x>
-         <y>10</y>
+         <x>610</x>
+         <y>180</y>
          <width>251</width>
          <height>161</height>
         </rect>
@@ -554,7 +606,7 @@
         <x>0</x>
         <y>0</y>
         <width>861</width>
-        <height>329</height>
+        <height>350</height>
        </rect>
       </property>
       <attribute name="label">
@@ -1078,7 +1130,7 @@
         <x>0</x>
         <y>0</y>
         <width>861</width>
-        <height>329</height>
+        <height>350</height>
        </rect>
       </property>
       <attribute name="label">
@@ -1163,7 +1215,7 @@
         <x>0</x>
         <y>0</y>
         <width>861</width>
-        <height>319</height>
+        <height>340</height>
        </rect>
       </property>
       <attribute name="label">
@@ -1463,7 +1515,7 @@
         <x>0</x>
         <y>0</y>
         <width>861</width>
-        <height>319</height>
+        <height>340</height>
        </rect>
       </property>
       <attribute name="label">
@@ -2003,7 +2055,7 @@
         <x>0</x>
         <y>0</y>
         <width>861</width>
-        <height>319</height>
+        <height>340</height>
        </rect>
       </property>
       <attribute name="label">
@@ -2407,7 +2459,7 @@
         <x>0</x>
         <y>0</y>
         <width>861</width>
-        <height>319</height>
+        <height>340</height>
        </rect>
       </property>
       <attribute name="label">
@@ -2759,7 +2811,7 @@
         <x>0</x>
         <y>0</y>
         <width>861</width>
-        <height>329</height>
+        <height>350</height>
        </rect>
       </property>
       <attribute name="label">

@@ -21,7 +21,6 @@ private:
      unsigned int getLine() const { return line; }
  #endif
 
-
 };
 
 #endif // UTPROFILEREXCEPTION_H

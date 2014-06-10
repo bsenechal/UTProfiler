@@ -35,11 +35,7 @@ class Accueil : public QMainWindow
     Q_OBJECT
 
 public:
-    /**
-     * \fn Accueil::Accueil(QWidget *parent)
-     * \param QWidget *parent
-     * \brief Constructeur de la classe Accueil
-     */
+
     explicit Accueil(QWidget *parent = 0);
     ~Accueil();
 
