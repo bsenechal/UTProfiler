@@ -52,6 +52,7 @@ mondossier::mondossier(QWidget *parent) :
     QObject::connect(ui->comboBox_branche, SIGNAL(currentIndexChanged(int)), this, SLOT(add_critere_branche()));
     QObject::connect(ui->comboBox_filiere, SIGNAL(currentIndexChanged(int)), this, SLOT(add_critere_filiere()));
     QObject::connect(ui->liste_selection_UV, SIGNAL(currentRowChanged(int)), this, SLOT(enable_credits()));
+    QObject::connect(ui->suggestion_uv, SIGNAL(clicked()), this, SLOT(generer_suggestion()));
 }
 
 void mondossier::enable_credits() {
@@ -348,7 +349,29 @@ void mondossier::suppr_UV_suivies() {
 
 
 void mondossier::generer_suggestion() {
-qDebug()<<"Ici";
+
+if (ui->branche->text()=="") {
+    QMessageBox msgBox;
+    msgBox.setText("Vous n'avez pas rempli de branche dans 'Mes Informations'\n \nNous ne pouvons pas vous suggerer de dossier prévisionnel !");
+    msgBox.exec();
+}
+else {
+    QSqlQuery query;
+    query = db->execute("select code_uv, obligation from assoc_branche_uv WHERE nom_branche='GI' Order by obligation desc");
+
+    while(query.next()){
+        map_algo_uv[query.value(0).toString()]=query.value(1).toString();
+    }
+}
+
+map<QString,QString>::iterator p;
+for(p = map_algo_uv.begin(); p != map_algo_uv.end(); p++)
+{
+   // if (ui->liste_exigences-> contains(p->first) ){qDebug()<<"test";}
+
+    qDebug()<<p->first;
+    qDebug()<<p->second;
+}
 }
 
 

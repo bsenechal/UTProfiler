@@ -11,6 +11,7 @@
 #include "uvmnger.h"
 #include "tools.h"
 #include "utprofilerexception.h"
+#include <QMessageBox>
 
 namespace Ui {
 class mondossier;
@@ -37,6 +38,7 @@ private:
     Semestre *semestres;
     uvmnger *uvm;
     map<QString,QString> map_pos_uv;
+    map<QString,QString> map_algo_uv;
     map<QString, map<QString, QString> > uvsuivies;
 
 
