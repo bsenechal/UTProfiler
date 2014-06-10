@@ -9,6 +9,7 @@
 #include "branches.h"
 #include "semestre.h"
 #include "uvmnger.h"
+#include "tools.h"
 
 namespace Ui {
 class mondossier;
@@ -38,7 +39,7 @@ private:
     map<QString, map<QString, QString> > uvsuivies;
 
 
-public slots:
+private slots:
     void ajoutUV();
     void sauvegarder_choix();
     void ajoutPreference();
@@ -47,15 +48,19 @@ public slots:
     void supprPreference();
     void supprRejet();
     void supprExigence();
-    void maj_dossier();
     void sauvegarder_modif();
     void modifier_infos();
     void enable_branche();
-    void enable_filiere();
     void enable_credits();
+    void add_critere_branche();
+    void add_critere_filiere();
+    void add_critere_cursus();
     void sauvegarder_dossier();
     void suppr_UV_suivies();
     void generer_suggestion();
+
+public slots :
+    void maj_dossier();
 };
 
 
