@@ -6,12 +6,12 @@
 #include "singleton.h"
 #include "dbmanager.h"
 
-class Uvmnger : public Singleton<Uvmnger>
+class uvmnger : public Singleton<uvmnger>
 {
-    friend class Singleton<Uvmnger>;
+    friend class Singleton<uvmnger>;
     QStringList liste_uv;
     dbmanager *db;
-    Uvmnger();
+    uvmnger();
 
 public:
     map<QString,QString> getPossibiliteFromUv(const QString& Uv);

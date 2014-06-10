@@ -14,7 +14,7 @@ mondossier::mondossier(QWidget *parent) :
     semestres = Semestre::getInstance();
     QSqlQuery query;
     c = Connexion::getInstance();
-    uvmnger = Uvmnger::getInstance();
+    uvmnger = uvmnger::getInstance();
 
 
     ui->sauvegarder_modif->hide();
@@ -36,8 +36,34 @@ mondossier::mondossier(QWidget *parent) :
      }
 
 
-    remplirchoix();
-    rempliruvsuivies();
+    //Fenetre des choix
+    query = db->execute("SELECT Code FROM UV;");
+    while(query.next()) {
+        ui->liste_selection_UV->addItem(query.value(0).toString());
+        ui->liste_choix_uv->addItem(query.value(0).toString());
+    }
+
+    query = db->execute("SELECT UV, choix FROM choixUv;");
+    while(query.next()) {
+        if (query.value(1).toString()=="exigence"){
+            ui->liste_exigences->addItem(query.value(0).toString());
+        }
+        else if (query.value(1).toString()=="preference"){
+            ui->liste_preferences->addItem(query.value(0).toString());
+        }
+        else if (query.value(1).toString()=="rejet"){
+            ui->liste_rejets->addItem(query.value(0).toString());
+        }
+
+        for (int i = 0; i < ui->liste_choix_uv->count(); i++) {
+            if(ui->liste_choix_uv->item(i)->text()==query.value(0).toString()) {
+                qDebug()<<ui->liste_choix_uv->item(i);
+                delete ui->liste_choix_uv->item(i);
+            };
+        }
+    }
+
+    //Fin fenetre des choix
 
 
     ui->comboBox_cursus->addItem("");
@@ -45,7 +71,6 @@ mondossier::mondossier(QWidget *parent) :
     ui->comboBox_note->addItems(db->getColonne("SELECT Note FROM Note;"));
     ui->comboBox_semestre->addItems(semestres->getListe_semestres());
     QObject::connect(ui->ajout_uv, SIGNAL(clicked()), this, SLOT(ajoutUV()));
-    QObject::connect(ui->suppri_UV_suivies, SIGNAL(clicked()), this, SLOT(suppr_UV_suivies()));
     QObject::connect(ui->add_exigence, SIGNAL(clicked()), this, SLOT(ajoutExigence()));
     QObject::connect(ui->add_rejet, SIGNAL(clicked()), this, SLOT(ajoutRejet()));
     QObject::connect(ui->add_preference, SIGNAL(clicked()), this, SLOT(ajoutPreference()));
@@ -58,14 +83,14 @@ mondossier::mondossier(QWidget *parent) :
     QObject::connect(ui->sauvegarder_modif, SIGNAL(clicked()), this, SLOT(sauvegarder_modif()));
     QObject::connect(ui->sauvegarder_dossier, SIGNAL(clicked()), this, SLOT(sauvegarder_dossier()));
     QObject::connect(ui->onglets_dossier, SIGNAL(currentChanged(int)), this, SLOT(maj_dossier()));
-    QObject::connect(ui->comboBox_cursus, SIGNAL(currentIndexChanged(int)), this, SLOT(add_critere_cursus()));
-    QObject::connect(ui->comboBox_branche, SIGNAL(currentIndexChanged(int)), this, SLOT(add_critere_branche()));
-    QObject::connect(ui->comboBox_filiere, SIGNAL(currentIndexChanged(int)), this, SLOT(add_critere_filiere()));
+    QObject::connect(ui->comboBox_cursus, SIGNAL(currentIndexChanged(int)), this, SLOT(enable_branche()));
     QObject::connect(ui->liste_selection_UV, SIGNAL(currentRowChanged(int)), this, SLOT(enable_credits()));
+    //QObject::connect(ui->comboBox_branche, SIGNAL(clicked()), this, SLOT(enable_filiere()));
     QTimer::singleShot(0, this, SLOT(maj_dossier()));
     this->maj_dossier();
 }
 
+/* A modifier */
 
 void mondossier::enable_credits() {
     QStringList combinaisons;
@@ -87,22 +112,25 @@ void mondossier::enable_credits() {
 }
 
 
-void mondossier::add_critere_filiere() {
-    Tools::maj_liste(ui->liste_selection_UV, db->execute("SELECT u.Code FROM UV u, assoc_branche_uv a, branche b, assoc_filiere_uv afu, filiere f WHERE u.code = a.code_uv AND b.nom = a.nom_branche AND afu.code_uv = u.code AND afu.nom_filiere = f.nom AND b.nom_cursus = '" + ui->comboBox_cursus->currentText() + "' AND b.nom = '" + ui->comboBox_branche->currentText() + "' AND f.nom = '" + ui->comboBox_filiere->currentText() + "';"));
+void mondossier::enable_filiere() {
+    ui->comboBox_filiere->clear();
+    ui->comboBox_filiere->addItem("");
+    ui->comboBox_filiere->addItems(filieres->getFilieresFromBranche(ui->comboBox_branche->currentText()));
+    ui->comboBox_filiere->setEnabled(true);
 }
 
-void mondossier::add_critere_branche() {
-   Tools::enable_combobox(ui->comboBox_filiere, filieres->getFilieresFromBranche(ui->comboBox_branche->currentText()));
+void mondossier::enable_branche() {
+    ui->comboBox_branche->clear();
+    ui->comboBox_branche->addItem("");
+    ui->comboBox_branche->addItems(branches->getBranchesFromCursus(ui->comboBox_cursus->currentText()));
+    ui->comboBox_branche->setEnabled(true);
 
-   Tools::maj_liste(ui->liste_selection_UV, db->execute("SELECT a.code_uv FROM assoc_branche_uv a, branche b WHERE b.nom = a.nom_branche AND b.nom_cursus = '" + ui->comboBox_cursus->currentText() + "' AND b.nom = '" + ui->comboBox_branche->currentText() + "';"));
+    //On pourra surcharger ça
+    ui->modif_branche->clear();
+    ui->modif_branche->addItem("");
+    ui->modif_branche->addItems(branches->getBranchesFromCursus(ui->modif_cursus->currentText()));
+    ui->modif_branche->setEnabled(true);
 }
-
-void mondossier::add_critere_cursus() {
-    Tools::enable_combobox(ui->comboBox_branche, branches->getBranchesFromCursus(ui->comboBox_cursus->currentText()));
-
-    Tools::maj_liste(ui->liste_selection_UV, db->execute("SELECT a.code_uv FROM assoc_branche_uv a, branche b WHERE b.nom = a.nom_branche AND b.nom_cursus = '" + ui->comboBox_cursus->currentText() + "';"));
-}
-
 
 void mondossier::ajoutUV() {
 
@@ -116,6 +144,8 @@ void mondossier::ajoutUV() {
 }
 
 void mondossier::maj_dossier() {
+
+
     QSqlQuery query;
 
     ui->login->clear();
@@ -222,8 +252,6 @@ void mondossier::sauvegarder_choix(){
 }
 
 void mondossier::sauvegarder_dossier(){
-    QSqlQuery query;
-    db->execute("DELETE FROM UV_suivies WHERE id_dossier="+this->numerodossier+";");
 
     for (int i = 0; i < ui->liste_uv_suivies->count(); i++) {
             QString curUv = ui->liste_uv_suivies->item(i)->text();
@@ -231,106 +259,50 @@ void mondossier::sauvegarder_dossier(){
             QString curSem = ui->liste_semestres->item(i)->text();
             QString curposs = ui->liste_possibilite_uv->item(i)->text();
 qDebug()<<curUv+curNote+curSem+curposs;
-db->execute("INSERT INTO UV_suivies (semestre, note, id_acatu, id_dossier)VALUES ('"+curSem+"','"+curNote+"',"+curposs+","+this->numerodossier+" )");
-
         }
-
 }
-void mondossier::ajoutExigence(){ Tools::switch_current_item(ui->liste_choix_uv, ui->liste_exigences); }
-void mondossier::ajoutPreference(){ Tools::switch_current_item(ui->liste_choix_uv, ui->liste_preferences); }
-void mondossier::ajoutRejet(){ Tools::switch_current_item(ui->liste_choix_uv, ui->liste_rejets); }
-
-void mondossier::supprExigence(){ Tools::switch_current_item(ui->liste_exigences, ui->liste_choix_uv); }
-void mondossier::supprRejet(){ Tools::switch_current_item(ui->liste_rejets, ui->liste_choix_uv); }
-void mondossier::supprPreference(){ Tools::switch_current_item(ui->liste_preferences, ui->liste_choix_uv); }
 
 
-void mondossier::remplirchoix(){
-    QSqlQuery query;
-
-    //Fenetre des choix
-    query = db->execute("SELECT Code FROM UV;");
-    while(query.next()) {
-        ui->liste_selection_UV->addItem(query.value(0).toString());
-        ui->liste_choix_uv->addItem(query.value(0).toString());
+void mondossier::ajoutExigence(){
+    if (ui->liste_choix_uv->currentItem() != NULL){
+        ui->liste_exigences->addItem(ui->liste_choix_uv->currentItem()->text());
+        delete ui->liste_choix_uv->currentItem();
     }
+}
 
-    query = db->execute("SELECT UV, choix FROM choixUv;");
-    while(query.next()) {
-        if (query.value(1).toString()=="exigence"){
-            ui->liste_exigences->addItem(query.value(0).toString());
-        }
-        else if (query.value(1).toString()=="preference"){
-            ui->liste_preferences->addItem(query.value(0).toString());
-        }
-        else if (query.value(1).toString()=="rejet"){
-            ui->liste_rejets->addItem(query.value(0).toString());
-        }
-
-        for (int i = 0; i < ui->liste_choix_uv->count(); i++) {
-            if(ui->liste_choix_uv->item(i)->text()==query.value(0).toString()) {
-                qDebug()<<ui->liste_choix_uv->item(i);
-                delete ui->liste_choix_uv->item(i);
-            };
-        }
+void mondossier::ajoutPreference(){
+    if (ui->liste_choix_uv->currentItem() != NULL){
+        ui->liste_preferences->addItem(ui->liste_choix_uv->currentItem()->text());
+        delete ui->liste_choix_uv->currentItem();
     }
-
-    //Fin fenetre des choix
 }
 
-void mondossier::rempliruvsuivies(){
-    QSqlQuery query;
-
-    //Fenetre des UVs suivies
-    query = db->execute("SELECT code_uv, note,  semestre, nom_categorie, nbcredits, assoc_categorie_UV.id_acatu FROM UV_suivies, assoc_categorie_UV WHERE UV_suivies.id_acatu=assoc_categorie_UV.id_acatu AND UV_suivies.id_dossier="+this->numerodossier+" ORDER BY assoc_categorie_UV.id_acatu;");
-
-    QString idsvg;
-    QString maligne="";
-    QString uv=query.value(0).toString();
-    QString note=query.value(1).toString();
-    QString semestre=query.value(2).toString();
-
-    while (query.next()) {
-        uv=query.value(0).toString();
-        note=query.value(1).toString();
-        semestre=query.value(2).toString();
-
-        if ((query.value(5).toString())==idsvg) {
-            maligne=maligne+" & "+query.value(3).toString()+" : "+query.value(4).toString();
-        }
-        else {
-            if(maligne!=""){
-            //Si on a finis avec cette ligne la, on fait nos inserts !
-                ui->liste_uv_suivies->addItem(uv);
-                ui->liste_notes->addItem(note);
-                ui->liste_semestres->addItem(semestre);
-                ui->liste_credits->addItem(maligne);
-                ui->liste_possibilite_uv->addItem(idsvg);
-            }
-            maligne=""+query.value(3).toString()+" : "+query.value(4).toString();
-        }
-           idsvg=query.value(5).toString();
-     }
-    ui->liste_uv_suivies->addItem(uv);
-    ui->liste_notes->addItem(note);
-    ui->liste_semestres->addItem(semestre);
-    ui->liste_credits->addItem(maligne);
-    ui->liste_possibilite_uv->addItem(idsvg);
-
-
-
-    //Fin UVs suivies
+void mondossier::ajoutRejet(){
+    if (ui->liste_choix_uv->currentItem() != NULL){
+        ui->liste_rejets->addItem(ui->liste_choix_uv->currentItem()->text());
+        delete ui->liste_choix_uv->currentItem();
+    }
 }
 
-void mondossier::suppr_UV_suivies() {
-    qDebug()<<"ici";
-    int i=ui->liste_uv_suivies->currentRow();
+void mondossier::supprExigence(){
+    if (ui->liste_exigences->currentItem() != NULL){
+        ui->liste_choix_uv->addItem(ui->liste_exigences->currentItem()->text());
+        delete ui->liste_exigences->currentItem();
+    }
+}
 
-    delete ui->liste_uv_suivies->item(i);
-    delete ui->liste_notes->item(i);
-    delete ui->liste_semestres->item(i);
-    delete ui->liste_credits->item(i);
-    delete ui->liste_possibilite_uv->item(i);
+void mondossier::supprRejet(){
+    if (ui->liste_rejets->currentItem() != NULL){
+        ui->liste_choix_uv->addItem(ui->liste_rejets->currentItem()->text());
+        delete ui->liste_rejets->currentItem();
+    }
+}
+
+void mondossier::supprPreference(){
+    if (ui->liste_preferences->currentItem() != NULL){
+        ui->liste_choix_uv->addItem(ui->liste_preferences->currentItem()->text());
+        delete ui->liste_preferences->currentItem();
+    }
 }
 
 mondossier::~mondossier()

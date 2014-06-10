@@ -93,7 +93,6 @@ public:
     QLabel *label_18;
     QPushButton *sauvegarder_dossier;
     QListWidget *liste_possibilite_uv;
-    QPushButton *suppri_UV_suivies;
     QWidget *choix;
     QPushButton *add_exigence;
     QLabel *label_titre_choix;
@@ -316,7 +315,7 @@ public:
         label_2->setGeometry(QRect(430, 90, 81, 16));
         label_3 = new QLabel(tab_info_perso);
         label_3->setObjectName(QStringLiteral("label_3"));
-        label_3->setGeometry(QRect(540, 90, 51, 16));
+        label_3->setGeometry(QRect(560, 90, 51, 16));
         label_4 = new QLabel(tab_info_perso);
         label_4->setObjectName(QStringLiteral("label_4"));
         label_4->setGeometry(QRect(80, 140, 151, 16));
@@ -342,7 +341,7 @@ public:
         liste_uv_suivies->setGeometry(QRect(430, 120, 91, 201));
         liste_notes = new QListWidget(tab_info_perso);
         liste_notes->setObjectName(QStringLiteral("liste_notes"));
-        liste_notes->setGeometry(QRect(530, 120, 91, 201));
+        liste_notes->setGeometry(QRect(550, 120, 91, 201));
         comboBox_filiere = new QComboBox(tab_info_perso);
         comboBox_filiere->setObjectName(QStringLiteral("comboBox_filiere"));
         comboBox_filiere->setEnabled(false);
@@ -358,10 +357,10 @@ public:
         comboBox_semestre->setGeometry(QRect(240, 250, 101, 22));
         liste_semestres = new QListWidget(tab_info_perso);
         liste_semestres->setObjectName(QStringLiteral("liste_semestres"));
-        liste_semestres->setGeometry(QRect(630, 120, 91, 201));
+        liste_semestres->setGeometry(QRect(670, 120, 91, 201));
         label_7 = new QLabel(tab_info_perso);
         label_7->setObjectName(QStringLiteral("label_7"));
-        label_7->setGeometry(QRect(640, 90, 71, 16));
+        label_7->setGeometry(QRect(680, 90, 71, 16));
         label_8 = new QLabel(tab_info_perso);
         label_8->setObjectName(QStringLiteral("label_8"));
         label_8->setGeometry(QRect(20, 20, 191, 31));
@@ -387,19 +386,16 @@ public:
         label_9->setGeometry(QRect(270, 290, 81, 16));
         liste_credits = new QListWidget(tab_info_perso);
         liste_credits->setObjectName(QStringLiteral("liste_credits"));
-        liste_credits->setGeometry(QRect(730, 120, 91, 201));
+        liste_credits->setGeometry(QRect(790, 120, 91, 201));
         label_18 = new QLabel(tab_info_perso);
         label_18->setObjectName(QStringLiteral("label_18"));
-        label_18->setGeometry(QRect(740, 90, 71, 16));
+        label_18->setGeometry(QRect(800, 90, 71, 16));
         sauvegarder_dossier = new QPushButton(tab_info_perso);
         sauvegarder_dossier->setObjectName(QStringLiteral("sauvegarder_dossier"));
         sauvegarder_dossier->setGeometry(QRect(750, 350, 141, 31));
         liste_possibilite_uv = new QListWidget(tab_info_perso);
         liste_possibilite_uv->setObjectName(QStringLiteral("liste_possibilite_uv"));
         liste_possibilite_uv->setGeometry(QRect(790, 10, 91, 71));
-        suppri_UV_suivies = new QPushButton(tab_info_perso);
-        suppri_UV_suivies->setObjectName(QStringLiteral("suppri_UV_suivies"));
-        suppri_UV_suivies->setGeometry(QRect(830, 120, 31, 21));
         onglets_dossier->addTab(tab_info_perso, QString());
         fond_2->raise();
         label_cursus_2->raise();
@@ -429,7 +425,6 @@ public:
         label_18->raise();
         sauvegarder_dossier->raise();
         liste_possibilite_uv->raise();
-        suppri_UV_suivies->raise();
         choix = new QWidget();
         choix->setObjectName(QStringLiteral("choix"));
         add_exigence = new QPushButton(choix);
@@ -565,7 +560,6 @@ public:
         label_9->setText(QApplication::translate("mondossier", "Credits", 0));
         label_18->setText(QApplication::translate("mondossier", "Credits", 0));
         sauvegarder_dossier->setText(QApplication::translate("mondossier", "Sauvegarder", 0));
-        suppri_UV_suivies->setText(QApplication::translate("mondossier", "X", 0));
         onglets_dossier->setTabText(onglets_dossier->indexOf(tab_info_perso), QApplication::translate("mondossier", "Saisir Dossier", 0));
         add_exigence->setText(QApplication::translate("mondossier", ">", 0));
         label_titre_choix->setText(QApplication::translate("mondossier", "Mes Choix", 0));

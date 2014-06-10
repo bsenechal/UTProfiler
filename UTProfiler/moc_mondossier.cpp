@@ -19,8 +19,8 @@
 
 QT_BEGIN_MOC_NAMESPACE
 struct qt_meta_stringdata_mondossier_t {
-    QByteArrayData data[18];
-    char stringdata[248];
+    QByteArrayData data[17];
+    char stringdata[231];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -45,8 +45,7 @@ QT_MOC_LITERAL(12, 150, 14),
 QT_MOC_LITERAL(13, 165, 14),
 QT_MOC_LITERAL(14, 180, 14),
 QT_MOC_LITERAL(15, 195, 14),
-QT_MOC_LITERAL(16, 210, 19),
-QT_MOC_LITERAL(17, 230, 16)
+QT_MOC_LITERAL(16, 210, 19)
     },
     "mondossier\0ajoutUV\0\0sauvegarder_choix\0"
     "ajoutPreference\0ajoutRejet\0ajoutExigence\0"
@@ -54,7 +53,7 @@ QT_MOC_LITERAL(17, 230, 16)
     "maj_dossier\0sauvegarder_modif\0"
     "modifier_infos\0enable_branche\0"
     "enable_filiere\0enable_credits\0"
-    "sauvegarder_dossier\0suppr_UV_suivies\0"
+    "sauvegarder_dossier\0"
 };
 #undef QT_MOC_LITERAL
 
@@ -64,7 +63,7 @@ static const uint qt_meta_data_mondossier[] = {
        7,       // revision
        0,       // classname
        0,    0, // classinfo
-      16,   14, // methods
+      15,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -72,25 +71,23 @@ static const uint qt_meta_data_mondossier[] = {
        0,       // signalCount
 
  // slots: name, argc, parameters, tag, flags
-       1,    0,   94,    2, 0x0a,
-       3,    0,   95,    2, 0x0a,
-       4,    0,   96,    2, 0x0a,
-       5,    0,   97,    2, 0x0a,
-       6,    0,   98,    2, 0x0a,
-       7,    0,   99,    2, 0x0a,
-       8,    0,  100,    2, 0x0a,
-       9,    0,  101,    2, 0x0a,
-      10,    0,  102,    2, 0x0a,
-      11,    0,  103,    2, 0x0a,
-      12,    0,  104,    2, 0x0a,
-      13,    0,  105,    2, 0x0a,
-      14,    0,  106,    2, 0x0a,
-      15,    0,  107,    2, 0x0a,
-      16,    0,  108,    2, 0x0a,
-      17,    0,  109,    2, 0x0a,
+       1,    0,   89,    2, 0x0a,
+       3,    0,   90,    2, 0x0a,
+       4,    0,   91,    2, 0x0a,
+       5,    0,   92,    2, 0x0a,
+       6,    0,   93,    2, 0x0a,
+       7,    0,   94,    2, 0x0a,
+       8,    0,   95,    2, 0x0a,
+       9,    0,   96,    2, 0x0a,
+      10,    0,   97,    2, 0x0a,
+      11,    0,   98,    2, 0x0a,
+      12,    0,   99,    2, 0x0a,
+      13,    0,  100,    2, 0x0a,
+      14,    0,  101,    2, 0x0a,
+      15,    0,  102,    2, 0x0a,
+      16,    0,  103,    2, 0x0a,
 
  // slots: parameters
-    QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
@@ -130,7 +127,6 @@ void mondossier::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         case 12: _t->enable_filiere(); break;
         case 13: _t->enable_credits(); break;
         case 14: _t->sauvegarder_dossier(); break;
-        case 15: _t->suppr_UV_suivies(); break;
         default: ;
         }
     }
@@ -162,13 +158,13 @@ int mondossier::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 16)
+        if (_id < 15)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 16;
+        _id -= 15;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 16)
+        if (_id < 15)
             *reinterpret_cast<int*>(_a[0]) = -1;
-        _id -= 16;
+        _id -= 15;
     }
     return _id;
 }

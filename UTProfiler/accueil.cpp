@@ -116,7 +116,6 @@ void Accueil::connexionUser() {
 
 
             if (query.next()) {
-                dossier.maj_dossier();
                 if (query.value(0).toString() == "true") {
                     admin.show();
                     dossier.show();

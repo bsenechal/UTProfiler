@@ -34,8 +34,7 @@ SOURCES += \
     disponibilites.cpp \
     etudiants.cpp \
     semestre.cpp \
-    uvmnger.cpp \
-    tools.cpp
+    uvmnger.cpp
 
 HEADERS  += \
     dbmanager.h \
@@ -59,8 +58,7 @@ HEADERS  += \
     disponibilites.h \
     etudiants.h \
     semestre.h \
-    uvmnger.h \
-    tools.h
+    uvmnger.h
 
 FORMS    += \
     accueil.ui \

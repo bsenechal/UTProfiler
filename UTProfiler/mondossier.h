@@ -9,8 +9,6 @@
 #include "branches.h"
 #include "semestre.h"
 #include "uvmnger.h"
-#include "tools.h"
-#include "utprofilerexception.h"
 
 namespace Ui {
 class mondossier;
@@ -23,8 +21,6 @@ class mondossier : public QDialog
 public:
     explicit mondossier(QWidget *parent = 0);
     ~mondossier();
-    void remplirchoix();
-    void rempliruvsuivies();
 
 private:
     QString numerodossier;
@@ -35,13 +31,12 @@ private:
     Filieres *filieres;
     Cursus *cursus;
     Semestre *semestres;
-    Uvmnger *uvmnger;
+    uvmnger *uvmnger;
     map<QString,QString> map_pos_uv;
     map<QString, map<QString, QString> > uvsuivies;
 
 
-
-private slots:
+public slots:
     void ajoutUV();
     void sauvegarder_choix();
     void ajoutPreference();
@@ -50,20 +45,13 @@ private slots:
     void supprPreference();
     void supprRejet();
     void supprExigence();
+    void maj_dossier();
     void sauvegarder_modif();
     void modifier_infos();
-    void sauvegarder_dossier();
-<<<<<<< HEAD
-    void suppr_UV_suivies();
-=======
-    void add_critere_branche();
-    void add_critere_filiere();
-    void add_critere_cursus();
+    void enable_branche();
+    void enable_filiere();
     void enable_credits();
-
-public slots :
-    void maj_dossier();
->>>>>>> FETCH_HEAD
+    void sauvegarder_dossier();
 };
 
 

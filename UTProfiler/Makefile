@@ -64,8 +64,7 @@ SOURCES       = main.cpp \
 		disponibilites.cpp \
 		etudiants.cpp \
 		semestre.cpp \
-		uvmnger.cpp \
-		tools.cpp qrc_Utc.cpp \
+		uvmnger.cpp qrc_Utc.cpp \
 		moc_accueil.cpp \
 		moc_mondossier.cpp \
 		moc_inscription.cpp \
@@ -94,7 +93,6 @@ OBJECTS       = main.o \
 		etudiants.o \
 		semestre.o \
 		uvmnger.o \
-		tools.o \
 		qrc_Utc.o \
 		moc_accueil.o \
 		moc_mondossier.o \
@@ -513,7 +511,7 @@ UTProfiler.app/Contents/Info.plist:
 	@sed -e "s,@SHORT_VERSION@,1.0,g" -e "s,@TYPEINFO@,????,g" -e "s,@ICON@,,g" -e "s,@BUNDLEIDENTIFIER@,com.yourcompany.UTProfiler,g" -e "s,@EXECUTABLE@,UTProfiler,g" -e "s,@TYPEINFO@,????,g" ../../../../../../Qt5.2.1/5.2.1/clang_64/mkspecs/macx-clang/Info.plist.app >UTProfiler.app/Contents/Info.plist
 dist: 
 	@test -d .tmp/UTProfiler1.0.0 || mkdir -p .tmp/UTProfiler1.0.0
-	$(COPY_FILE) --parents $(SOURCES) $(DIST) .tmp/UTProfiler1.0.0/ && $(COPY_FILE) --parents ../images/Utc.qrc .tmp/UTProfiler1.0.0/ && $(COPY_FILE) --parents dbmanager.h uv.h utprofilerexception.h connexion.h accueil.h mondossier.h inscription.h formulaire.h singleton.h viewuv.h fenetreplus.h detailuv.h insertuv.h administration.h cursus.h branches.h filieres.h categorie.h disponibilites.h etudiants.h semestre.h uvmnger.h tools.h .tmp/UTProfiler1.0.0/ && $(COPY_FILE) --parents main.cpp dbmanager.cpp uv.cpp accueil.cpp mondossier.cpp inscription.cpp viewuv.cpp fenetreplus.cpp detailuv.cpp insertuv.cpp connexion.cpp administration.cpp cursus.cpp branches.cpp filieres.cpp categorie.cpp disponibilites.cpp etudiants.cpp semestre.cpp uvmnger.cpp tools.cpp .tmp/UTProfiler1.0.0/ && $(COPY_FILE) --parents accueil.ui mondossier.ui inscription.ui viewuv.ui fenetreplus.ui detailuv.ui insertuv.ui administration.ui .tmp/UTProfiler1.0.0/ && (cd `dirname .tmp/UTProfiler1.0.0` && $(TAR) UTProfiler1.0.0.tar UTProfiler1.0.0 && $(COMPRESS) UTProfiler1.0.0.tar) && $(MOVE) `dirname .tmp/UTProfiler1.0.0`/UTProfiler1.0.0.tar.gz . && $(DEL_FILE) -r .tmp/UTProfiler1.0.0
+	$(COPY_FILE) --parents $(SOURCES) $(DIST) .tmp/UTProfiler1.0.0/ && $(COPY_FILE) --parents ../images/Utc.qrc .tmp/UTProfiler1.0.0/ && $(COPY_FILE) --parents dbmanager.h uv.h utprofilerexception.h connexion.h accueil.h mondossier.h inscription.h formulaire.h singleton.h viewuv.h fenetreplus.h detailuv.h insertuv.h administration.h cursus.h branches.h filieres.h categorie.h disponibilites.h etudiants.h semestre.h uvmnger.h .tmp/UTProfiler1.0.0/ && $(COPY_FILE) --parents main.cpp dbmanager.cpp uv.cpp accueil.cpp mondossier.cpp inscription.cpp viewuv.cpp fenetreplus.cpp detailuv.cpp insertuv.cpp connexion.cpp administration.cpp cursus.cpp branches.cpp filieres.cpp categorie.cpp disponibilites.cpp etudiants.cpp semestre.cpp uvmnger.cpp .tmp/UTProfiler1.0.0/ && $(COPY_FILE) --parents accueil.ui mondossier.ui inscription.ui viewuv.ui fenetreplus.ui detailuv.ui insertuv.ui administration.ui .tmp/UTProfiler1.0.0/ && (cd `dirname .tmp/UTProfiler1.0.0` && $(TAR) UTProfiler1.0.0.tar UTProfiler1.0.0 && $(COMPRESS) UTProfiler1.0.0.tar) && $(MOVE) `dirname .tmp/UTProfiler1.0.0`/UTProfiler1.0.0.tar.gz . && $(DEL_FILE) -r .tmp/UTProfiler1.0.0
 
 
 clean:compiler_clean 
@@ -541,8 +539,8 @@ compiler_rcc_clean:
 	-$(DEL_FILE) qrc_Utc.cpp
 qrc_Utc.cpp: ../images/Utc.qrc \
 		../images/bandeau_utc.jpg \
-		../images/utc.jpg \
-		../images/fond_pg.png
+		../images/fond_pg.png \
+		../images/utc.jpg
 	/Users/David/Qt5.2.1/5.2.1/clang_64/bin/rcc -name Utc ../images/Utc.qrc -o qrc_Utc.cpp
 
 compiler_moc_header_make_all: moc_accueil.cpp moc_mondossier.cpp moc_inscription.cpp moc_viewuv.cpp moc_fenetreplus.cpp moc_detailuv.cpp moc_insertuv.cpp moc_administration.cpp
@@ -601,9 +599,6 @@ moc_accueil.cpp: ../../../../../../Qt5.2.1/5.2.1/clang_64/lib/QtWidgets.framewor
 		cursus.h \
 		branches.h \
 		semestre.h \
-		uvmnger.h \
-		tools.h \
-		../../../../../../Qt5.2.1/5.2.1/clang_64/lib/QtWidgets.framework/Versions/5/Headers/qcombobox.h \
 		administration.h \
 		../../../../../../Qt5.2.1/5.2.1/clang_64/lib/QtWidgets.framework/Versions/5/Headers/QFrame \
 		../../../../../../Qt5.2.1/5.2.1/clang_64/lib/QtWidgets.framework/Versions/5/Headers/qframe.h \
@@ -644,15 +639,6 @@ moc_mondossier.cpp: ../../../../../../Qt5.2.1/5.2.1/clang_64/lib/QtWidgets.frame
 		cursus.h \
 		branches.h \
 		semestre.h \
-		uvmnger.h \
-		tools.h \
-		../../../../../../Qt5.2.1/5.2.1/clang_64/lib/QtWidgets.framework/Versions/5/Headers/qlistwidget.h \
-		../../../../../../Qt5.2.1/5.2.1/clang_64/lib/QtWidgets.framework/Versions/5/Headers/qcombobox.h \
-		utprofilerexception.h \
-		../../../../../../Qt5.2.1/5.2.1/clang_64/lib/QtCore.framework/Versions/5/Headers/QString \
-		../../../../../../Qt5.2.1/5.2.1/clang_64/lib/QtCore.framework/Versions/5/Headers/qstring.h \
-		../../../../../../Qt5.2.1/5.2.1/clang_64/lib/QtCore.framework/Versions/5/Headers/QTextStream \
-		../../../../../../Qt5.2.1/5.2.1/clang_64/lib/QtCore.framework/Versions/5/Headers/qtextstream.h \
 		mondossier.h
 	/Users/David/Qt5.2.1/5.2.1/clang_64/bin/moc $(DEFINES) -D__APPLE__ -D__GNUC__=4 $(INCPATH) mondossier.h -o moc_mondossier.cpp
 
@@ -823,9 +809,6 @@ main.o: main.cpp dbmanager.h \
 		cursus.h \
 		branches.h \
 		semestre.h \
-		uvmnger.h \
-		tools.h \
-		../../../../../../Qt5.2.1/5.2.1/clang_64/lib/QtWidgets.framework/Versions/5/Headers/qcombobox.h \
 		administration.h \
 		../../../../../../Qt5.2.1/5.2.1/clang_64/lib/QtWidgets.framework/Versions/5/Headers/QFrame \
 		../../../../../../Qt5.2.1/5.2.1/clang_64/lib/QtWidgets.framework/Versions/5/Headers/qframe.h \
@@ -948,9 +931,6 @@ accueil.o: accueil.cpp accueil.h \
 		cursus.h \
 		branches.h \
 		semestre.h \
-		uvmnger.h \
-		tools.h \
-		../../../../../../Qt5.2.1/5.2.1/clang_64/lib/QtWidgets.framework/Versions/5/Headers/qcombobox.h \
 		administration.h \
 		../../../../../../Qt5.2.1/5.2.1/clang_64/lib/QtWidgets.framework/Versions/5/Headers/QFrame \
 		../../../../../../Qt5.2.1/5.2.1/clang_64/lib/QtWidgets.framework/Versions/5/Headers/qframe.h \
@@ -992,15 +972,6 @@ mondossier.o: mondossier.cpp mondossier.h \
 		cursus.h \
 		branches.h \
 		semestre.h \
-		uvmnger.h \
-		tools.h \
-		../../../../../../Qt5.2.1/5.2.1/clang_64/lib/QtWidgets.framework/Versions/5/Headers/qlistwidget.h \
-		../../../../../../Qt5.2.1/5.2.1/clang_64/lib/QtWidgets.framework/Versions/5/Headers/qcombobox.h \
-		utprofilerexception.h \
-		../../../../../../Qt5.2.1/5.2.1/clang_64/lib/QtCore.framework/Versions/5/Headers/QString \
-		../../../../../../Qt5.2.1/5.2.1/clang_64/lib/QtCore.framework/Versions/5/Headers/qstring.h \
-		../../../../../../Qt5.2.1/5.2.1/clang_64/lib/QtCore.framework/Versions/5/Headers/QTextStream \
-		../../../../../../Qt5.2.1/5.2.1/clang_64/lib/QtCore.framework/Versions/5/Headers/qtextstream.h \
 		ui_mondossier.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o mondossier.o mondossier.cpp
 
@@ -1038,16 +1009,7 @@ inscription.o: inscription.cpp inscription.h \
 		filieres.h \
 		cursus.h \
 		branches.h \
-		semestre.h \
-		uvmnger.h \
-		tools.h \
-		../../../../../../Qt5.2.1/5.2.1/clang_64/lib/QtWidgets.framework/Versions/5/Headers/qlistwidget.h \
-		../../../../../../Qt5.2.1/5.2.1/clang_64/lib/QtWidgets.framework/Versions/5/Headers/qcombobox.h \
-		utprofilerexception.h \
-		../../../../../../Qt5.2.1/5.2.1/clang_64/lib/QtCore.framework/Versions/5/Headers/QString \
-		../../../../../../Qt5.2.1/5.2.1/clang_64/lib/QtCore.framework/Versions/5/Headers/qstring.h \
-		../../../../../../Qt5.2.1/5.2.1/clang_64/lib/QtCore.framework/Versions/5/Headers/QTextStream \
-		../../../../../../Qt5.2.1/5.2.1/clang_64/lib/QtCore.framework/Versions/5/Headers/qtextstream.h
+		semestre.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o inscription.o inscription.cpp
 
 viewuv.o: viewuv.cpp viewuv.h \
@@ -1412,33 +1374,6 @@ uvmnger.o: uvmnger.cpp uvmnger.h \
 		../../../../../../Qt5.2.1/5.2.1/clang_64/lib/QtSql.framework/Versions/5/Headers/qsqltablemodel.h \
 		../../../../../../Qt5.2.1/5.2.1/clang_64/lib/QtSql.framework/Versions/5/Headers/qtsqlversion.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o uvmnger.o uvmnger.cpp
-
-tools.o: tools.cpp tools.h \
-		../../../../../../Qt5.2.1/5.2.1/clang_64/lib/QtWidgets.framework/Versions/5/Headers/qlistwidget.h \
-		../../../../../../Qt5.2.1/5.2.1/clang_64/lib/QtWidgets.framework/Versions/5/Headers/qcombobox.h \
-		dbmanager.h \
-		../../../../../../Qt5.2.1/5.2.1/clang_64/lib/QtCore.framework/Versions/5/Headers/QCoreApplication \
-		../../../../../../Qt5.2.1/5.2.1/clang_64/lib/QtCore.framework/Versions/5/Headers/qcoreapplication.h \
-		../../../../../../Qt5.2.1/5.2.1/clang_64/lib/QtSql.framework/Versions/5/Headers/QtSql \
-		../../../../../../Qt5.2.1/5.2.1/clang_64/lib/QtSql.framework/Versions/5/Headers/qsql.h \
-		../../../../../../Qt5.2.1/5.2.1/clang_64/lib/QtSql.framework/Versions/5/Headers/qsqldatabase.h \
-		../../../../../../Qt5.2.1/5.2.1/clang_64/lib/QtSql.framework/Versions/5/Headers/qsqldriver.h \
-		../../../../../../Qt5.2.1/5.2.1/clang_64/lib/QtSql.framework/Versions/5/Headers/qsqldriverplugin.h \
-		../../../../../../Qt5.2.1/5.2.1/clang_64/lib/QtSql.framework/Versions/5/Headers/qsqlerror.h \
-		../../../../../../Qt5.2.1/5.2.1/clang_64/lib/QtSql.framework/Versions/5/Headers/qsqlfield.h \
-		../../../../../../Qt5.2.1/5.2.1/clang_64/lib/QtSql.framework/Versions/5/Headers/qsqlindex.h \
-		../../../../../../Qt5.2.1/5.2.1/clang_64/lib/QtSql.framework/Versions/5/Headers/qsqlquery.h \
-		../../../../../../Qt5.2.1/5.2.1/clang_64/lib/QtSql.framework/Versions/5/Headers/qsqlrecord.h \
-		../../../../../../Qt5.2.1/5.2.1/clang_64/lib/QtSql.framework/Versions/5/Headers/qsqlresult.h \
-		../../../../../../Qt5.2.1/5.2.1/clang_64/lib/QtSql.framework/Versions/5/Headers/qsqlquerymodel.h \
-		../../../../../../Qt5.2.1/5.2.1/clang_64/lib/QtSql.framework/Versions/5/Headers/qsqlrelationaldelegate.h \
-		../../../../../../Qt5.2.1/5.2.1/clang_64/lib/QtSql.framework/Versions/5/Headers/qsqlrelationaltablemodel.h \
-		../../../../../../Qt5.2.1/5.2.1/clang_64/lib/QtSql.framework/Versions/5/Headers/qsqltablemodel.h \
-		../../../../../../Qt5.2.1/5.2.1/clang_64/lib/QtSql.framework/Versions/5/Headers/qtsqlversion.h \
-		../../../../../../Qt5.2.1/5.2.1/clang_64/lib/QtCore.framework/Versions/5/Headers/QStringList \
-		../../../../../../Qt5.2.1/5.2.1/clang_64/lib/QtCore.framework/Versions/5/Headers/qstringlist.h \
-		singleton.h
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o tools.o tools.cpp
 
 qrc_Utc.o: qrc_Utc.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o qrc_Utc.o qrc_Utc.cpp
