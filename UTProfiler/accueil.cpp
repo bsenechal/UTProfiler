@@ -91,7 +91,6 @@ void Accueil::affiche_uv() {
     }
 
    query = db->execute("SELECT u.code, u.description, b.nom FROM UV u, branche b, assoc_branche_uv a WHERE a.code_uv = u.code AND a.nom_branche = b.nom AND b.nom IN (" + res.left(res.size()-1) + ");");
-qDebug()<<"voici le contenu de IN : " << res.left(res.size()-1);
 
    while (query.next()){
        QStringList dispo = db->getColonne("SELECT nom_disponibilite FROM assoc_disponibilite_uv WHERE code_uv  = '" + query.value(0).toString() + "';");
@@ -123,8 +122,6 @@ void Accueil::connexionUser() {
                 }
                 else
                     dossier.exec();
-
-
             }
 
         }
