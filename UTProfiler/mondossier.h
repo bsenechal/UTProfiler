@@ -31,7 +31,7 @@ private:
     Filieres *filieres;
     Cursus *cursus;
     Semestre *semestres;
-    uvmnger *uvmnger;
+    uvmnger *uvm;
     map<QString,QString> map_pos_uv;
     map<QString, map<QString, QString> > uvsuivies;
 

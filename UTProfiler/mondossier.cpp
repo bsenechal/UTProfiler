@@ -14,7 +14,7 @@ mondossier::mondossier(QWidget *parent) :
     semestres = Semestre::getInstance();
     QSqlQuery query;
     c = Connexion::getInstance();
-    uvmnger = uvmnger::getInstance();
+    uvm = uvmnger::getInstance();
 
 
     ui->sauvegarder_modif->hide();
@@ -100,7 +100,7 @@ void mondossier::enable_credits() {
     ui->comboBox_credits->clear();
     ui->comboBox_credits->addItem("");
 
-    map_pos_uv = uvmnger->getPossibiliteFromUv(ui->liste_selection_UV->currentItem()->text());
+    map_pos_uv = uvm->getPossibiliteFromUv(ui->liste_selection_UV->currentItem()->text());
     map<QString,QString>::iterator p;
     for(p = map_pos_uv.begin(); p != map_pos_uv.end(); p++)
     {
