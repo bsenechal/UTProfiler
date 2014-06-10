@@ -26,8 +26,8 @@ int main(int argc, char* argv[]){
 
     /*! Initialisation de la BDD */
     dbmanager *db = dbmanager::getInstance();
-    //db->dbinitialise("QSQLITE","/Users/David/Desktop/UTC/LO21/Projet/UTprofilerv3/UTProfiler/BDD/UTProfiler");
-    db->dbinitialise("QSQLITE","C:/Users/Benoît/Documents/workspace/UTProfiler/BDD/UTProfiler");
+    db->dbinitialise("QSQLITE","/Users/David/Desktop/UTC/LO21/Projet/UTprofilerv3/UTProfiler/BDD/UTProfiler");
+    //db->dbinitialise("QSQLITE","C:/Users/Benoît/Documents/workspace/UTProfiler/BDD/UTProfiler");
 
     Accueil acc;
     acc.show();

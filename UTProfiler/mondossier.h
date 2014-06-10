@@ -38,7 +38,7 @@ private:
     Semestre *semestres;
     uvmnger *uvm;
     map<QString,QString> map_pos_uv;
-    map<QString,QString> map_algo_uv;
+    map<QString,int> map_algo_uv;
     map<QString, map<QString, QString> > uvsuivies;
 
 

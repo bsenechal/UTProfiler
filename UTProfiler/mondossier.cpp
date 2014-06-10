@@ -357,21 +357,39 @@ if (ui->branche->text()=="") {
 }
 else {
     QSqlQuery query;
-    query = db->execute("select code_uv, obligation from assoc_branche_uv WHERE nom_branche='GI' Order by obligation desc");
+    query = db->execute("select code_uv, obligation from assoc_branche_uv WHERE nom_branche='GI' or nom_branche='' Order by obligation desc");
 
     while(query.next()){
-        map_algo_uv[query.value(0).toString()]=query.value(1).toString();
+        map_algo_uv[query.value(0).toString()]=query.value(1).toInt();
     }
-}
 
-map<QString,QString>::iterator p;
-for(p = map_algo_uv.begin(); p != map_algo_uv.end(); p++)
-{
-   // if (ui->liste_exigences-> contains(p->first) ){qDebug()<<"test";}
 
-    qDebug()<<p->first;
-    qDebug()<<p->second;
-}
+        map<QString,int>::iterator p;
+        for(p = map_algo_uv.begin(); p != map_algo_uv.end(); p++)
+        {
+            for (int i = 0; i < ui->liste_exigences->count(); i++) {
+                if (ui->liste_exigences->item(i)->text()==p->first) {
+                    qDebug()<<p->first+" is In exigence";
+                    p->second=100;
+                }
+            }
+            for (int i = 0; i < ui->liste_preferences->count(); i++) {
+                if (ui->liste_preferences->item(i)->text()==p->first) {
+                    qDebug()<<p->first+" is In preferences";
+                    p->second=p->second + 50;
+                    if (p->second>100) p->second=100;
+
+                }
+            }
+            for (int i = 0; i < ui->liste_rejets->count(); i++) {
+                if (ui->liste_rejets->item(i)->text()==p->first) {
+                    qDebug()<<p->first+" is In rejets";
+                    p->second= - 10;
+                    qDebug()<<p->second;
+                }
+            }
+        }
+    }
 }
 
 
