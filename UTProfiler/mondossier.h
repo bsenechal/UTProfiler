@@ -10,6 +10,7 @@
 #include "semestre.h"
 #include "uvmnger.h"
 #include "tools.h"
+#include "utprofilerexception.h"
 
 namespace Ui {
 class mondossier;

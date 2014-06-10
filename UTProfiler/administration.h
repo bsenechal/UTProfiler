@@ -12,6 +12,7 @@
 #include "categorie.h"
 #include "disponibilites.h"
 #include "etudiants.h"
+#include "utprofilerexception.h"
 
 namespace Ui {
 class Administration;

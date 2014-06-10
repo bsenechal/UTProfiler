@@ -155,24 +155,30 @@ void mondossier::sauvegarder_modif(){
     QString filiere=  ui->modif_filiere->currentText();
     QString branche=  ui->modif_branche->currentText();
     QString semestre=  ui->modif_semestre->currentText();
-    qDebug()<<semestre;
 
-    db->execute("UPDATE Dossier SET nom_filiere='"+ filiere +"', nom_cursus='"+cursus+"', nom_branche='"+branche+"', num_semestre_actuel="+semestre+"  WHERE login_etudiant='"+c->getLogin()+"';");
-    db->execute("UPDATE Etudiant SET nom='"+ui->modif_nom->text()+"', prenom='"+ui->modif_prenom->text()+"', date_naissance='"+ui->modif_date_naiss->text()+"', email='"+ui->modif_email->text()+"'  WHERE login='"+c->getLogin()+"';");
+    try {
+        db->execute("BEGIN;");
+        db->execute("UPDATE Dossier SET nom_filiere='"+ filiere +"', nom_cursus='"+cursus+"', nom_branche='"+branche+"', num_semestre_actuel="+semestre+"  WHERE login_etudiant='"+c->getLogin()+"';");
+        db->execute("UPDATE Etudiant SET nom='"+ui->modif_nom->text()+"', prenom='"+ui->modif_prenom->text()+"', date_naissance='"+ui->modif_date_naiss->text()+"', email='"+ui->modif_email->text()+"'  WHERE login='"+c->getLogin()+"';");
 
-    ui->sauvegarder_modif->hide();
-    ui->modif_semestre->hide();
-    ui->modif_date_naiss->hide();
-    ui->modif_email->hide();
-    ui->modif_login->hide();
-    ui->modif_cursus->hide();
-    ui->modif_filiere->hide();
-    ui->modif_nom->hide();
-    ui->modif_prenom->hide();
-    ui->modif_branche->hide();
+        ui->sauvegarder_modif->hide();
+        ui->modif_semestre->hide();
+        ui->modif_date_naiss->hide();
+        ui->modif_email->hide();
+        ui->modif_login->hide();
+        ui->modif_cursus->hide();
+        ui->modif_filiere->hide();
+        ui->modif_nom->hide();
+        ui->modif_prenom->hide();
+        ui->modif_branche->hide();
 
-    ui->modif_info->show();
-    this->maj_dossier();
+        ui->modif_info->show();
+        this->maj_dossier();
+        db->execute("COMMIT;");
+    }
+    catch(UTProfilerException u) {
+        db->execute("ROLLBACK;");
+    }
 }
 
 
@@ -208,39 +214,49 @@ void mondossier::modifier_infos() {
 }
 
 void mondossier::sauvegarder_choix(){
-    QSqlQuery query;
-    //On drop tout les enregistrements pour ce dossier
-    db->execute("DELETE FROM choixUv WHERE id_dossier="+this->numerodossier+";");
+    try {
+        db->execute("BEGIN;");
+        db->execute("DELETE FROM choixUv WHERE id_dossier="+this->numerodossier+";");
 
-    for (int i = 0; i < ui->liste_exigences->count(); i++) {
-            QString curUv = ui->liste_exigences->item(i)->text();
-                db->execute("INSERT INTO choixUv (id_dossier, UV, choix)VALUES ("+this->numerodossier+",'"+curUv+"', 'exigence')");
-        }
+        for (int i = 0; i < ui->liste_exigences->count(); i++) {
+                    db->execute("INSERT INTO choixUv (id_dossier, UV, choix)VALUES ("+this->numerodossier+",'" + ui->liste_exigences->item(i)->text() + "', 'exigence')");
+            }
 
-    for (int i = 0; i < ui->liste_preferences->count(); i++) {
-            QString curUv = ui->liste_preferences->item(i)->text();
-            db->execute("INSERT INTO choixUv (id_dossier, UV, choix)VALUES ("+this->numerodossier+",'"+curUv+"', 'preference')");
-        }
+        for (int i = 0; i < ui->liste_preferences->count(); i++) {
+                db->execute("INSERT INTO choixUv (id_dossier, UV, choix)VALUES ("+this->numerodossier+",'" + ui->liste_preferences->item(i)->text()+ "', 'preference')");
+            }
 
-    for (int i = 0; i < ui->liste_rejets->count(); i++) {
-            QString curUv = ui->liste_rejets->item(i)->text();
-            db->execute("INSERT INTO choixUv (id_dossier, UV, choix)VALUES ("+this->numerodossier+",'"+curUv+"', 'rejet')");
-        }
+        for (int i = 0; i < ui->liste_rejets->count(); i++) {
+                db->execute("INSERT INTO choixUv (id_dossier, UV, choix)VALUES ("+this->numerodossier+",'" + ui->liste_rejets->item(i)->text() + "', 'rejet')");
+            }
+
+        db->execute("COMMIT;");
+    }
+    catch (UTProfilerException u) {
+        db->execute("ROLLBACK;");
+    }
 }
 
 void mondossier::sauvegarder_dossier(){
     QSqlQuery query;
-    db->execute("DELETE FROM UV_suivies WHERE id_dossier="+this->numerodossier+";");
 
-    for (int i = 0; i < ui->liste_uv_suivies->count(); i++) {
-            QString curUv = ui->liste_uv_suivies->item(i)->text();
-            QString curNote = ui->liste_notes->item(i)->text();
-            QString curSem = ui->liste_semestres->item(i)->text();
-            QString curposs = ui->liste_possibilite_uv->item(i)->text();
-qDebug()<<curUv+curNote+curSem+curposs;
-db->execute("INSERT INTO UV_suivies (semestre, note, id_acatu, id_dossier)VALUES ('"+curSem+"','"+curNote+"',"+curposs+","+this->numerodossier+" )");
+    try {
+        db->execute("BEGIN;");
+        db->execute("DELETE FROM UV_suivies WHERE id_dossier="+this->numerodossier+";");
 
-        }
+        for (int i = 0; i < ui->liste_uv_suivies->count(); i++) {
+                QString curUv = ui->liste_uv_suivies->item(i)->text();
+                QString curNote = ui->liste_notes->item(i)->text();
+                QString curSem = ui->liste_semestres->item(i)->text();
+                QString curposs = ui->liste_possibilite_uv->item(i)->text();
+            db->execute("INSERT INTO UV_suivies (semestre, note, id_acatu, id_dossier)VALUES ('"+curSem+"','"+curNote+"',"+curposs+","+this->numerodossier+" )");
+
+            }
+        db->execute("COMMIT;");
+    }
+    catch (UTProfilerException u){
+        db->execute("ROLLBACK;");
+    }
 
 }
 
