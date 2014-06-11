@@ -16,6 +16,7 @@
 #include <QtWidgets/QComboBox>
 #include <QtWidgets/QDialog>
 #include <QtWidgets/QFrame>
+#include <QtWidgets/QGroupBox>
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QLineEdit>
@@ -65,8 +66,6 @@ public:
     QComboBox *modif_branche;
     QComboBox *modif_semestre;
     QWidget *tab_info_perso;
-    QLabel *label_cursus_2;
-    QComboBox *comboBox_cursus;
     QLabel *label_2;
     QLabel *label_3;
     QLabel *label_4;
@@ -77,16 +76,12 @@ public:
     QListWidget *liste_selection_UV;
     QListWidget *liste_uv_suivies;
     QListWidget *liste_notes;
-    QComboBox *comboBox_filiere;
-    QLabel *label_filiere_2;
     QLabel *label_6;
     QComboBox *comboBox_semestre;
     QListWidget *liste_semestres;
     QLabel *label_7;
     QLabel *label_8;
     QLabel *fond_2;
-    QComboBox *comboBox_branche;
-    QLabel *label_branche_2;
     QComboBox *comboBox_credits;
     QLabel *label_9;
     QListWidget *liste_credits;
@@ -94,6 +89,13 @@ public:
     QPushButton *sauvegarder_dossier;
     QListWidget *liste_possibilite_uv;
     QPushButton *suppri_UV_suivies;
+    QGroupBox *group_criteres_recherche;
+    QLabel *label_cursus_2;
+    QLabel *label_filiere_2;
+    QLabel *label_branche_2;
+    QComboBox *comboBox_cursus;
+    QComboBox *comboBox_filiere;
+    QComboBox *comboBox_branche;
     QWidget *choix;
     QPushButton *add_exigence;
     QLabel *label_titre_choix;
@@ -305,12 +307,6 @@ public:
         modif_semestre->raise();
         tab_info_perso = new QWidget();
         tab_info_perso->setObjectName(QStringLiteral("tab_info_perso"));
-        label_cursus_2 = new QLabel(tab_info_perso);
-        label_cursus_2->setObjectName(QStringLiteral("label_cursus_2"));
-        label_cursus_2->setGeometry(QRect(20, 90, 46, 22));
-        comboBox_cursus = new QComboBox(tab_info_perso);
-        comboBox_cursus->setObjectName(QStringLiteral("comboBox_cursus"));
-        comboBox_cursus->setGeometry(QRect(60, 90, 69, 22));
         label_2 = new QLabel(tab_info_perso);
         label_2->setObjectName(QStringLiteral("label_2"));
         label_2->setGeometry(QRect(430, 90, 81, 16));
@@ -343,13 +339,6 @@ public:
         liste_notes = new QListWidget(tab_info_perso);
         liste_notes->setObjectName(QStringLiteral("liste_notes"));
         liste_notes->setGeometry(QRect(530, 120, 91, 201));
-        comboBox_filiere = new QComboBox(tab_info_perso);
-        comboBox_filiere->setObjectName(QStringLiteral("comboBox_filiere"));
-        comboBox_filiere->setEnabled(false);
-        comboBox_filiere->setGeometry(QRect(340, 90, 69, 22));
-        label_filiere_2 = new QLabel(tab_info_perso);
-        label_filiere_2->setObjectName(QStringLiteral("label_filiere_2"));
-        label_filiere_2->setGeometry(QRect(300, 90, 46, 22));
         label_6 = new QLabel(tab_info_perso);
         label_6->setObjectName(QStringLiteral("label_6"));
         label_6->setGeometry(QRect(270, 230, 81, 16));
@@ -372,13 +361,6 @@ public:
         fond_2->setObjectName(QStringLiteral("fond_2"));
         fond_2->setGeometry(QRect(0, 0, 891, 491));
         fond_2->setPixmap(QPixmap(QString::fromUtf8(":/images/fond_pg.png")));
-        comboBox_branche = new QComboBox(tab_info_perso);
-        comboBox_branche->setObjectName(QStringLiteral("comboBox_branche"));
-        comboBox_branche->setEnabled(false);
-        comboBox_branche->setGeometry(QRect(210, 90, 69, 22));
-        label_branche_2 = new QLabel(tab_info_perso);
-        label_branche_2->setObjectName(QStringLiteral("label_branche_2"));
-        label_branche_2->setGeometry(QRect(155, 90, 51, 22));
         comboBox_credits = new QComboBox(tab_info_perso);
         comboBox_credits->setObjectName(QStringLiteral("comboBox_credits"));
         comboBox_credits->setGeometry(QRect(240, 310, 131, 22));
@@ -400,10 +382,31 @@ public:
         suppri_UV_suivies = new QPushButton(tab_info_perso);
         suppri_UV_suivies->setObjectName(QStringLiteral("suppri_UV_suivies"));
         suppri_UV_suivies->setGeometry(QRect(830, 120, 31, 21));
+        group_criteres_recherche = new QGroupBox(tab_info_perso);
+        group_criteres_recherche->setObjectName(QStringLiteral("group_criteres_recherche"));
+        group_criteres_recherche->setGeometry(QRect(10, 70, 401, 51));
+        label_cursus_2 = new QLabel(group_criteres_recherche);
+        label_cursus_2->setObjectName(QStringLiteral("label_cursus_2"));
+        label_cursus_2->setGeometry(QRect(10, 20, 46, 22));
+        label_filiere_2 = new QLabel(group_criteres_recherche);
+        label_filiere_2->setObjectName(QStringLiteral("label_filiere_2"));
+        label_filiere_2->setGeometry(QRect(280, 20, 46, 22));
+        label_branche_2 = new QLabel(group_criteres_recherche);
+        label_branche_2->setObjectName(QStringLiteral("label_branche_2"));
+        label_branche_2->setGeometry(QRect(135, 20, 51, 22));
+        comboBox_cursus = new QComboBox(group_criteres_recherche);
+        comboBox_cursus->setObjectName(QStringLiteral("comboBox_cursus"));
+        comboBox_cursus->setGeometry(QRect(50, 20, 69, 22));
+        comboBox_filiere = new QComboBox(group_criteres_recherche);
+        comboBox_filiere->setObjectName(QStringLiteral("comboBox_filiere"));
+        comboBox_filiere->setEnabled(false);
+        comboBox_filiere->setGeometry(QRect(320, 20, 69, 22));
+        comboBox_branche = new QComboBox(group_criteres_recherche);
+        comboBox_branche->setObjectName(QStringLiteral("comboBox_branche"));
+        comboBox_branche->setEnabled(false);
+        comboBox_branche->setGeometry(QRect(190, 20, 69, 22));
         onglets_dossier->addTab(tab_info_perso, QString());
         fond_2->raise();
-        label_cursus_2->raise();
-        comboBox_cursus->raise();
         label_2->raise();
         label_3->raise();
         label_4->raise();
@@ -414,15 +417,11 @@ public:
         liste_selection_UV->raise();
         liste_uv_suivies->raise();
         liste_notes->raise();
-        comboBox_filiere->raise();
-        label_filiere_2->raise();
         label_6->raise();
         comboBox_semestre->raise();
         liste_semestres->raise();
         label_7->raise();
         label_8->raise();
-        comboBox_branche->raise();
-        label_branche_2->raise();
         comboBox_credits->raise();
         label_9->raise();
         liste_credits->raise();
@@ -430,6 +429,7 @@ public:
         sauvegarder_dossier->raise();
         liste_possibilite_uv->raise();
         suppri_UV_suivies->raise();
+        group_criteres_recherche->raise();
         choix = new QWidget();
         choix->setObjectName(QStringLiteral("choix"));
         add_exigence = new QPushButton(choix);
@@ -516,7 +516,7 @@ public:
 
         retranslateUi(mondossier);
 
-        onglets_dossier->setCurrentIndex(0);
+        onglets_dossier->setCurrentIndex(1);
 
 
         QMetaObject::connectSlotsByName(mondossier);
@@ -550,22 +550,23 @@ public:
         sauvegarder_modif->setText(QApplication::translate("mondossier", "Sauvegarder les modifications", 0));
         modif_info->setText(QApplication::translate("mondossier", "Modifier mes informations", 0));
         onglets_dossier->setTabText(onglets_dossier->indexOf(mes_infos), QApplication::translate("mondossier", "Mes Informations", 0));
-        label_cursus_2->setText(QApplication::translate("mondossier", "Cursus", 0));
         label_2->setText(QApplication::translate("mondossier", "UV Suivies", 0));
         label_3->setText(QApplication::translate("mondossier", "Notes", 0));
         label_4->setText(QApplication::translate("mondossier", "Selectionnez une UV", 0));
         label_5->setText(QApplication::translate("mondossier", "Note", 0));
         ajout_uv->setText(QApplication::translate("mondossier", "Ajouter une UV", 0));
-        label_filiere_2->setText(QApplication::translate("mondossier", "Filiere", 0));
         label_6->setText(QApplication::translate("mondossier", "Semestre", 0));
         label_7->setText(QApplication::translate("mondossier", "Semestres", 0));
         label_8->setText(QApplication::translate("mondossier", "Nouveau Dossier", 0));
         fond_2->setText(QString());
-        label_branche_2->setText(QApplication::translate("mondossier", "Branche", 0));
         label_9->setText(QApplication::translate("mondossier", "Credits", 0));
         label_18->setText(QApplication::translate("mondossier", "Credits", 0));
         sauvegarder_dossier->setText(QApplication::translate("mondossier", "Sauvegarder", 0));
         suppri_UV_suivies->setText(QApplication::translate("mondossier", "X", 0));
+        group_criteres_recherche->setTitle(QApplication::translate("mondossier", "Crit\303\250res de recherche", 0));
+        label_cursus_2->setText(QApplication::translate("mondossier", "Cursus", 0));
+        label_filiere_2->setText(QApplication::translate("mondossier", "Filiere", 0));
+        label_branche_2->setText(QApplication::translate("mondossier", "Branche", 0));
         onglets_dossier->setTabText(onglets_dossier->indexOf(tab_info_perso), QApplication::translate("mondossier", "Saisir Dossier", 0));
         add_exigence->setText(QApplication::translate("mondossier", ">", 0));
         label_titre_choix->setText(QApplication::translate("mondossier", "Mes Choix", 0));

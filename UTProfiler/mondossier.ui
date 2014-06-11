@@ -23,7 +23,7 @@
     </rect>
    </property>
    <property name="currentIndex">
-    <number>0</number>
+    <number>1</number>
    </property>
    <widget class="QWidget" name="mes_infos">
     <attribute name="title">
@@ -642,29 +642,6 @@
     <attribute name="title">
      <string>Saisir Dossier</string>
     </attribute>
-    <widget class="QLabel" name="label_cursus_2">
-     <property name="geometry">
-      <rect>
-       <x>20</x>
-       <y>90</y>
-       <width>46</width>
-       <height>22</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>Cursus</string>
-     </property>
-    </widget>
-    <widget class="QComboBox" name="comboBox_cursus">
-     <property name="geometry">
-      <rect>
-       <x>60</x>
-       <y>90</y>
-       <width>69</width>
-       <height>22</height>
-      </rect>
-     </property>
-    </widget>
     <widget class="QLabel" name="label_2">
      <property name="geometry">
       <rect>
@@ -783,32 +760,6 @@
       </rect>
      </property>
     </widget>
-    <widget class="QComboBox" name="comboBox_filiere">
-     <property name="enabled">
-      <bool>false</bool>
-     </property>
-     <property name="geometry">
-      <rect>
-       <x>340</x>
-       <y>90</y>
-       <width>69</width>
-       <height>22</height>
-      </rect>
-     </property>
-    </widget>
-    <widget class="QLabel" name="label_filiere_2">
-     <property name="geometry">
-      <rect>
-       <x>300</x>
-       <y>90</y>
-       <width>46</width>
-       <height>22</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>Filiere</string>
-     </property>
-    </widget>
     <widget class="QLabel" name="label_6">
      <property name="geometry">
       <rect>
@@ -887,32 +838,6 @@
      </property>
      <property name="pixmap">
       <pixmap resource="../images/Utc.qrc">:/images/fond_pg.png</pixmap>
-     </property>
-    </widget>
-    <widget class="QComboBox" name="comboBox_branche">
-     <property name="enabled">
-      <bool>false</bool>
-     </property>
-     <property name="geometry">
-      <rect>
-       <x>210</x>
-       <y>90</y>
-       <width>69</width>
-       <height>22</height>
-      </rect>
-     </property>
-    </widget>
-    <widget class="QLabel" name="label_branche_2">
-     <property name="geometry">
-      <rect>
-       <x>155</x>
-       <y>90</y>
-       <width>51</width>
-       <height>22</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>Branche</string>
      </property>
     </widget>
     <widget class="QComboBox" name="comboBox_credits">
@@ -997,9 +922,95 @@
       <string>X</string>
      </property>
     </widget>
+    <widget class="QGroupBox" name="group_criteres_recherche">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>70</y>
+       <width>401</width>
+       <height>51</height>
+      </rect>
+     </property>
+     <property name="title">
+      <string>Critères de recherche</string>
+     </property>
+     <widget class="QLabel" name="label_cursus_2">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>20</y>
+        <width>46</width>
+        <height>22</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Cursus</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_filiere_2">
+      <property name="geometry">
+       <rect>
+        <x>280</x>
+        <y>20</y>
+        <width>46</width>
+        <height>22</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Filiere</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_branche_2">
+      <property name="geometry">
+       <rect>
+        <x>135</x>
+        <y>20</y>
+        <width>51</width>
+        <height>22</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Branche</string>
+      </property>
+     </widget>
+     <widget class="QComboBox" name="comboBox_cursus">
+      <property name="geometry">
+       <rect>
+        <x>50</x>
+        <y>20</y>
+        <width>69</width>
+        <height>22</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QComboBox" name="comboBox_filiere">
+      <property name="enabled">
+       <bool>false</bool>
+      </property>
+      <property name="geometry">
+       <rect>
+        <x>320</x>
+        <y>20</y>
+        <width>69</width>
+        <height>22</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QComboBox" name="comboBox_branche">
+      <property name="enabled">
+       <bool>false</bool>
+      </property>
+      <property name="geometry">
+       <rect>
+        <x>190</x>
+        <y>20</y>
+        <width>69</width>
+        <height>22</height>
+       </rect>
+      </property>
+     </widget>
+    </widget>
     <zorder>fond_2</zorder>
-    <zorder>label_cursus_2</zorder>
-    <zorder>comboBox_cursus</zorder>
     <zorder>label_2</zorder>
     <zorder>label_3</zorder>
     <zorder>label_4</zorder>
@@ -1010,15 +1021,11 @@
     <zorder>liste_selection_UV</zorder>
     <zorder>liste_uv_suivies</zorder>
     <zorder>liste_notes</zorder>
-    <zorder>comboBox_filiere</zorder>
-    <zorder>label_filiere_2</zorder>
     <zorder>label_6</zorder>
     <zorder>comboBox_semestre</zorder>
     <zorder>liste_semestres</zorder>
     <zorder>label_7</zorder>
     <zorder>label_8</zorder>
-    <zorder>comboBox_branche</zorder>
-    <zorder>label_branche_2</zorder>
     <zorder>comboBox_credits</zorder>
     <zorder>label_9</zorder>
     <zorder>liste_credits</zorder>
@@ -1026,6 +1033,7 @@
     <zorder>sauvegarder_dossier</zorder>
     <zorder>liste_possibilite_uv</zorder>
     <zorder>suppri_UV_suivies</zorder>
+    <zorder>group_criteres_recherche</zorder>
    </widget>
    <widget class="QWidget" name="choix">
     <attribute name="title">
