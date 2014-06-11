@@ -124,14 +124,6 @@ Administration::Administration(QWidget *parent) :
 }
 
 
-/**
- * \fn Administration::add_categorie(QListWidget *liste1,  QListWidget *liste2, QListWidget *liste_credits, QString const nb_credits)
- * \param QListWidget *liste1
- * \param QListWidget *liste2
- * \param QListWidget *liste_credits
- * \param QString const nb_credits
- * \brief Ajoute l'item selectionné de liste1 à la fin de liste2 tout en le retirant de liste1. Cette fonction ajoute également le nombre de crédits nb_credits à la fin de la liste liste_credits
- */
 void Administration::add_categorie(QListWidget *liste1,  QListWidget *liste2, QListWidget *liste_credits, QString const nb_credits){
     if (liste1->currentItem() != NULL) {
         Tools::switch_current_item(liste1, liste2);
@@ -139,14 +131,7 @@ void Administration::add_categorie(QListWidget *liste1,  QListWidget *liste2, QL
     }
 }
 
-/**
- * \fn Administration::add_categorie(QListWidget *liste1,  QListWidget *liste2, QListWidget *liste_credits, QString const nb_credits)
- * \param QListWidget *liste1
- * \param QListWidget *liste2
- * \param QListWidget *liste_credits
- * \param QString const nb_credits
- * \brief Ajoute l'item selectionné de liste1 à la fin de liste2 tout en le retirant de liste1. Cette fonction ajoute également le nombre de crédits nb_credits à la fin de la liste liste_credits
- */
+
 void Administration::remove_categorie(QListWidget *liste1,  QListWidget *liste2, QListWidget  *liste_credits){
     if (liste1->currentItem() != NULL) {
         liste_credits->takeItem((int) liste1->row(liste1->currentItem()));

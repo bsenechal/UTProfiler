@@ -1,3 +1,8 @@
+/**
+  *\file administration.h
+  *
+  */
+
 #ifndef ADMINISTRATION_H
 #define ADMINISTRATION_H
 
@@ -39,8 +44,26 @@ private:
     Etudiants *etudiants;
     Categorie *categories;
     QMessageBox msgBox;
-    void add_to_list(QListWidget *liste1,  QListWidget *liste2);
+    /**
+     * \fn remove_categorie(QListWidget *liste1,  QListWidget *liste2, QListWidget  *liste_credits)
+     * \param QListWidget *liste1
+     * \param QListWidget *liste2
+     * \param QListWidget *liste_credits
+     * \param QString const nb_credits
+     * \brief Supprime l'item selectionné de liste1 et l'ajoute dans la liste2. Cette fonction supprime également le nombre de crédit correspondant à l'index selectionné de la liste1 dans la liste_credits
+     * \return void
+     */
     void remove_categorie(QListWidget *liste1,  QListWidget *liste2, QListWidget *liste_credits);
+
+    /**
+     * \fn Administration::add_categorie(QListWidget *liste1,  QListWidget *liste2, QListWidget *liste_credits, QString const nb_credits)
+     * \param QListWidget *liste1
+     * \param QListWidget *liste2
+     * \param QListWidget *liste_credits
+     * \param QString const nb_credits
+     * \brief Ajoute l'item selectionné de liste1 à la fin de liste2 tout en le retirant de liste1. Cette fonction ajoute également le nombre de crédits nb_credits à la fin de la liste liste_credits
+     * \return void
+     */
     void add_categorie(QListWidget *liste1,  QListWidget *liste2, QListWidget *liste_credits, QString const nb_credits);
 
 private slots:
