@@ -68,7 +68,6 @@ void Inscription::inscriptionUser(){
         try {
             db->execute("BEGIN;");
             db->execute("INSERT INTO Etudiant (login, passwd, nom, prenom, sexe, date_naissance, email) VALUES ('" + ui->input_login->text() + "','" + ui->input_mdp->text() + "','" + ui->input_nom->text() + "','" + ui->input_prenom->text() + "','" + ui->comboBox->currentText() + "','" + ui->input_date_naiss->text() + "','" + ui->input_email->text() + "');");
-            qDebug() << ui->comboBox_branche->currentText();
             db->execute("INSERT INTO Dossier (login_etudiant, nom_filiere, nom_cursus, nom_branche, num_semestre_actuel) VALUES ('" + ui->input_login->text() + "','" + ui->comboBox_filiere->currentText() + "','" + ui->comboBox_cursus->currentText() + "','" + ui->comboBox_branche->currentText() + "','" + ui->comboBox_semestre->currentText() + "');");
             c->setLogin(ui->input_login->text());
             c->setPasswd(ui->input_mdp->text());

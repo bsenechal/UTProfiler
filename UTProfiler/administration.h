@@ -13,6 +13,7 @@
 #include "disponibilites.h"
 #include "etudiants.h"
 #include "utprofilerexception.h"
+#include <QMessageBox>
 
 namespace Ui {
 class Administration;
@@ -36,6 +37,7 @@ private:
     Disponibilites *dispo;
     Etudiants *etudiants;
     Categorie *categories;
+    QMessageBox msgBox;
     void add_to_list(QListWidget *liste1,  QListWidget *liste2);
     void remove_categorie(QListWidget *liste1,  QListWidget *liste2, QListWidget *liste_credits);
     void add_categorie(QListWidget *liste1,  QListWidget *liste2, QListWidget *liste_credits, QString const nb_credits);

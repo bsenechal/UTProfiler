@@ -205,8 +205,8 @@ void Administration::sauvegarder_role() {
 
 void Administration::modif_ajout_dispo_uv() { add_to_list(ui->liste_modif_dispo_dispo_uv, ui->liste_modif_dispo_choisie_uv); }
 void Administration::modif_retire_dispo_uv() { add_to_list(ui->liste_modif_dispo_choisie_uv, ui->liste_modif_dispo_dispo_uv); }
-void Administration::modif_ajout_branche_uv() {/*add_categorie(ui->liste_modif_branche_dispo_uv, ui->liste_modif_branche_choisie_uv, ui->ajout_obligation_uv->text()); */}
-void Administration::modif_retire_branche_uv() {/* add_to_list(ui->liste_modif_branche_choisie_uv, ui->liste_modif_branche_dispo_uv, ui->liste_ajout_obligation_uv); */}
+void Administration::modif_ajout_branche_uv() { add_categorie(ui->liste_modif_branche_dispo_uv, ui->liste_modif_branche_choisie_uv, ui->liste_modif_obligation_uv, ui->modif_obligation_uv->text()); }
+void Administration::modif_retire_branche_uv() { remove_categorie(ui->liste_modif_branche_choisie_uv, ui->liste_modif_branche_dispo_uv, ui->liste_modif_obligation_uv); }
 void Administration::modif_ajout_filiere_uv() { add_to_list(ui->liste_modif_filiere_dispo_uv, ui->liste_modif_filiere_choisie_uv); }
 void Administration::modif_retire_filiere_uv() { add_to_list(ui->liste_modif_filiere_choisie_uv, ui->liste_modif_filiere_dispo_uv); }
 void Administration::modif_ajout_categorie_uv() { add_categorie(ui->liste_modif_categorie_dispo_uv, ui->liste_modif_categorie_choisie_uv, ui->liste_modif_credits_uv, ui->modif_credit_uv->text()); }
@@ -238,7 +238,7 @@ void Administration::sauvegarde_ajout_uv() {
             }
 
             for (int i = 0 ; i < ui->liste_ajout_branche_choisie_uv->count() ; i++){
-                db->execute("INSERT INTO assoc_branche_uv (code_uv, nom_branche) VALUES ('" + code_uv + "','" + ui->liste_ajout_branche_choisie_uv->item(i)->text() + "');");
+                db->execute("INSERT INTO assoc_branche_uv (code_uv, nom_branche, obligation) VALUES ('" + code_uv + "','" + ui->liste_ajout_branche_choisie_uv->item(i)->text() + "','" + ui->liste_ajout_obligation_uv->item(i)->text() + "');");
             }
 
             for (int i = 0 ; i < ui->liste_ajout_categorie_choisie_uv->count() ; i++){
@@ -257,16 +257,15 @@ void Administration::sauvegarde_ajout_uv() {
             this->maj_uv();
             }
         catch (UTProfilerException u) {
-            ui->message_ajout_uv->setText(u.getInfo());
             db->execute("ROLLBACK;");
+            msgBox.setText(u.getInfo());
+            msgBox.exec();
         }
      }
 }
 
 
 void Administration::sauvegarde_modif_uv() {
-    qDebug() << "toto";
-
    QString nouv_code_uv = ui->modif_code_uv->text();
    QString ancien_code_uv = ui->liste_modif_uv->currentItem()->text();
 
@@ -293,7 +292,7 @@ void Administration::sauvegarde_modif_uv() {
 
             db->execute("DELETE FROM assoc_branche_uv WHERE code_uv = '" + ancien_code_uv + "';");
             for (int i = 0 ; i < ui->liste_modif_branche_choisie_uv->count() ; i++){
-                db->execute("INSERT INTO assoc_branche_uv (code_uv, nom_branche) VALUES ('" + nouv_code_uv + "','" + ui->liste_modif_branche_choisie_uv->item(i)->text() + "');");
+                db->execute("INSERT INTO assoc_branche_uv (code_uv, nom_branche, obligation) VALUES ('" + nouv_code_uv + "','" + ui->liste_modif_branche_choisie_uv->item(i)->text() + "', '" + ui->liste_modif_obligation_uv->item(i)->text() +"');");
             }
 
             db->execute("DELETE FROM assoc_disponibilite_uv WHERE code_uv = '" + ancien_code_uv + "';");
@@ -320,8 +319,9 @@ void Administration::sauvegarde_modif_uv() {
             this->maj_uv();
         }
         catch (UTProfilerException u){
-            ui->message_modif_uv->setText(u.getInfo());
             db->execute("ROLLBACK;");
+            msgBox.setText(u.getInfo());
+            msgBox.exec();
         }
      }
 }
@@ -370,14 +370,15 @@ void Administration::supprimer_uv() {
         this->maj_uv();
     }
     catch (UTProfilerException u){
-        ui->message_suppr_uv->setText(u.getInfo());
         db->execute("ROLLBACK;");
+        msgBox.setText(u.getInfo());
+        msgBox.exec();
     }
 }
 void Administration::ajout_dispo_uv() { add_to_list(ui->liste_ajout_dispo_dispo_uv, ui->liste_ajout_dispo_choisie_uv); }
 void Administration::retire_dispo_uv() { add_to_list(ui->liste_ajout_dispo_choisie_uv, ui->liste_ajout_dispo_dispo_uv); }
-void Administration::ajout_branche_uv() { add_to_list(ui->liste_ajout_branche_dispo_uv, ui->liste_ajout_branche_choisie_uv); }
-void Administration::retire_branche_uv() { add_to_list(ui->liste_ajout_branche_choisie_uv, ui->liste_ajout_branche_dispo_uv); }
+void Administration::ajout_branche_uv() { add_categorie(ui->liste_ajout_branche_dispo_uv, ui->liste_ajout_branche_choisie_uv, ui->liste_ajout_obligation_uv, ui->ajout_obligation_uv->text()); }
+void Administration::retire_branche_uv() { remove_categorie(ui->liste_ajout_branche_choisie_uv, ui->liste_ajout_branche_dispo_uv, ui->liste_ajout_obligation_uv); }
 void Administration::ajout_filiere_uv() { add_to_list(ui->liste_ajout_filiere_dispo_uv, ui->liste_ajout_filiere_choisie_uv); }
 void Administration::retire_filiere_uv() { add_to_list(ui->liste_ajout_filiere_choisie_uv, ui->liste_ajout_filiere_dispo_uv); }
 void Administration::ajout_categorie_uv() { add_categorie(ui->liste_ajout_categorie_dispo_uv, ui->liste_ajout_categorie_choisie_uv, ui->liste_ajout_credits_uv, ui->ajout_credit_uv->text()); }
@@ -502,16 +503,18 @@ void Administration::modifier_dispo() {
 void Administration::supprimer_dispo() {
 
      if (ui->liste_suppr_dispo->currentItem() != NULL) {
-        QSqlQuery query;
-        query =  db->execute("DELETE FROM disponibilite_uv WHERE nom = '" + ui->liste_suppr_dispo->currentItem()->text() + "';");
-        if (query.lastError().number() == -1) {
+        try {
+            db->execute("DELETE FROM disponibilite_uv WHERE nom = '" + ui->liste_suppr_dispo->currentItem()->text() + "';");
             dispo->getListe_dispos().removeAt(ui->liste_suppr_dispo->row(ui->liste_suppr_dispo->currentItem()));
             delete ui->liste_suppr_dispo->currentItem();
             ui->message_suppr_dispo->setText("La disponibilité a correctement été supprimée");
+
         }
-        else {
-            ui->message_suppr_dispo->setText(query.lastError().text());
+        catch (UTProfilerException u) {
+            msgBox.setText(u.getInfo());
+            msgBox.exec();
         }
+
      }
 }
 
@@ -563,8 +566,9 @@ void Administration::sauvegarde_ajout_filiere() {
             this->maj_filiere();
         }
         catch (UTProfilerException u) {
-            ui->message_ajout_filiere->setText(u.getInfo());
             db->execute("ROLLBACK;");
+            msgBox.setText(u.getInfo());
+            msgBox.exec();
         }
     }
 }
@@ -611,7 +615,8 @@ void Administration::sauvegarde_modif_filiere() {
         }
         catch (UTProfilerException u) {
             db->execute("ROLLBACK;");
-            ui->message_modif_filiere->setText(u.getInfo());
+            msgBox.setText(u.getInfo());
+            msgBox.exec();
         }
     }
 }
@@ -653,7 +658,9 @@ void Administration::supprimer_filiere() {
             delete ui->liste_suppr_filiere->currentItem();
          }
          catch(UTProfilerException u) {
-                ui->message_suppr_filiere->setText(u.getInfo());
+             db->execute("ROLLBACK;");
+             msgBox.setText(u.getInfo());
+             msgBox.exec();
             }
 
      }
@@ -691,7 +698,6 @@ void Administration::maj_filiere() {
 
 /* Gestion des branches */
 void Administration::sauvegarde_ajout_branche() {
-    QSqlQuery query;
     bool error = true;
 
     try {
@@ -703,22 +709,22 @@ void Administration::sauvegarde_ajout_branche() {
         ui->message_ajout_branche->setText(e.getinfo());
     }
     if (!error) {
-        query = db->execute("INSERT INTO branche VALUES ('" + ui->ajout_nom_branche->text() + "','" + ui->ajout_description_branche->toPlainText() + "','" + ui->ajout_cursus_branche->currentText() + "');");
-
-        if (query.lastError().number() == -1) {
+        try {
+            db->execute("INSERT INTO branche VALUES ('" + ui->ajout_nom_branche->text() + "','" + ui->ajout_description_branche->toPlainText() + "','" + ui->ajout_cursus_branche->currentText() + "');");
             branches->getListe_branches().push_back(ui->ajout_nom_branche->text());
             ui->ajout_nom_branche->setText("");
             ui->ajout_description_branche->setText("");
             ui->message_ajout_branche->setText("La branche a correctement été ajoutée");
+
         }
-        else {
-            ui->message_ajout_branche->setText(query.lastError().text());
+        catch (UTProfilerException u) {
+            msgBox.setText(u.getInfo());
+            msgBox.exec();
         }
     }
 }
 
 void Administration::sauvegarde_modif_branche() {
-    QSqlQuery query;
     bool error = true;
     ui->message_modif_branche->setText("");
     try {
@@ -729,10 +735,9 @@ void Administration::sauvegarde_modif_branche() {
     catch (FormulaireException e) {
         ui->message_modif_branche->setText(e.getinfo());
     }
-    if (!error) {
-        query = db->execute("UPDATE Branche SET nom = '" + ui->modif_nom_branche->text() + "', description = '" + ui->modif_description_branche->toPlainText() + "', nom_cursus = '" + ui->modif_cursus_branche->currentText() + "' WHERE nom='" + ui->liste_modif_branche->currentItem()->text() + "';");
+        try {
+            db->execute("UPDATE Branche SET nom = '" + ui->modif_nom_branche->text() + "', description = '" + ui->modif_description_branche->toPlainText() + "', nom_cursus = '" + ui->modif_cursus_branche->currentText() + "' WHERE nom='" + ui->liste_modif_branche->currentItem()->text() + "';");
 
-        if (query.lastError().number() == -1) {
             branches->getListe_branches().push_back(ui->modif_nom_branche->text());
             ui->modif_nom_branche->setText("");
             ui->modif_description_branche->setText("");
@@ -740,10 +745,10 @@ void Administration::sauvegarde_modif_branche() {
             ui->message_modif_branche->setText("La branche a correctement été modifiée");
             this->maj_branche();
         }
-        else {
-            ui->message_modif_branche->setText(query.lastError().text());
+        catch (UTProfilerException u) {
+            msgBox.setText(u.getInfo());
+            msgBox.exec();
         }
-    }
 }
 
 void Administration::modifier_branche() {
@@ -766,15 +771,17 @@ void Administration::modifier_branche() {
 void Administration::supprimer_branche() {
 
      if (ui->liste_suppr_branche->currentItem() != NULL) {
-        QSqlQuery query;
-        query =  db->execute("DELETE FROM Branche WHERE nom = '" + ui->liste_suppr_branche->currentItem()->text() + "';");
-        if (query.lastError().number() == -1) {
+
+        try {
+            db->execute("DELETE FROM Branche WHERE nom = '" + ui->liste_suppr_branche->currentItem()->text() + "';");
+
             branches->getListe_branches().removeAt(ui->liste_suppr_branche->row(ui->liste_suppr_branche->currentItem()));
             delete ui->liste_suppr_branche->currentItem();
             ui->message_suppr_branche->setText("La branche a correctement été supprimée");
         }
-        else {
-            ui->message_suppr_branche->setText(query.lastError().text());
+        catch (UTProfilerException u) {
+            msgBox.setText(u.getInfo());
+            msgBox.exec();
         }
      }
 }
@@ -807,7 +814,6 @@ void Administration::maj_branche() {
 
 /* Gestion des cursus */
 void Administration::sauvegarde_ajout_cursus() {
-    QSqlQuery query;
     bool error = true;
 
     try {
@@ -819,24 +825,25 @@ void Administration::sauvegarde_ajout_cursus() {
         ui->message_ajout_cursus->setText(e.getinfo());
     }
     if (!error) {
-        query = db->execute("INSERT INTO cursus VALUES ('" + ui->ajout_nom_cursus->text() + "','" + ui->ajout_description_cursus->toPlainText() + "');");
+        try {
+            db->execute("INSERT INTO cursus VALUES ('" + ui->ajout_nom_cursus->text() + "','" + ui->ajout_description_cursus->toPlainText() + "');");
 
-        if (query.lastError().number() == -1) {
             cursus->push_back(ui->ajout_nom_cursus->text());
             ui->ajout_nom_cursus->setText("");
             ui->ajout_description_cursus->setText("");
             ui->message_ajout_cursus->setText("Le cursus a correctement été ajoutée");
         }
-        else {
-            ui->message_ajout_cursus->setText(query.lastError().text());
+        catch (UTProfilerException u) {
+            msgBox.setText(u.getInfo());
+            msgBox.exec();
         }
     }
 }
 
 void Administration::sauvegarde_modif_cursus() {
-    QSqlQuery query;
     bool error = true;
     ui->message_modif_cursus->setText("");
+
     try {
         formulaire<QString>::verif_text(ui->modif_nom_cursus->text(), "Nom");
         error = false;
@@ -846,9 +853,8 @@ void Administration::sauvegarde_modif_cursus() {
         ui->message_modif_cursus->setText(e.getinfo());
     }
     if (!error) {
-        query = db->execute("UPDATE cursus SET nom = '" + ui->modif_nom_cursus->text() + "', description = '" + ui->modif_description_cursus->toPlainText() + "' WHERE nom='" + ui->liste_modif_cursus->currentItem()->text() + "';");
-
-        if (query.lastError().number() == -1) {
+        try {
+            db->execute("UPDATE cursus SET nom = '" + ui->modif_nom_cursus->text() + "', description = '" + ui->modif_description_cursus->toPlainText() + "' WHERE nom='" + ui->liste_modif_cursus->currentItem()->text() + "';");
             cursus->push_back(ui->modif_nom_cursus->text());
             ui->modif_nom_cursus->setText("");
             ui->modif_description_cursus->setText("");
@@ -856,8 +862,9 @@ void Administration::sauvegarde_modif_cursus() {
             ui->message_modif_cursus->setText("Le cursus a correctement été modifiée");
             this->maj_cursus();
         }
-        else {
-            ui->message_modif_cursus->setText(query.lastError().text());
+        catch (UTProfilerException u) {
+            msgBox.setText(u.getInfo());
+            msgBox.exec();
         }
     }
 }
@@ -883,14 +890,17 @@ void Administration::modifier_cursus() {
 void Administration::supprimer_cursus() {
     QSqlQuery query;
      if (ui->liste_suppr_cursus->currentItem() != NULL) {
-        query = db->execute("DELETE FROM cursus WHERE nom = '" + ui->liste_suppr_cursus->currentItem()->text() + "';");
-        if (query.lastError().number() == -1) {
+
+        try {
+            db->execute("DELETE FROM cursus WHERE nom = '" + ui->liste_suppr_cursus->currentItem()->text() + "';");
+
             cursus->removeAt(ui->liste_suppr_cursus->row(ui->liste_suppr_cursus->currentItem()));
             delete ui->liste_suppr_cursus->currentItem();
             ui->message_suppr_cursus->setText("Le cursus a correctement été supprimé");
         }
-        else {
-            ui->message_suppr_cursus->setText(query.lastError().text());
+        catch(UTProfilerException u) {
+             msgBox.setText(u.getInfo());
+             msgBox.exec();
         }
 
      }
@@ -917,9 +927,15 @@ void Administration::maj_cursus() {
 void Administration::supprimer_etudiant() {
 
      if (ui->liste_suppr_etudiant->currentItem() != NULL) {
-        db->execute("DELETE FROM etudiant WHERE nom = '" + ui->liste_suppr_etudiant->currentItem()->text() + "';");
-        etudiants->getListe_etudiants().removeAt(ui->liste_suppr_etudiant->row(ui->liste_suppr_etudiant->currentItem()));
-        delete ui->liste_suppr_etudiant->currentItem();
+        try {
+            db->execute("DELETE FROM etudiant WHERE nom = '" + ui->liste_suppr_etudiant->currentItem()->text() + "';");
+            etudiants->getListe_etudiants().removeAt(ui->liste_suppr_etudiant->row(ui->liste_suppr_etudiant->currentItem()));
+            delete ui->liste_suppr_etudiant->currentItem();
+        }
+        catch (UTProfilerException u) {
+            msgBox.setText(u.getInfo());
+            msgBox.exec();
+        }
      }
 }
 
@@ -957,7 +973,8 @@ void Administration::sauvegarder_ajout_etudiant(){
             }
             catch (UTProfilerException u) {
                 db->execute("ROLLBACK;");
-                ui->message_ajout_etudiant->setText(u.getInfo());
+                msgBox.setText(u.getInfo());
+                msgBox.exec();
             }
         }
     }
@@ -1001,7 +1018,8 @@ void Administration::sauvegarder_modif_etudiant() {
         }
         catch (UTProfilerException u) {
             db->execute("ROLLBACK;");
-            ui->message_modif_etudiant->setText(u.getInfo());
+            msgBox.setText(u.getInfo());
+            msgBox.exec();
         }
     }
 }
