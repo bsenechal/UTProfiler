@@ -23,7 +23,7 @@
     </rect>
    </property>
    <property name="currentIndex">
-    <number>2</number>
+    <number>1</number>
    </property>
    <widget class="QWidget" name="mes_infos">
     <attribute name="title">
@@ -470,7 +470,7 @@
       <string/>
      </property>
      <property name="pixmap">
-      <pixmap resource="../images/Utc.qrc">:/images/fond_pg.png</pixmap>
+      <pixmap>:/images/fond_pg.png</pixmap>
      </property>
     </widget>
     <widget class="QPushButton" name="sauvegarder_modif">
@@ -886,7 +886,7 @@
       <string/>
      </property>
      <property name="pixmap">
-      <pixmap resource="../images/Utc.qrc">:/images/fond_pg.png</pixmap>
+      <pixmap>:/images/fond_pg.png</pixmap>
      </property>
     </widget>
     <widget class="QComboBox" name="comboBox_branche">
@@ -1245,7 +1245,7 @@
       <string/>
      </property>
      <property name="pixmap">
-      <pixmap resource="../images/Utc.qrc">:/images/fond_pg.png</pixmap>
+      <pixmap>:/images/fond_pg.png</pixmap>
      </property>
     </widget>
     <widget class="QPushButton" name="suggestion_uv">
@@ -1294,14 +1294,12 @@
     <string/>
    </property>
    <property name="pixmap">
-    <pixmap resource="../images/Utc.qrc">:/images/bandeau_utc.jpg</pixmap>
+    <pixmap>:/images/bandeau_utc.jpg</pixmap>
    </property>
   </widget>
   <zorder>label</zorder>
   <zorder>onglets_dossier</zorder>
  </widget>
- <resources>
-  <include location="../images/Utc.qrc"/>
- </resources>
+ <resources/>
  <connections/>
 </ui>
