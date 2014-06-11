@@ -339,7 +339,6 @@ void mondossier::rempliruvsuivies(){
 
 
 void mondossier::suppr_UV_suivies() {
-    qDebug()<<"ici";
     int i=ui->liste_uv_suivies->currentRow();
 
     delete ui->liste_uv_suivies->item(i);
@@ -363,13 +362,13 @@ if (ui->branche->text()=="") {
 }
 else {
     QSqlQuery query;
-    query = db->execute("select code_uv, obligation from assoc_branche_uv WHERE nom_branche='"+ui->branche->text()+"' or nom_branche='' Order by obligation desc");
-
+    query = db->execute("select distinct assoc_branche_uv.code_uv, assoc_branche_uv.obligation, assoc_categorie_UV.nom_categorie from assoc_branche_uv, assoc_categorie_UV WHERE assoc_categorie_UV.code_uv=assoc_branche_uv.code_uv AND nom_branche='"+ui->branche->text()+"' or nom_branche='' group by assoc_branche_uv.code_uv Order by obligation desc;");
 
 
     while(query.next()){
-        map_algo[query.value(0).toString()] = std::make_pair(query.value(1).toInt(), "TSH");
-        map_algo_uv[query.value(0).toString()]=query.value(1).toInt();
+        //qDebug()<<query.value(0).toString()<<" obligation : "<<query.value(1).toInt();
+
+        map_algo[query.value(0).toString()] = std::make_pair(query.value(1).toInt(), query.value(2).toString());
     }
 
         map<QString, std::pair<int, QString> >::iterator p;
@@ -388,7 +387,6 @@ else {
                     qDebug()<<p->first+" is In preferences";
                     p->second.first=p->second.first + 4;
                    if (p->second.first>10) p->second.first=10;
-
                 }
             }
             for (int i = 0; i < ui->liste_rejets->count(); i++) {
