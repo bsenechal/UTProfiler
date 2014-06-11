@@ -13,6 +13,8 @@
 #include "utprofilerexception.h"
 #include <QMessageBox>
 #include <QPair>
+#include "afficherchoixprev.h"
+
 namespace Ui {
 class mondossier;
 }
@@ -37,6 +39,8 @@ private:
     Cursus *cursus;
     Semestre *semestres;
     uvmnger *uvm;
+    afficherchoixprev choixprev;
+
     map<QString,QString> map_pos_uv;
     map<QString,int> map_algo_uv;
     map<QString, map<QString, QString> > uvsuivies;

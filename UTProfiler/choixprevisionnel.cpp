@@ -2,7 +2,7 @@
 #include "ui_choixprevisionnel.h"
 
 choixprevisionnel::choixprevisionnel(QWidget *parent) :
-    QDialog(parent),
+    QFrame(parent),
     ui(new Ui::choixprevisionnel)
 {
     ui->setupUi(this);

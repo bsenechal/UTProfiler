@@ -397,7 +397,7 @@ else {
         //map_suggestion[1]["CS"]=2;
         QList<QString> alreadyused;
 
-        qDebug()<<"icila";
+
 
         for (int i = 10; i > 0; i--) {
             for(p = map_algo.begin(); p != map_algo.end(); p++) {
@@ -409,7 +409,7 @@ else {
                     if (!map_suggestion_nb[j][p->second.second]) map_suggestion_nb[j][p->second.second]=0;
 
 
-                    while ( ((map_suggestion_nb[j][p->second.second]>=3) || (map_suggestion_nb[j]["total"]>=7)) && j<=8/*semestres*/) {        //Tant que [Semestre][type] > 3, le nombre max d'uv d'un type. Ou que le total est > 7, on passe semestre au suivant !
+                    while ( ((map_suggestion_nb[j][p->second.second]>=3) || (map_suggestion_nb[j]["total"]>=7)) && j<=8/*semestres max autorisés*/) {        //Tant que [Semestre][type] > 3, le nombre max d'uv d'un type. Ou que le total est > 7, on passe semestre au suivant !
                         j++;
                         if (!map_suggestion_nb[j]["total"]){map_suggestion_nb[j]["total"]=0;}
                         if (!map_suggestion_nb[j][p->second.second]){map_suggestion_nb[j][p->second.second]=0;}
@@ -418,12 +418,14 @@ else {
 
                     //On met à jours les infos ici
                     if (j<=8) {
-                    map_suggestion_nb[j][p->second.second]=map_suggestion_nb[j][p->second.second]+1;
+                    map_suggestion_nb[j][p->second.second]=map_suggestion_nb[j][p->second.second]+1;    //Dans cette map la catégorie et le nombre pour chaque catégorie d'UVs suivies par semestre
                     map_suggestion_nb[j]["total"]=map_suggestion_nb[j]["total"]+1;
+                    map_suggestion_uv[j][p->first]=p->second.second;                                    //Dans cette map, le nom et la catégorie pour chaque UV
                     }
                     qDebug()<<"semestre"<<j;
                     qDebug()<<map_suggestion_nb[j][p->second.second];
                     qDebug()<<map_suggestion_nb[j]["total"];
+                    qDebug()<< map_suggestion_uv[j][p->first];
                     alreadyused.push_back(p->first);
                 }
             }
@@ -435,6 +437,9 @@ else {
 
 
     }
+
+//map_suggestion_uv à passer au constructeur de la classe qui va afficher !
+    choixprev.show();
 }
 
 

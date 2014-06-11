@@ -35,7 +35,8 @@ SOURCES += \
     etudiants.cpp \
     semestre.cpp \
     uvmnger.cpp \
-    tools.cpp
+    tools.cpp \
+    afficherchoixprev.cpp
 
 HEADERS  += \
     dbmanager.h \
@@ -60,7 +61,8 @@ HEADERS  += \
     etudiants.h \
     semestre.h \
     uvmnger.h \
-    tools.h
+    tools.h \
+    afficherchoixprev.h
 
 FORMS    += \
     accueil.ui \
@@ -70,7 +72,8 @@ FORMS    += \
     fenetreplus.ui \
     detailuv.ui \
     insertuv.ui \
-    administration.ui
+    administration.ui \
+    afficherchoixprev.ui
 
 OTHER_FILES += \
     UTProfiler
