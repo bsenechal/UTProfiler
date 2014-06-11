@@ -13,7 +13,6 @@
 #include "utprofilerexception.h"
 #include <QMessageBox>
 #include <QPair>
-
 namespace Ui {
 class mondossier;
 }

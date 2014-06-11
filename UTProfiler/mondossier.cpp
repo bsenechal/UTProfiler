@@ -357,7 +357,7 @@ if (ui->branche->text()=="") {
 }
 else {
     QSqlQuery query;
-    query = db->execute("select code_uv, obligation from assoc_branche_uv WHERE nom_branche='GI' or nom_branche='' Order by obligation desc");
+    query = db->execute("select code_uv, obligation from assoc_branche_uv WHERE nom_branche='"+ui->branche->text()+"' or nom_branche='' Order by obligation desc");
 
 
 

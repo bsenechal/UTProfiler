@@ -3,6 +3,7 @@
 
 #include "singleton.h"
 #include <QObject>
+#include <QMessageBox>
 
 class Connexion : public Singleton<Connexion>
 {

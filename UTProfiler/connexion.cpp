@@ -20,7 +20,7 @@ QString Connexion::connexion(QString login, QString mdp) {
     if (!error) {
         query = db->execute("SELECT * FROM Etudiant WHERE login='" + login + "' AND passwd='" + mdp + "';");
 
-        while(query.next()){
+        if(query.next()){
                this->setLogin(query.value(0).toString());
                this->setPasswd(query.value(1).toString());
                this->setNom(query.value(2).toString());
@@ -30,6 +30,11 @@ QString Connexion::connexion(QString login, QString mdp) {
                this->setEmail(query.value(6).toString());
                this->setCommentaires(query.value(7).toString());
             }
+        else {
+            QMessageBox msgBox;
+            msgBox.setText("Mauvais identifiant où mot de passe !");
+            msgBox.exec();
+        }
         }
 
     return res;
