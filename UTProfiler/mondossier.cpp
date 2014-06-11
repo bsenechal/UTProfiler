@@ -439,6 +439,7 @@ else {
     }
 
 //map_suggestion_uv à passer au constructeur de la classe qui va afficher !
+    choixprev.ajoutprev(map_suggestion_uv);
     choixprev.show();
 }
 

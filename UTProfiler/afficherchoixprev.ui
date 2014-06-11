@@ -16,7 +16,7 @@
   <widget class="QListWidget" name="uv_6">
    <property name="geometry">
     <rect>
-     <x>470</x>
+     <x>580</x>
      <y>60</y>
      <width>91</width>
      <height>241</height>
@@ -101,7 +101,7 @@
     <string>0</string>
    </property>
   </widget>
-  <widget class="QListWidget" name="uv">
+  <widget class="QListWidget" name="uv_1">
    <property name="geometry">
     <rect>
      <x>30</x>
@@ -114,7 +114,7 @@
   <widget class="QListWidget" name="uv_3">
    <property name="geometry">
     <rect>
-     <x>360</x>
+     <x>250</x>
      <y>60</y>
      <width>91</width>
      <height>241</height>
@@ -137,7 +137,7 @@
   <widget class="QListWidget" name="uv_8">
    <property name="geometry">
     <rect>
-     <x>690</x>
+     <x>800</x>
      <y>60</y>
      <width>91</width>
      <height>241</height>
@@ -173,7 +173,7 @@
   <widget class="QListWidget" name="uv_4">
    <property name="geometry">
     <rect>
-     <x>250</x>
+     <x>360</x>
      <y>60</y>
      <width>91</width>
      <height>241</height>
@@ -336,7 +336,7 @@
   <widget class="QListWidget" name="uv_5">
    <property name="geometry">
     <rect>
-     <x>580</x>
+     <x>470</x>
      <y>60</y>
      <width>91</width>
      <height>241</height>
@@ -346,7 +346,7 @@
   <widget class="QListWidget" name="uv_7">
    <property name="geometry">
     <rect>
-     <x>800</x>
+     <x>690</x>
      <y>60</y>
      <width>91</width>
      <height>241</height>

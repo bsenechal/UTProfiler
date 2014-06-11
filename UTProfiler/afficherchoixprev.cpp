@@ -12,3 +12,7 @@ afficherchoixprev::~afficherchoixprev()
 {
     delete ui;
 }
+
+void afficherchoixprev::ajoutprev(Mapsugg_UV mapsuggestion) {
+
+}
