@@ -364,7 +364,6 @@ else {
     while(query.next()){
         map_algo[query.value(0).toString()] = std::make_pair(query.value(1).toInt(), "TSH");
         map_algo_uv[query.value(0).toString()]=query.value(1).toInt();
-
     }
 
         map<QString, std::pair<int, QString> >::iterator p;
