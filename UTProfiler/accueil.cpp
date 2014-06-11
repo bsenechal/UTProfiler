@@ -57,6 +57,7 @@ Accueil::Accueil(QWidget *parent) :
     }
 
     QObject::connect(ui->connexion, SIGNAL(clicked()), this, SLOT(connexionUser()));
+    QObject::connect(ui->input_mdp, SIGNAL(returnPressed()), this, SLOT(connexionUser()));
     QObject::connect(ui->inscription, SIGNAL(clicked()), this, SLOT(inscriptionUser()));
 }
 
