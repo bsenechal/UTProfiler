@@ -392,6 +392,29 @@ else {
                 }
             }
         }
+
+        //Maintenant qu'on à notre map pondérée, on l'utilise.
+        //map_suggestion[1]["CS"]=2;
+        QList<QString> alreadyused;
+        qDebug()<<"icila";
+
+        for (int i = 10; i > 0; i--) {
+            qDebug()<<"ici";
+            for(p = map_algo.begin(); p != map_algo.end(); p++) {
+                if (p->second.first==i && !alreadyused.contains(p->first)){
+                    qDebug()<<"contenu"<<p->first;
+                    //On ajoute les UVs aux map de semestres
+                    int j=0;
+
+
+
+                    alreadyused.push_back(p->first);
+                }
+            }
+        }
+        qDebug()<<alreadyused;
+        //Fin for i
+
     }
 }
 

@@ -41,8 +41,12 @@ private:
     map<QString,int> map_algo_uv;
     map<QString, map<QString, QString> > uvsuivies;
 
-    typedef std::map<QString, std::pair<int, QString> > Maptype;
-    Maptype map_algo;
+    typedef std::map<QString, std::pair<int, QString> > Mapalgo;
+    Mapalgo map_algo;
+
+    typedef std::map<int, std::map<QString, int> > Mapsugg;
+    Mapsugg map_suggestion;
+
 
 
 private slots:
