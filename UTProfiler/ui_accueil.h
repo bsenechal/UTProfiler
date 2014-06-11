@@ -105,7 +105,7 @@ public:
         Accueil->setCentralWidget(centralwidget);
         menubar = new QMenuBar(Accueil);
         menubar->setObjectName(QStringLiteral("menubar"));
-        menubar->setGeometry(QRect(0, 0, 863, 21));
+        menubar->setGeometry(QRect(0, 0, 863, 22));
         Accueil->setMenuBar(menubar);
         statusbar = new QStatusBar(Accueil);
         statusbar->setObjectName(QStringLiteral("statusbar"));

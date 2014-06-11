@@ -7,6 +7,11 @@
 #include "connexion.h"
 #include "mondossier.h"
 #include "utprofilerexception.h"
+#include "cursus.h"
+#include "filieres.h"
+#include "branches.h"
+#include "semestre.h"
+#include "tools.h"
 
 namespace Ui {
 class Inscription;
@@ -24,10 +29,16 @@ public:
 private:
     dbmanager *db;
     Connexion *c;
+    Cursus *cursus;
+    Branches *branches;
+    Filieres *filieres;
+    Semestre *semestres;
     Ui::Inscription *ui;
 
-public slots :
+private slots :
     void inscriptionUser();
+    void enable_branche();
+    void enable_cursus();
 };
 
 #endif // INSCRIPTION_H

@@ -3,5 +3,6 @@
         <file>utc.jpg</file>
         <file>bandeau_utc.jpg</file>
         <file>fond_pg.png</file>
+        <file>fond_inscription.png</file>
     </qresource>
 </RCC>

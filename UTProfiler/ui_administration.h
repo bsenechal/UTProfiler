@@ -311,6 +311,7 @@ public:
     QPushButton *sauvegarder_role;
     QLabel *message_role;
     QLabel *banniere_utc;
+    QLabel *banniere_utc_2;
 
     void setupUi(QFrame *Administration)
     {
@@ -1263,8 +1264,13 @@ public:
         banniere_utc->setObjectName(QStringLiteral("banniere_utc"));
         banniere_utc->setGeometry(QRect(-10, 0, 911, 61));
         banniere_utc->setPixmap(QPixmap(QString::fromUtf8(":/images/bandeau_utc.jpg")));
+        banniere_utc_2 = new QLabel(Administration);
+        banniere_utc_2->setObjectName(QStringLiteral("banniere_utc_2"));
+        banniere_utc_2->setGeometry(QRect(230, 250, 911, 61));
+        banniere_utc_2->setPixmap(QPixmap(QString::fromUtf8(":/images/bandeau_utc.jpg")));
         banniere_utc->raise();
         onglets_admin->raise();
+        banniere_utc_2->raise();
 
         retranslateUi(Administration);
 
@@ -1480,6 +1486,7 @@ public:
         message_role->setText(QString());
         onglets_admin->setTabText(onglets_admin->indexOf(gerer_roles), QApplication::translate("Administration", "R\303\264les", 0));
         banniere_utc->setText(QString());
+        banniere_utc_2->setText(QString());
     } // retranslateUi
 
 };

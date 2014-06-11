@@ -20,6 +20,7 @@ INPUT(
 ./debug\semestre.o
 ./debug\uvmnger.o
 ./debug\tools.o
+./debug\afficherchoixprev.o
 ./debug\qrc_Utc.o
 ./debug\moc_accueil.o
 ./debug\moc_mondossier.o
@@ -29,4 +30,5 @@ INPUT(
 ./debug\moc_detailuv.o
 ./debug\moc_insertuv.o
 ./debug\moc_administration.o
+./debug\moc_afficherchoixprev.o
 );

@@ -3629,8 +3629,25 @@
     <pixmap resource="../images/Utc.qrc">:/images/bandeau_utc.jpg</pixmap>
    </property>
   </widget>
+  <widget class="QLabel" name="banniere_utc_2">
+   <property name="geometry">
+    <rect>
+     <x>230</x>
+     <y>250</y>
+     <width>911</width>
+     <height>61</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="pixmap">
+    <pixmap resource="../images/Utc.qrc">:/images/bandeau_utc.jpg</pixmap>
+   </property>
+  </widget>
   <zorder>banniere_utc</zorder>
   <zorder>onglets_admin</zorder>
+  <zorder>banniere_utc_2</zorder>
  </widget>
  <resources>
   <include location="../images/Utc.qrc"/>

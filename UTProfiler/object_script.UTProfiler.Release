@@ -20,6 +20,7 @@ INPUT(
 ./release\semestre.o
 ./release\uvmnger.o
 ./release\tools.o
+./release\afficherchoixprev.o
 ./release\qrc_Utc.o
 ./release\moc_accueil.o
 ./release\moc_mondossier.o
@@ -29,4 +30,5 @@ INPUT(
 ./release\moc_detailuv.o
 ./release\moc_insertuv.o
 ./release\moc_administration.o
+./release\moc_afficherchoixprev.o
 );
