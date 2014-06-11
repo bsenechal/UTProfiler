@@ -1,7 +1,16 @@
+/**
+  *\file administration.cpp
+  */
+
 #include "administration.h"
 #include "ui_administration.h"
 
 
+/**
+ * \fn Administration::Administration(QWidget *parent)
+ * \param QWidget *parent
+ * \brief Constructeur de la classe Administration
+ */
 Administration::Administration(QWidget *parent) :
     QFrame(parent),
     ui(new Ui::Administration)
@@ -115,24 +124,33 @@ Administration::Administration(QWidget *parent) :
 }
 
 
-void Administration::add_to_list(QListWidget *liste1,  QListWidget *liste2) {
-    if (liste1->currentItem() != NULL) {
-            liste2->addItem(liste1->currentItem()->text());
-            delete liste1->currentItem();
-        }
-}
-
+/**
+ * \fn Administration::add_categorie(QListWidget *liste1,  QListWidget *liste2, QListWidget *liste_credits, QString const nb_credits)
+ * \param QListWidget *liste1
+ * \param QListWidget *liste2
+ * \param QListWidget *liste_credits
+ * \param QString const nb_credits
+ * \brief Ajoute l'item selectionné de liste1 à la fin de liste2 tout en le retirant de liste1. Cette fonction ajoute également le nombre de crédits nb_credits à la fin de la liste liste_credits
+ */
 void Administration::add_categorie(QListWidget *liste1,  QListWidget *liste2, QListWidget *liste_credits, QString const nb_credits){
     if (liste1->currentItem() != NULL) {
-        add_to_list(liste1, liste2);
+        Tools::switch_current_item(liste1, liste2);
         liste_credits->addItem(nb_credits);
     }
 }
 
+/**
+ * \fn Administration::add_categorie(QListWidget *liste1,  QListWidget *liste2, QListWidget *liste_credits, QString const nb_credits)
+ * \param QListWidget *liste1
+ * \param QListWidget *liste2
+ * \param QListWidget *liste_credits
+ * \param QString const nb_credits
+ * \brief Ajoute l'item selectionné de liste1 à la fin de liste2 tout en le retirant de liste1. Cette fonction ajoute également le nombre de crédits nb_credits à la fin de la liste liste_credits
+ */
 void Administration::remove_categorie(QListWidget *liste1,  QListWidget *liste2, QListWidget  *liste_credits){
     if (liste1->currentItem() != NULL) {
         liste_credits->takeItem((int) liste1->row(liste1->currentItem()));
-        add_to_list(liste1, liste2);
+        Tools::switch_current_item(liste1, liste2);
     }
 }
 
@@ -182,8 +200,8 @@ void Administration::maj_role() {
 }
 
 
-void Administration::ajout_administrateur() { add_to_list(ui->liste_utilisateurs, ui->liste_administrateurs); }
-void Administration::retire_administrateur() { add_to_list(ui->liste_administrateurs, ui->liste_utilisateurs); }
+void Administration::ajout_administrateur() { Tools::switch_current_item(ui->liste_utilisateurs, ui->liste_administrateurs); }
+void Administration::retire_administrateur() { Tools::switch_current_item(ui->liste_administrateurs, ui->liste_utilisateurs); }
 
 void Administration::sauvegarder_role() {
     try {
@@ -203,12 +221,12 @@ void Administration::sauvegarder_role() {
 
 /* Gestion des UV */
 
-void Administration::modif_ajout_dispo_uv() { add_to_list(ui->liste_modif_dispo_dispo_uv, ui->liste_modif_dispo_choisie_uv); }
-void Administration::modif_retire_dispo_uv() { add_to_list(ui->liste_modif_dispo_choisie_uv, ui->liste_modif_dispo_dispo_uv); }
+void Administration::modif_ajout_dispo_uv() { Tools::switch_current_item(ui->liste_modif_dispo_dispo_uv, ui->liste_modif_dispo_choisie_uv); }
+void Administration::modif_retire_dispo_uv() { Tools::switch_current_item(ui->liste_modif_dispo_choisie_uv, ui->liste_modif_dispo_dispo_uv); }
 void Administration::modif_ajout_branche_uv() { add_categorie(ui->liste_modif_branche_dispo_uv, ui->liste_modif_branche_choisie_uv, ui->liste_modif_obligation_uv, ui->modif_obligation_uv->text()); }
 void Administration::modif_retire_branche_uv() { remove_categorie(ui->liste_modif_branche_choisie_uv, ui->liste_modif_branche_dispo_uv, ui->liste_modif_obligation_uv); }
-void Administration::modif_ajout_filiere_uv() { add_to_list(ui->liste_modif_filiere_dispo_uv, ui->liste_modif_filiere_choisie_uv); }
-void Administration::modif_retire_filiere_uv() { add_to_list(ui->liste_modif_filiere_choisie_uv, ui->liste_modif_filiere_dispo_uv); }
+void Administration::modif_ajout_filiere_uv() { Tools::switch_current_item(ui->liste_modif_filiere_dispo_uv, ui->liste_modif_filiere_choisie_uv); }
+void Administration::modif_retire_filiere_uv() { Tools::switch_current_item(ui->liste_modif_filiere_choisie_uv, ui->liste_modif_filiere_dispo_uv); }
 void Administration::modif_ajout_categorie_uv() { add_categorie(ui->liste_modif_categorie_dispo_uv, ui->liste_modif_categorie_choisie_uv, ui->liste_modif_credits_uv, ui->modif_credit_uv->text()); }
 void Administration::modif_retire_categorie_uv() { remove_categorie(ui->liste_modif_categorie_choisie_uv, ui->liste_modif_categorie_dispo_uv, ui->liste_modif_credits_uv); }
 
@@ -375,12 +393,12 @@ void Administration::supprimer_uv() {
         msgBox.exec();
     }
 }
-void Administration::ajout_dispo_uv() { add_to_list(ui->liste_ajout_dispo_dispo_uv, ui->liste_ajout_dispo_choisie_uv); }
-void Administration::retire_dispo_uv() { add_to_list(ui->liste_ajout_dispo_choisie_uv, ui->liste_ajout_dispo_dispo_uv); }
+void Administration::ajout_dispo_uv() { Tools::switch_current_item(ui->liste_ajout_dispo_dispo_uv, ui->liste_ajout_dispo_choisie_uv); }
+void Administration::retire_dispo_uv() { Tools::switch_current_item(ui->liste_ajout_dispo_choisie_uv, ui->liste_ajout_dispo_dispo_uv); }
 void Administration::ajout_branche_uv() { add_categorie(ui->liste_ajout_branche_dispo_uv, ui->liste_ajout_branche_choisie_uv, ui->liste_ajout_obligation_uv, ui->ajout_obligation_uv->text()); }
 void Administration::retire_branche_uv() { remove_categorie(ui->liste_ajout_branche_choisie_uv, ui->liste_ajout_branche_dispo_uv, ui->liste_ajout_obligation_uv); }
-void Administration::ajout_filiere_uv() { add_to_list(ui->liste_ajout_filiere_dispo_uv, ui->liste_ajout_filiere_choisie_uv); }
-void Administration::retire_filiere_uv() { add_to_list(ui->liste_ajout_filiere_choisie_uv, ui->liste_ajout_filiere_dispo_uv); }
+void Administration::ajout_filiere_uv() { Tools::switch_current_item(ui->liste_ajout_filiere_dispo_uv, ui->liste_ajout_filiere_choisie_uv); }
+void Administration::retire_filiere_uv() { Tools::switch_current_item(ui->liste_ajout_filiere_choisie_uv, ui->liste_ajout_filiere_dispo_uv); }
 void Administration::ajout_categorie_uv() { add_categorie(ui->liste_ajout_categorie_dispo_uv, ui->liste_ajout_categorie_choisie_uv, ui->liste_ajout_credits_uv, ui->ajout_credit_uv->text()); }
 void Administration::retire_categorie_uv() { remove_categorie(ui->liste_ajout_categorie_choisie_uv, ui->liste_ajout_categorie_dispo_uv, ui->liste_ajout_credits_uv); }
 
@@ -573,10 +591,10 @@ void Administration::sauvegarde_ajout_filiere() {
     }
 }
 
-void Administration::ajout_branche_filiere() { add_to_list(ui->liste_ajout_branche_dispo, ui->liste_ajout_branche_choisie); }
-void Administration::retire_branche_filiere() { add_to_list(ui->liste_ajout_branche_choisie, ui->liste_ajout_branche_dispo); }
-void Administration::modif_ajout_branche_filiere() { add_to_list(ui->liste_modif_branche_dispo, ui->liste_modif_branche_choisie); }
-void Administration::modif_retire_branche_filiere() { add_to_list(ui->liste_modif_branche_choisie, ui->liste_modif_branche_dispo); }
+void Administration::ajout_branche_filiere() { Tools::switch_current_item(ui->liste_ajout_branche_dispo, ui->liste_ajout_branche_choisie); }
+void Administration::retire_branche_filiere() { Tools::switch_current_item(ui->liste_ajout_branche_choisie, ui->liste_ajout_branche_dispo); }
+void Administration::modif_ajout_branche_filiere() { Tools::switch_current_item(ui->liste_modif_branche_dispo, ui->liste_modif_branche_choisie); }
+void Administration::modif_retire_branche_filiere() { Tools::switch_current_item(ui->liste_modif_branche_choisie, ui->liste_modif_branche_dispo); }
 
 
 void Administration::sauvegarde_modif_filiere() {
@@ -725,16 +743,15 @@ void Administration::sauvegarde_ajout_branche() {
 }
 
 void Administration::sauvegarde_modif_branche() {
-    bool error = true;
     ui->message_modif_branche->setText("");
     try {
         formulaire<QString>::verif_text(ui->modif_nom_branche->text(), "Nom");
-        error = false;
     }
 
     catch (FormulaireException e) {
         ui->message_modif_branche->setText(e.getinfo());
     }
+
         try {
             db->execute("UPDATE Branche SET nom = '" + ui->modif_nom_branche->text() + "', description = '" + ui->modif_description_branche->toPlainText() + "', nom_cursus = '" + ui->modif_cursus_branche->currentText() + "' WHERE nom='" + ui->liste_modif_branche->currentItem()->text() + "';");
 

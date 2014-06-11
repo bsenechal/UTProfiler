@@ -14,6 +14,7 @@
 #include "etudiants.h"
 #include "utprofilerexception.h"
 #include <QMessageBox>
+#include "tools.h"
 
 namespace Ui {
 class Administration;
