@@ -396,24 +396,43 @@ else {
         //Maintenant qu'on à notre map pondérée, on l'utilise.
         //map_suggestion[1]["CS"]=2;
         QList<QString> alreadyused;
+
         qDebug()<<"icila";
 
         for (int i = 10; i > 0; i--) {
-            qDebug()<<"ici";
             for(p = map_algo.begin(); p != map_algo.end(); p++) {
                 if (p->second.first==i && !alreadyused.contains(p->first)){
-                    qDebug()<<"contenu"<<p->first;
-                    //On ajoute les UVs aux map de semestres
-                    int j=0;
+                    qDebug()<<"UV : "<<p->first;
+                    //On ajoute les UVs aux map de semestres : 1 map contenant les UV [S1]['LO21']=TSH      1 map contenant le nb de types [S1][CS]=2
+                    int j=1;
+                    if (!map_suggestion_nb[j]["total"]) map_suggestion_nb[j]["total"]=0;
+                    if (!map_suggestion_nb[j][p->second.second]) map_suggestion_nb[j][p->second.second]=0;
 
 
+                    while ( ((map_suggestion_nb[j][p->second.second]>=3) || (map_suggestion_nb[j]["total"]>=7)) && j<=8/*semestres*/) {        //Tant que [Semestre][type] > 3, le nombre max d'uv d'un type. Ou que le total est > 7, on passe semestre au suivant !
+                        j++;
+                        if (!map_suggestion_nb[j]["total"]){map_suggestion_nb[j]["total"]=0;}
+                        if (!map_suggestion_nb[j][p->second.second]){map_suggestion_nb[j][p->second.second]=0;}
+                    }
 
+
+                    //On met à jours les infos ici
+                    if (j<=8) {
+                    map_suggestion_nb[j][p->second.second]=map_suggestion_nb[j][p->second.second]+1;
+                    map_suggestion_nb[j]["total"]=map_suggestion_nb[j]["total"]+1;
+                    }
+                    qDebug()<<"semestre"<<j;
+                    qDebug()<<map_suggestion_nb[j][p->second.second];
+                    qDebug()<<map_suggestion_nb[j]["total"];
                     alreadyused.push_back(p->first);
                 }
             }
         }
-        qDebug()<<alreadyused;
         //Fin for i
+
+        qDebug()<<map_suggestion_nb[1]["TSH"];
+        qDebug()<<map_suggestion_nb[1]["total"];
+
 
     }
 }

@@ -44,8 +44,11 @@ private:
     typedef std::map<QString, std::pair<int, QString> > Mapalgo;
     Mapalgo map_algo;
 
-    typedef std::map<int, std::map<QString, int> > Mapsugg;
-    Mapsugg map_suggestion;
+    typedef std::map<int, std::map<QString, int> > Mapsugg_nbtype;
+    Mapsugg_nbtype map_suggestion_nb;
+
+    typedef std::map<int, std::map<QString, QString> > Mapsugg_UV;
+    Mapsugg_UV map_suggestion_uv;
 
 
 
