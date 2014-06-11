@@ -30,7 +30,7 @@ public:
     void rempliruvsuivies();
 
 private:
-    QString numerodossier;
+    QString numerodossier="8";
     Ui::mondossier *ui;
     Connexion *c;
     dbmanager *db;

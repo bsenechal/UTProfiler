@@ -271,7 +271,7 @@ void mondossier::remplirchoix(){
         ui->liste_choix_uv->addItem(query.value(0).toString());
     }
 
-    query = db->execute("SELECT UV, choix FROM choixUv;");
+    query = db->execute("SELECT UV, choix FROM choixUv WHERE id_dossier="+this->numerodossier+";");
     while(query.next()) {
         if (query.value(1).toString()=="exigence"){
             ui->liste_exigences->addItem(query.value(0).toString());
