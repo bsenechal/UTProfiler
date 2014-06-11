@@ -2,12 +2,14 @@
 #define AFFICHERCHOIXPREV_H
 
 #include <QWidget>
+#include <QDialog>
+#include <QDebug>
 
 namespace Ui {
 class afficherchoixprev;
 }
 
-class afficherchoixprev : public QWidget
+class afficherchoixprev : public QDialog
 {
     Q_OBJECT
 
@@ -18,7 +20,7 @@ private:
     typedef std::map<int, std::map<QString, QString> > Mapsugg_UV;
 
 public:
-    explicit afficherchoixprev(QWidget *parent = 0);
+    explicit afficherchoixprev(QDialog *parent = 0);
     void ajoutprev(Mapsugg_UV mapsuggestion);
     ~afficherchoixprev();
 };

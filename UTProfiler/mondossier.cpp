@@ -336,6 +336,8 @@ void mondossier::rempliruvsuivies(){
     //Fin UVs suivies
 }
 
+
+
 void mondossier::suppr_UV_suivies() {
     qDebug()<<"ici";
     int i=ui->liste_uv_suivies->currentRow();
@@ -346,6 +348,10 @@ void mondossier::suppr_UV_suivies() {
     delete ui->liste_credits->item(i);
     delete ui->liste_possibilite_uv->item(i);
 }
+
+
+
+
 
 
 void mondossier::generer_suggestion() {
@@ -402,14 +408,14 @@ else {
         for (int i = 10; i > 0; i--) {
             for(p = map_algo.begin(); p != map_algo.end(); p++) {
                 if (p->second.first==i && !alreadyused.contains(p->first)){
-                    qDebug()<<"UV : "<<p->first;
+                    //qDebug()<<"UV : "<<p->first;
                     //On ajoute les UVs aux map de semestres : 1 map contenant les UV [S1]['LO21']=TSH      1 map contenant le nb de types [S1][CS]=2
                     int j=1;
                     if (!map_suggestion_nb[j]["total"]) map_suggestion_nb[j]["total"]=0;
                     if (!map_suggestion_nb[j][p->second.second]) map_suggestion_nb[j][p->second.second]=0;
 
 
-                    while ( ((map_suggestion_nb[j][p->second.second]>=3) || (map_suggestion_nb[j]["total"]>=7)) && j<=8/*semestres max autorisés*/) {        //Tant que [Semestre][type] > 3, le nombre max d'uv d'un type. Ou que le total est > 7, on passe semestre au suivant !
+                    while ( ((map_suggestion_nb[j][p->second.second]>=1/*uv max par type*/) || (map_suggestion_nb[j]["total"]>=7/*uv ax par semestre*/)) && j<=8/*semestres max autorisés*/) {        //Tant que [Semestre][type] > 3, le nombre max d'uv d'un type. Ou que le total est > 7, on passe semestre au suivant !
                         j++;
                         if (!map_suggestion_nb[j]["total"]){map_suggestion_nb[j]["total"]=0;}
                         if (!map_suggestion_nb[j][p->second.second]){map_suggestion_nb[j][p->second.second]=0;}
@@ -422,25 +428,25 @@ else {
                     map_suggestion_nb[j]["total"]=map_suggestion_nb[j]["total"]+1;
                     map_suggestion_uv[j][p->first]=p->second.second;                                    //Dans cette map, le nom et la catégorie pour chaque UV
                     }
-                    qDebug()<<"semestre"<<j;
-                    qDebug()<<map_suggestion_nb[j][p->second.second];
-                    qDebug()<<map_suggestion_nb[j]["total"];
-                    qDebug()<< map_suggestion_uv[j][p->first];
+                    //qDebug()<<"semestre"<<j;
+                    //qDebug()<<map_suggestion_nb[j][p->second.second];
+                    //qDebug()<<map_suggestion_nb[j]["total"];
+                    //qDebug()<< map_suggestion_uv[j][p->first];
                     alreadyused.push_back(p->first);
                 }
             }
         }
         //Fin for i
 
-        qDebug()<<map_suggestion_nb[1]["TSH"];
-        qDebug()<<map_suggestion_nb[1]["total"];
+        //qDebug()<<map_suggestion_nb[1]["TSH"];
+        //qDebug()<<map_suggestion_nb[1]["total"];
 
 
     }
 
 //map_suggestion_uv à passer au constructeur de la classe qui va afficher !
     choixprev.ajoutprev(map_suggestion_uv);
-    choixprev.show();
+    choixprev.exec();
 }
 
 
