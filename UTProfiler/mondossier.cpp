@@ -372,7 +372,7 @@ else {
             for (int i = 0; i < ui->liste_exigences->count(); i++) {
                 if (ui->liste_exigences->item(i)->text()==p->first) {
                     qDebug()<<p->first+" is In exigence";
-                    p->second.first=100;
+                    p->second.first=10;
                     qDebug()<<p->second.first;
                     qDebug()<<p->second.second;
                 }
@@ -380,15 +380,15 @@ else {
             for (int i = 0; i < ui->liste_preferences->count(); i++) {
                 if (ui->liste_preferences->item(i)->text()==p->first) {
                     qDebug()<<p->first+" is In preferences";
-                    p->second.first=p->second.first + 40;
-                   if (p->second.first>100) p->second.first=100;
+                    p->second.first=p->second.first + 4;
+                   if (p->second.first>10) p->second.first=10;
 
                 }
             }
             for (int i = 0; i < ui->liste_rejets->count(); i++) {
                 if (ui->liste_rejets->item(i)->text()==p->first) {
                     qDebug()<<p->first+" is In rejets";
-                    p->second.first= - 10;
+                    p->second.first= - 1;
                 }
             }
         }
