@@ -2,6 +2,11 @@
 #define INSCRIPTION_H
 
 #include <QDialog>
+#include "dbmanager.h"
+#include "formulaire.h"
+#include "connexion.h"
+#include "mondossier.h"
+#include "utprofilerexception.h"
 
 namespace Ui {
 class Inscription;
@@ -17,6 +22,8 @@ public:
 
 
 private:
+    dbmanager *db;
+    Connexion *c;
     Ui::Inscription *ui;
 
 public slots :

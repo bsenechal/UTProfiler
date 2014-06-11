@@ -1,16 +1,13 @@
 #include "inscription.h"
 #include "ui_inscription.h"
-#include "dbmanager.h"
-#include "formulaire.h"
-#include "connexion.h"
-#include "mondossier.h"
+
 
 
 Inscription::Inscription(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::Inscription)
 {
-
+    c = Connexion::getInstance();
     ui->setupUi(this);
     QObject::connect(ui->valider, SIGNAL(clicked()), this, SLOT(inscriptionUser()));
 }
@@ -21,9 +18,8 @@ Inscription::~Inscription()
 }
 
 void Inscription::inscriptionUser(){
-    QSqlDatabase db = QSqlDatabase::database();
-    QSqlQuery query(db);
-    Connexion *c = Connexion::getInstance();
+    db = dbmanager::getInstance();
+
     ui->label_erreur->setText("");
     bool error = true;
     try {
@@ -39,20 +35,9 @@ void Inscription::inscriptionUser(){
     }
 
     if (!error) {
-        query.prepare("INSERT INTO Etudiant (login, passwd, nom, prenom, sexe, date_naissance, email) VALUES (:login, :passwd, :nom, :prenom, :sexe, :date_naiss, :email);");
-        query.bindValue(":login", ui->input_login->text());
-        query.bindValue(":passwd", ui->input_mdp->text());
-        query.bindValue(":nom", ui->input_nom->text());
-        query.bindValue(":prenom", ui->input_prenom->text());
-        query.bindValue(":sexe", ui->comboBox->currentText());
-        query.bindValue(":date_naiss", ui->input_date_naiss->text());
-        query.bindValue(":email", ui->input_email->text());
-
-        if (!query.exec()) {
-
-                qDebug() << "Erreur de la BDD : "<< query.lastError();
-        }
-        else {
+        try {
+            db->execute("BEGIN;");
+            db->execute("INSERT INTO Etudiant (login, passwd, nom, prenom, sexe, date_naissance, email) VALUES ('" + ui->input_login->text() + "','" + ui->input_mdp->text() + "','" + ui->input_nom->text() + "','" + ui->input_prenom->text() + "','" + ui->comboBox->currentText() + "','" + ui->input_date_naiss->text() + "','" + ui->input_email->text() + "');");
             c->setLogin(ui->input_login->text());
             c->setPasswd(ui->input_mdp->text());
             c->setNom(ui->input_nom->text());
@@ -60,7 +45,14 @@ void Inscription::inscriptionUser(){
             c->setSexe(ui->comboBox->currentText());
             c->setDate_naissance(ui->input_date_naiss->text());
             c->setEmail(ui->input_email->text());
+            db->execute("COMMIT;");
             QDialog::done(1);
+        }
+        catch (UTProfilerException u){
+            QMessageBox msgBox;
+            db->execute("ROLLBACK;");
+            msgBox.setText("Erreur lors de la création de votre compte, veuillez contacter un administrateur");
+            msgBox.exec();
         }
     }
 }
