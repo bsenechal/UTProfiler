@@ -12,6 +12,7 @@
 #include "tools.h"
 #include "utprofilerexception.h"
 #include <QMessageBox>
+#include <QPair>
 
 namespace Ui {
 class mondossier;
@@ -40,6 +41,9 @@ private:
     map<QString,QString> map_pos_uv;
     map<QString,int> map_algo_uv;
     map<QString, map<QString, QString> > uvsuivies;
+
+    typedef std::map<QString, std::pair<int, QString> > Maptype;
+    Maptype map_algo;
 
 
 private slots:
