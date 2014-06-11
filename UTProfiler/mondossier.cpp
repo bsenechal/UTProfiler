@@ -362,13 +362,27 @@ if (ui->branche->text()=="") {
 }
 else {
     QSqlQuery query;
-    query = db->execute("select distinct assoc_branche_uv.code_uv, assoc_branche_uv.obligation, assoc_categorie_UV.nom_categorie from assoc_branche_uv, assoc_categorie_UV WHERE assoc_categorie_UV.code_uv=assoc_branche_uv.code_uv AND nom_branche='"+ui->branche->text()+"' or nom_branche='' group by assoc_branche_uv.code_uv Order by obligation desc;");
-
+    query = db->execute("select distinct assoc_branche_uv.code_uv, assoc_branche_uv.obligation, assoc_categorie_UV.nom_categorie, assoc_categorie_UV.nbcredits from assoc_branche_uv, assoc_categorie_UV WHERE assoc_categorie_UV.code_uv=assoc_branche_uv.code_uv AND nom_branche='"+ui->branche->text()+"' or nom_branche='' group by assoc_branche_uv.code_uv Order by obligation desc;");
+    map_algo.clear();
+    map_suggestion_nb.clear();
+    map_suggestion_uv.clear();
+    map_credits.clear();
 
     while(query.next()){
         //qDebug()<<query.value(0).toString()<<" obligation : "<<query.value(1).toInt();
+        bool alreadymade=false;
+         for (int i = 0; i < ui->liste_uv_suivies->count(); i++) {
+            if (ui->liste_uv_suivies->item(i)->text()==query.value(0).toString()) alreadymade=true;
+         }
+        if (alreadymade==false)  {
+            map_algo[query.value(0).toString()] = std::make_pair(query.value(1).toInt(), query.value(2).toString());
+            //map_algo contient : [UV][(obligation, categorie)]
 
-        map_algo[query.value(0).toString()] = std::make_pair(query.value(1).toInt(), query.value(2).toString());
+            map_credits[query.value(0).toString()] = std::make_pair(query.value(2).toString(), query.value(3).toInt());
+            //map_credit contient : [UV][(categorie, nbcredits)]
+        }
+
+
     }
 
         map<QString, std::pair<int, QString> >::iterator p;
