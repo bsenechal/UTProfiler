@@ -59,7 +59,6 @@ FORMS    += \
     accueil.ui \
     mondossier.ui \
     inscription.ui \
-    insertuv.ui \
     administration.ui \
     afficherchoixprev.ui
 
