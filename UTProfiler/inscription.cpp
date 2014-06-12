@@ -1,7 +1,15 @@
 #include "inscription.h"
 #include "ui_inscription.h"
 
+/**
+  * @file inscription.cpp
+  */
 
+/**
+ * @fn  Inscription::Inscription(QWidget *parent)
+ * @param QWidget *parent
+ * @brief Construit le formulaire d'inscription
+ */
 Inscription::Inscription(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::Inscription)
@@ -32,21 +40,40 @@ Inscription::Inscription(QWidget *parent) :
     QObject::connect(ui->comboBox_branche, SIGNAL(currentIndexChanged(int)), this, SLOT(enable_branche()));
 }
 
+/**
+ * @fn  void Inscription::enable_cursus()
+ * @return void
+ * @brief Remplie et active la combobox branche
+ */
 void Inscription::enable_cursus() {
     Tools::enable_combobox(ui->comboBox_branche, branches->getBranchesFromCursus(ui->comboBox_cursus->currentText()));
     ui->comboBox_branche->setEnabled(true);
 }
 
+/**
+ * @fn  void Inscription::enable_branche()
+ * @return void
+ * @brief Remplie et active la combobox filiere
+ */
 void Inscription::enable_branche(){
     Tools::enable_combobox(ui->comboBox_filiere, filieres->getFilieresFromBranche(ui->comboBox_branche->currentText()));
     ui->comboBox_filiere->setEnabled(true);
 }
 
+/**
+ * @fn  Inscription::~Inscription()
+ * @brief Destructeur de la classe Inscription
+ */
 Inscription::~Inscription()
 {
     delete ui;
 }
 
+/**
+ * @fn  void Inscription::inscriptionUser()
+ * @return void
+ * @brief Permet à la sauvegarde d'un nouvel utilisateur
+ */
 void Inscription::inscriptionUser(){
     QMessageBox msgBox;
 
