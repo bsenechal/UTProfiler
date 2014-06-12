@@ -1,9 +1,9 @@
 /**
- * \file main.cpp
- * \author David Martins
- * \author Benoît Sénéchal
- * \version 1.0
- * \date 15 Juin 2014
+ * @file main.cpp
+ * @author David Martins
+ * @author Benoît Sénéchal
+ * @version 1.0
+ * @date 15 Juin 2014
  *
  */
 
@@ -12,13 +12,12 @@
 #include "accueil.h"
 
 /**
- * \fn int main (int argc, char* argv[])
- * \brief Entrée du programme.
- *
- * \return app.exec() - Arrêt normal du programme.
+ * @fn int main (int argc, char* argv[])
+ * @param int argc
+ * @param char* argv[]
+ * @brief Entrée du programme.
+ * @return app.exec() - Arrêt normal du programme.
  */
-
-
 int main(int argc, char* argv[]){
     QApplication app(argc, argv);
 
@@ -32,12 +31,5 @@ int main(int argc, char* argv[]){
     Accueil acc;
     acc.show();
 
-
-   /* InsertUv ins;
-    ins.show();
-
-    ViewUv v;
-    v.show();
-*/
     return app.exec();
 }
