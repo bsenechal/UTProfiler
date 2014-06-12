@@ -4,7 +4,6 @@ INPUT(
 ./debug\accueil.o
 ./debug\mondossier.o
 ./debug\inscription.o
-./debug\insertuv.o
 ./debug\connexion.o
 ./debug\administration.o
 ./debug\cursus.o
@@ -21,7 +20,6 @@ INPUT(
 ./debug\moc_accueil.o
 ./debug\moc_mondossier.o
 ./debug\moc_inscription.o
-./debug\moc_insertuv.o
 ./debug\moc_administration.o
 ./debug\moc_afficherchoixprev.o
 );

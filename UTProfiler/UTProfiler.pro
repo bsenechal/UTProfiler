@@ -21,7 +21,6 @@ SOURCES += \
     accueil.cpp \
     mondossier.cpp \
     inscription.cpp \
-    insertuv.cpp \
     connexion.cpp \
     administration.cpp \
     cursus.cpp \
@@ -44,7 +43,6 @@ HEADERS  += \
     inscription.h \
     formulaire.h \
     singleton.h \
-    insertuv.h \
     administration.h \
     cursus.h \
     branches.h \
