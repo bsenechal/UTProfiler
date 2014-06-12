@@ -17,6 +17,7 @@ Accueil::Accueil(QWidget *parent) :
     ui(new Ui::Accueil)
 {  
     ui->setupUi(this);
+    this->setWindowTitle("UTProfiler");
     c = Connexion::getInstance();
     db = dbmanager::getInstance();
     cursus = Cursus::getInstance();

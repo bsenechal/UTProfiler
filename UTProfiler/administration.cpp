@@ -16,6 +16,7 @@ Administration::Administration(QWidget *parent) :
     ui(new Ui::Administration)
 {
     ui->setupUi(this);
+    this->setWindowTitle("UTProfiler : Administration");
     db = dbmanager::getInstance();
     uvs = db->getColonne("SELECT code FROM uv;"); 
     cursus = Cursus::getInstance();

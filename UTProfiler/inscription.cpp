@@ -7,6 +7,7 @@ Inscription::Inscription(QWidget *parent) :
     ui(new Ui::Inscription)
 {
     ui->setupUi(this);
+    this->setWindowTitle("UTProfiler : Inscription");
     db = dbmanager::getInstance();
     c = Connexion::getInstance();
     cursus = Cursus::getInstance();
