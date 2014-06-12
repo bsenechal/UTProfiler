@@ -18,11 +18,9 @@ TEMPLATE = app
 SOURCES += \
     main.cpp \
     dbmanager.cpp \
-    uv.cpp \
     accueil.cpp \
     mondossier.cpp \
     inscription.cpp \
-    fenetreplus.cpp \
     insertuv.cpp \
     connexion.cpp \
     administration.cpp \
@@ -39,7 +37,6 @@ SOURCES += \
 
 HEADERS  += \
     dbmanager.h \
-    uv.h \
     utprofilerexception.h \
     connexion.h \
     accueil.h \
@@ -47,7 +44,6 @@ HEADERS  += \
     inscription.h \
     formulaire.h \
     singleton.h \
-    fenetreplus.h \
     insertuv.h \
     administration.h \
     cursus.h \
@@ -65,7 +61,6 @@ FORMS    += \
     accueil.ui \
     mondossier.ui \
     inscription.ui \
-    fenetreplus.ui \
     insertuv.ui \
     administration.ui \
     afficherchoixprev.ui
