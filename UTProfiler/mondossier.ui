@@ -23,7 +23,7 @@
     </rect>
    </property>
    <property name="currentIndex">
-    <number>1</number>
+    <number>2</number>
    </property>
    <widget class="QWidget" name="mes_infos">
     <attribute name="title">
@@ -1269,6 +1269,29 @@
       <string>Générer une suggestion d'UVs</string>
      </property>
     </widget>
+    <widget class="QListWidget" name="liste_solutions">
+     <property name="geometry">
+      <rect>
+       <x>820</x>
+       <y>60</y>
+       <width>51</width>
+       <height>321</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_selection_uv_2">
+     <property name="geometry">
+      <rect>
+       <x>820</x>
+       <y>30</y>
+       <width>61</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Solutions</string>
+     </property>
+    </widget>
     <zorder>fond_3</zorder>
     <zorder>add_exigence</zorder>
     <zorder>label_titre_choix</zorder>
@@ -1287,6 +1310,8 @@
     <zorder>suppr_preference</zorder>
     <zorder>suppr_rejet</zorder>
     <zorder>suggestion_uv</zorder>
+    <zorder>liste_solutions</zorder>
+    <zorder>label_selection_uv_2</zorder>
    </widget>
   </widget>
   <widget class="QLabel" name="label">
