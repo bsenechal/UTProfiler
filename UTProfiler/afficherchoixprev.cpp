@@ -37,9 +37,10 @@ ui->uv_8->clear();
         QString uv=r->first;
         QString type=r->second.first;
         QString nbcd=QString::number(r->second.second);
+        int semestre=p->first;
 
         //qDebug()<<p->first;
-                switch (p->first)
+                switch (semestre)
                 {
                     case 1: {
                           ui->uv_1->addItem(uv+" as "+type+" cred : "+nbcd);

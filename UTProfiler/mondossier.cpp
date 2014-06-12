@@ -483,11 +483,6 @@ else {
         //Fin structure de la mort
 
 
-        //Fin for i
-
-        //qDebug()<<map_suggestion_nb[1]["TSH"];
-        //qDebug()<<map_suggestion_nb[1]["total"];
-
 
     }
 
