@@ -376,6 +376,15 @@ else {
     map_all_uv.clear();
     map_suggestion_nb2.clear();
 
+    int cs_necessaire=30;
+    int tm_necessaire=30;
+    int cs_et_tm_necessaire=84;
+    int tsh_necessaire=28;
+    int total_necessaire=120; //Hors stage
+    int total_cs=0;
+    int total_tm=0;
+    int total_tsh=0;
+    int total_total=0;
 
     while(query.next()){
         //qDebug()<<query.value(0).toString()<<" obligation : "<<query.value(1).toInt();
@@ -397,7 +406,7 @@ else {
     // Avec la structure de la mort //
     map<QString, detailuv >::iterator s;
     for(s = map_all_uv.begin(); s != map_all_uv.end(); s++) {
-        qDebug()<<s->first<<" de categorie : "<<s->second.categorie<<" donne "<<s->second.credit<<" credits. Obligation : "<<s->second.obligation;
+        //qDebug()<<s->first<<" de categorie : "<<s->second.categorie<<" donne "<<s->second.credit<<" credits. Obligation : "<<s->second.obligation;
 
         for (int i = 0; i < ui->liste_exigences->count(); i++) {
             if (ui->liste_exigences->item(i)->text()==s->first) {
@@ -430,54 +439,83 @@ else {
         alreadyused.clear();
 
 
-        //Avec la structure de la mort
+        //On rempli les UV de chaque semestres dans la structure de la mort
         for (int i = 10; i > 0; i--) {
             for(s = map_all_uv.begin(); s != map_all_uv.end(); s++) {
-                if (s->second.obligation==i && !alreadyused.contains(s->first)){
 
-                    //qDebug()<<"UV : "<<p->first;
-                    //On ajoute les UVs aux map de semestres : 1 map contenant les UV [S1]['LO21']=TSH      1 map contenant le nb de types [S1][CS]=2
-                    int j=1;
-                    if (!map_suggestion_nb2[j]["total"].first) {
-                        map_suggestion_nb2[j]["total"].first=0;
-                        map_suggestion_nb2[j]["total"].second=0;
-                    }
-                    if (!map_suggestion_nb2[j][s->second.categorie].first) {
-                        map_suggestion_nb2[j][s->second.categorie].first=0;
-                        map_suggestion_nb2[j][s->second.categorie].second=0;
-                    }
+                //Ici, on va regarder chacun de nos UVs savoir ou on les places dans le parcours.
+                //A ce moment, on regarde si on à déjà rempli les conditions nécessaires d'obtention du diplôme ou pas. Si non, on continue à remplir.
+                if ( ((total_cs < cs_necessaire) && (s->second.categorie=="CS")) || ((total_tm < tm_necessaire)&& (s->second.categorie=="TM")) || (((total_tm + total_cs) < cs_et_tm_necessaire) && ((s->second.categorie=="TM")||(s->second.categorie=="CS"))) || ((total_tsh < tsh_necessaire) && (s->second.categorie=="TSH")) || ((total_total < total_necessaire) && ((total_tm + total_cs) < 92) &&(total_tsh < 36))    ) {
 
-                    while ( ( (map_suggestion_nb2[j][s->second.categorie].first>=3/*uv max par type*/) || ((map_suggestion_nb2[j]["CS"].first + map_suggestion_nb2[j]["TM"].first>=5/*CS+TM*/) && (s->second.categorie=="CS" || s->second.categorie=="TM")) || (map_suggestion_nb2[j]["total"].first>=7/*uv ax par semestre*/)) && j<=8/*semestres max autorisés*/) {        //Tant que [Semestre][type] > 3, le nombre max d'uv d'un type. Ou que le total est > 7, on passe semestre au suivant !
-                        j++;
-                        if (!map_suggestion_nb2[j]["total"].first) {
-                            map_suggestion_nb2[j]["total"].first=0;
-                            map_suggestion_nb2[j]["total"].second=0;
+
+
+                        if (s->second.obligation==i && !alreadyused.contains(s->first)){
+
+                            //qDebug()<<"UV : "<<p->first;
+                            //On ajoute les UVs aux map de semestres : 1 map contenant les UV [S1]['LO21']=TSH      1 map contenant le nb de types [S1][CS]=2
+                            int j=1;
+                            if (!map_suggestion_nb2[j]["total"].first) {
+                                map_suggestion_nb2[j]["total"].first=0;
+                                map_suggestion_nb2[j]["total"].second=0;
+                            }
+                            if (!map_suggestion_nb2[j][s->second.categorie].first) {
+                                map_suggestion_nb2[j][s->second.categorie].first=0;
+                                map_suggestion_nb2[j][s->second.categorie].second=0;
+                            }
+
+                            while ( ( (map_suggestion_nb2[j][s->second.categorie].first>=3/*uv max par type*/) || ((map_suggestion_nb2[j]["CS"].first + map_suggestion_nb2[j]["TM"].first>=5/*CS+TM*/) && (s->second.categorie=="CS" || s->second.categorie=="TM")) || (map_suggestion_nb2[j]["total"].first>=7/*uv ax par semestre*/)) && j<=8/*semestres max autorisés*/) {        //Tant que [Semestre][type] > 3, le nombre max d'uv d'un type. Ou que le total est > 7, on passe semestre au suivant !
+                                j++;
+                                if (!map_suggestion_nb2[j]["total"].first) {
+                                    map_suggestion_nb2[j]["total"].first=0;
+                                    map_suggestion_nb2[j]["total"].second=0;
+                                }
+                                if (!map_suggestion_nb2[j][s->second.categorie].first) {
+                                    map_suggestion_nb2[j][s->second.categorie].first=0;
+                                    map_suggestion_nb2[j][s->second.categorie].second=0;
+                                }
+                            }
+                            //qDebug()<<"CS + TM : "<<map_suggestion_nb2[j]["CS"].first+map_suggestion_nb2[j]["TM"].first;
+
+                            //On met à jour les infos ici
+                            if (j<=8) {
+                            map_suggestion_nb2[j][s->second.categorie].first=map_suggestion_nb2[j][s->second.categorie].first+1;    //Dans cette map la catégorie et le nombre pour chaque catégorie d'UVs suivies par semestre
+                            map_suggestion_nb2[j][s->second.categorie].second=map_suggestion_nb2[j][s->second.categorie].second + s->second.credit;
+                            map_suggestion_nb2[j]["total"].first=map_suggestion_nb2[j]["total"].first + 1;
+                            map_suggestion_nb2[j]["total"].second=map_suggestion_nb2[j]["total"].second + s->second.credit;
+
+                            map_suggestion_uv[j][s->first]=s->second.categorie;                                    //Dans cette map, [semestre] et le nom et la catégorie pour chaque UV
+
+                            map_suggestion_uv2[j][s->first].first=s->second.categorie;
+                            map_suggestion_uv2[j][s->first].second=s->second.credit;
+
+                            if (s->second.categorie=="CS") {
+                                    total_cs=total_cs + s->second.credit;
+                                    total_total=total_total + s->second.credit;
+                                }
+                            else if (s->second.categorie=="TM") {
+                                    total_tm=total_tm + s->second.credit;
+                                    total_total=total_total + s->second.credit;
+                                }
+                            else if (s->second.categorie=="TSH") {
+                                    total_tsh=total_tsh + s->second.credit;
+                                    total_total=total_total + s->second.credit;
+                                }
+
+                            //[S1]["LO21"].first=categ [S1]["LO21"].second=nbcredit
+                            }
+                            //qDebug()<<"semestre"<<j;
+                            //qDebug()<<map_suggestion_nb[j][p->second.second];
+                            //qDebug()<<map_suggestion_nb[j]["total"];
+                            //qDebug()<< map_suggestion_uv[j][p->first];
+                            alreadyused.push_back(s->first);
                         }
-                        if (!map_suggestion_nb2[j][s->second.categorie].first) {
-                            map_suggestion_nb2[j][s->second.categorie].first=0;
-                            map_suggestion_nb2[j][s->second.categorie].second=0;
-                        }
-                    }
-                    //qDebug()<<"CS + TM : "<<map_suggestion_nb2[j]["CS"].first+map_suggestion_nb2[j]["TM"].first;
 
-                    //On met à jour les infos ici
-                    if (j<=8) {
-                    map_suggestion_nb2[j][s->second.categorie].first=map_suggestion_nb2[j][s->second.categorie].first+1;    //Dans cette map la catégorie et le nombre pour chaque catégorie d'UVs suivies par semestre
-                    map_suggestion_nb2[j][s->second.categorie].second=map_suggestion_nb2[j][s->second.categorie].second + s->second.credit;
-                    map_suggestion_nb2[j]["total"].first=map_suggestion_nb2[j]["total"].first + 1;
-                    map_suggestion_nb2[j]["total"].second=map_suggestion_nb2[j]["total"].second + s->second.credit;
-                    map_suggestion_uv[j][s->first]=s->second.categorie;                                    //Dans cette map, [semestre] et le nom et la catégorie pour chaque UV
-
-                    map_suggestion_uv2[j][s->first].first=s->second.categorie;
-                    map_suggestion_uv2[j][s->first].second=s->second.credit;
-                    //[S1]["LO21"].first=categ [S1]["LO21"].second=nbcredit
-                    }
-                    //qDebug()<<"semestre"<<j;
-                    //qDebug()<<map_suggestion_nb[j][p->second.second];
-                    //qDebug()<<map_suggestion_nb[j]["total"];
-                    //qDebug()<< map_suggestion_uv[j][p->first];
-                    alreadyused.push_back(s->first);
+                }//Fin if condition d'obtentions
+                else {
+                    qDebug()<<"Toutes les conditions sont remplies";
+                    qDebug()<<"CS : "<<total_cs<<" TM : "<<total_tm<<" TSH : "<<total_tsh<<" Total : "<<total_total;
                 }
+
             }
         }
         //Fin structure de la mort
