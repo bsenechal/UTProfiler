@@ -115,6 +115,8 @@ public:
     QPushButton *suppr_rejet;
     QLabel *fond_3;
     QPushButton *suggestion_uv;
+    QListWidget *liste_solutions;
+    QLabel *label_selection_uv_2;
     QLabel *label;
 
     void setupUi(QDialog *mondossier)
@@ -488,6 +490,12 @@ public:
         suggestion_uv = new QPushButton(choix);
         suggestion_uv->setObjectName(QStringLiteral("suggestion_uv"));
         suggestion_uv->setGeometry(QRect(200, 400, 271, 61));
+        liste_solutions = new QListWidget(choix);
+        liste_solutions->setObjectName(QStringLiteral("liste_solutions"));
+        liste_solutions->setGeometry(QRect(820, 60, 51, 321));
+        label_selection_uv_2 = new QLabel(choix);
+        label_selection_uv_2->setObjectName(QStringLiteral("label_selection_uv_2"));
+        label_selection_uv_2->setGeometry(QRect(820, 30, 61, 20));
         onglets_dossier->addTab(choix, QString());
         fond_3->raise();
         add_exigence->raise();
@@ -507,6 +515,8 @@ public:
         suppr_preference->raise();
         suppr_rejet->raise();
         suggestion_uv->raise();
+        liste_solutions->raise();
+        label_selection_uv_2->raise();
         label = new QLabel(mondossier);
         label->setObjectName(QStringLiteral("label"));
         label->setGeometry(QRect(0, 0, 911, 61));
@@ -516,7 +526,7 @@ public:
 
         retranslateUi(mondossier);
 
-        onglets_dossier->setCurrentIndex(1);
+        onglets_dossier->setCurrentIndex(2);
 
 
         QMetaObject::connectSlotsByName(mondossier);
@@ -582,6 +592,7 @@ public:
         suppr_rejet->setText(QApplication::translate("mondossier", "X", 0));
         fond_3->setText(QString());
         suggestion_uv->setText(QApplication::translate("mondossier", "G\303\251n\303\251rer une suggestion d'UVs", 0));
+        label_selection_uv_2->setText(QApplication::translate("mondossier", "Solutions", 0));
         onglets_dossier->setTabText(onglets_dossier->indexOf(choix), QApplication::translate("mondossier", "Mes Choix", 0));
         label->setText(QString());
     } // retranslateUi

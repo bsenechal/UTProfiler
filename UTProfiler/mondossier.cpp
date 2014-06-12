@@ -118,7 +118,7 @@ void mondossier::ajoutUV() {
 void mondossier::maj_dossier() {
     QSqlQuery query;
 
-
+    remplirlistesolutions();
     ui->login->clear();
     ui->nom->clear();
     ui->prenom->clear();
@@ -534,4 +534,13 @@ else {
 mondossier::~mondossier()
 {
     delete ui;
+}
+
+
+void mondossier::remplirlistesolutions(){
+    QSqlQuery query;
+    query = db->execute("SELECT DISTINCT id_solution FROM solution_choixprev;");
+    while(query.next()){
+        ui->liste_solutions->addItem(query.value(0).toString());
+    }
 }

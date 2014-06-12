@@ -31,7 +31,7 @@ void afficherchoixprev::ajoutprev(Mapsugg_UV2 mapsuggestion) {
     colonne->addWidget(new QLabel ("Total CS"));
     colonne->addWidget(new QLabel ("Total TM"));
     colonne->addWidget(new QLabel ("Total TSH"));
-    colonne->addWidget(new QLabel ("Total"));
+    colonne->addWidget(new QLabel ("Total "));
 
     layout->addLayout(colonne);
     Mapsugg_UV2 ::iterator p;

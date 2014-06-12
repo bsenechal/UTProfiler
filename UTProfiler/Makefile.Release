@@ -145,9 +145,9 @@ compiler_rcc_clean:
 	-$(DEL_FILE) release\qrc_Utc.cpp
 release/qrc_Utc.cpp: ../images/Utc.qrc \
 		../images/bandeau_utc.jpg \
-		../images/fond_inscription.png \
 		../images/fond_pg.png \
-		../images/fond_accueil.jpg
+		../images/fond_accueil.jpg \
+		../images/fond_inscription.png
 	C:\Qt\Qt5.2.1\5.2.1\mingw48_32\bin\rcc.exe -name Utc ..\images\Utc.qrc -o release\qrc_Utc.cpp
 
 compiler_moc_header_make_all: release/moc_accueil.cpp release/moc_mondossier.cpp release/moc_inscription.cpp release/moc_administration.cpp release/moc_afficherchoixprev.cpp
@@ -6000,17 +6000,16 @@ release/afficherchoixprev.o: afficherchoixprev.cpp afficherchoixprev.h \
 		../../../../../../Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtGui/qinputmethod.h \
 		../../../../../../Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtWidgets/QButtonGroup \
 		../../../../../../Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtWidgets/qbuttongroup.h \
-		../../../../../../Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtWidgets/QFrame \
 		../../../../../../Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtWidgets/QHeaderView \
 		../../../../../../Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtWidgets/qheaderview.h \
-		../../../../../../Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtWidgets/QLabel \
-		../../../../../../Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtWidgets/qlabel.h \
 		../../../../../../Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtWidgets/QVBoxLayout \
 		../../../../../../Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtWidgets/qboxlayout.h \
 		../../../../../../Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtWidgets/qlayout.h \
 		../../../../../../Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtWidgets/qlayoutitem.h \
 		../../../../../../Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtWidgets/qgridlayout.h \
-		../../../../../../Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtWidgets/QHBoxLayout
+		../../../../../../Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtWidgets/QHBoxLayout \
+		../../../../../../Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtWidgets/QLabel \
+		../../../../../../Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtWidgets/qlabel.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\afficherchoixprev.o afficherchoixprev.cpp
 
 release/qrc_Utc.o: release/qrc_Utc.cpp 

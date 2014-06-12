@@ -41,6 +41,8 @@ private:
     uvmnger *uvm;
     afficherchoixprev choixprev;
 
+    void remplirlistesolutions();
+
     map<QString,QString> map_pos_uv;
     map<QString, map<QString, QString> > uvsuivies;
 
