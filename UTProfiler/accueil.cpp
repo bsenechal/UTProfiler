@@ -1,5 +1,5 @@
 /**
- *\file accueil.cpp
+ *@file accueil.cpp
 */
 
 #include "accueil.h"
@@ -7,9 +7,9 @@
 
 
 /**
- * \fn Accueil::Accueil(QWidget *parent)
- * \param QWidget *parent
- * \brief Constructeur de la classe Accueil
+ * @fn Accueil::Accueil(QWidget *parent)
+ * @param QWidget *parent
+ * @brief Constructeur de la classe Accueil. Il génére également les onglets permettant la consulation d'UV par cursus
  */
 
 Accueil::Accueil(QWidget *parent) :
@@ -22,9 +22,7 @@ Accueil::Accueil(QWidget *parent) :
     db = dbmanager::getInstance();
     cursus = Cursus::getInstance();
     dispos = Disponibilites::getInstance();
-    /*! Création d'un nouvel onglet dans le tabWidget pour chaque cursus.
-      * Chaque onglet est composé d'un Groupbox pour la selection des critères de tri et d'un listWidget pour l'affichage des UV
-      */
+
     for (QStringList::iterator it=cursus->getListe_cursus().begin(); it!=cursus->getListe_cursus().end(); ++it) {
         QWidget *tmp = new QWidget();
         QVBoxLayout *VLayout = new QVBoxLayout;
@@ -78,8 +76,8 @@ Accueil::Accueil(QWidget *parent) :
 
 
 /**
- * \fn Accueil::~Accueil()
- * \brief Destructeur de la classe Accueil
+ * @fn Accueil::~Accueil()
+ * @brief Destructeur de la classe Accueil
  *
 */
 
@@ -90,9 +88,9 @@ Accueil::~Accueil()
 
 
 /**
- * \fn void Accueil::affiche_uv()
- * \brief Affiche les UV selon le cursus et les branches selectionnées
- * \return void
+ * @fn void Accueil::affiche_uv()
+ * @brief Affiche les UV selon le cursus et les branches selectionnées
+ * @return void
  */
 
 void Accueil::affiche_uv() {
@@ -138,6 +136,11 @@ void Accueil::affiche_uv() {
     }
 }
 
+/**
+ * @fn void Accueil::connexionUser()
+ * @brief Permet la connexion d'un utilisateur
+ * @return void
+ */
 void Accueil::connexionUser() {
         QSqlQuery query;
 
@@ -163,7 +166,11 @@ void Accueil::connexionUser() {
         }
 }
 
-
+/**
+ * @fn void Accueil::inscriptionUser()
+ * @brief Ouvre la fenêtre d'inscription
+ * @return void
+ */
 void Accueil::inscriptionUser() {
     Inscription i;
     i.exec();
