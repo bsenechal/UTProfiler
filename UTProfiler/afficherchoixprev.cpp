@@ -14,7 +14,8 @@ afficherchoixprev::~afficherchoixprev()
     delete ui;
 }
 
-void afficherchoixprev::ajoutprev(Mapsugg_UV mapsuggestion) {
+void afficherchoixprev::ajoutprev(Mapsugg_UV mapsuggestion, Mapsugg_nbtype2 map_suggestion_nb) {
+//map_suggestion_nb [semestre][Categorie] first=nbUv  second=credits
 //On parcour notre map
 ui->uv_1->clear();
 ui->uv_2->clear();
@@ -28,7 +29,7 @@ ui->uv_8->clear();
     std::map<int, std::map<QString, QString> > ::iterator p;
     for(p = mapsuggestion.begin(); p != mapsuggestion.end(); p++)
     {
-        qDebug()<<"Semestre "<<p->first;
+        //qDebug()<<"Semestre "<<p->first;
         std::map<QString, QString>::iterator r;
         for(r = p->second.begin(); r != p->second.end(); r++){
             //qDebug()<<"uv "<<r->first;
@@ -36,7 +37,7 @@ ui->uv_8->clear();
         QString uv=r->first;
         QString type=r->second;
 
-        qDebug()<<p->first;
+        //qDebug()<<p->first;
                 switch (p->first)
                 {
                     case 1: {

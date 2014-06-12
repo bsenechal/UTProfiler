@@ -362,92 +362,113 @@ if (ui->branche->text()=="") {
 }
 else {
     QSqlQuery query;
-    query = db->execute("select distinct assoc_branche_uv.code_uv, assoc_branche_uv.obligation, assoc_categorie_UV.nom_categorie, assoc_categorie_UV.nbcredits from assoc_branche_uv, assoc_categorie_UV WHERE assoc_categorie_UV.code_uv=assoc_branche_uv.code_uv AND nom_branche='"+ui->branche->text()+"' or nom_branche='' group by assoc_branche_uv.code_uv Order by obligation desc;");
+    query = db->execute("select distinct assoc_branche_uv.code_uv, assoc_branche_uv.obligation, assoc_categorie_UV.nom_categorie, assoc_categorie_UV.nbcredits from assoc_branche_uv, assoc_categorie_UV WHERE assoc_categorie_UV.code_uv=assoc_branche_uv.code_uv AND (nom_branche='"+ui->branche->text()+"' or nom_branche='') group by assoc_branche_uv.code_uv Order by obligation desc;");
     map_algo.clear();
-    map_suggestion_nb.clear();
     map_suggestion_uv.clear();
-    map_credits.clear();
+    map_all_uv.clear();
 
     while(query.next()){
         //qDebug()<<query.value(0).toString()<<" obligation : "<<query.value(1).toInt();
         bool alreadymade=false;
          for (int i = 0; i < ui->liste_uv_suivies->count(); i++) {
-            if (ui->liste_uv_suivies->item(i)->text()==query.value(0).toString()) alreadymade=true;
+            if ( (ui->liste_uv_suivies->item(i)->text()==query.value(0).toString()) && ((ui->liste_notes->item(i)->text()!="F"/*obtenue*/)||(ui->liste_notes->item(i)->text()!="FX"/*obtenue*/))) alreadymade=true;
          }
         if (alreadymade==false)  {
-            map_algo[query.value(0).toString()] = std::make_pair(query.value(1).toInt(), query.value(2).toString());
-            //map_algo contient : [UV][(obligation, categorie)]
 
-            map_credits[query.value(0).toString()] = std::make_pair(query.value(2).toString(), query.value(3).toInt());
-            //map_credit contient : [UV][(categorie, nbcredits)]
+            map_all_uv[query.value(0).toString()].categorie=query.value(2).toString();
+            map_all_uv[query.value(0).toString()].credit=query.value(3).toInt();
+            map_all_uv[query.value(0).toString()].obligation=query.value(1).toInt();
+            //map_all_uv : [UV].categorie Ou [UV].credit OU [UV].obligation
         }
 
 
     }
 
-        map<QString, std::pair<int, QString> >::iterator p;
-        for(p = map_algo.begin(); p != map_algo.end(); p++)
-        {
-            for (int i = 0; i < ui->liste_exigences->count(); i++) {
-                if (ui->liste_exigences->item(i)->text()==p->first) {
-                    qDebug()<<p->first+" is In exigence";
-                    p->second.first=10;
-                    qDebug()<<p->second.first;
-                    qDebug()<<p->second.second;
-                }
-            }
-            for (int i = 0; i < ui->liste_preferences->count(); i++) {
-                if (ui->liste_preferences->item(i)->text()==p->first) {
-                    qDebug()<<p->first+" is In preferences";
-                    p->second.first=p->second.first + 4;
-                   if (p->second.first>10) p->second.first=10;
-                }
-            }
-            for (int i = 0; i < ui->liste_rejets->count(); i++) {
-                if (ui->liste_rejets->item(i)->text()==p->first) {
-                    qDebug()<<p->first+" is In rejets";
-                    p->second.first= - 1;
-                }
+    // Avec la structure de la mort //
+    map<QString, detailuv >::iterator s;
+    for(s = map_all_uv.begin(); s != map_all_uv.end(); s++) {
+        qDebug()<<s->first<<" de categorie : "<<s->second.categorie<<" donne "<<s->second.credit<<" credits. Obligation : "<<s->second.obligation;
+
+        for (int i = 0; i < ui->liste_exigences->count(); i++) {
+            if (ui->liste_exigences->item(i)->text()==s->first) {
+                qDebug()<<s->first+" is In exigence";
+                s->second.obligation=10;
+                qDebug()<<s->second.obligation;
+                qDebug()<<s->second.categorie;
             }
         }
+        for (int i = 0; i < ui->liste_preferences->count(); i++) {
+            if (ui->liste_preferences->item(i)->text()==s->first) {
+                qDebug()<<s->first+" is In preferences";
+                s->second.obligation=s->second.obligation + 4;
+               if (s->second.obligation>10) s->second.obligation=10;
+            }
+        }
+        for (int i = 0; i < ui->liste_rejets->count(); i++) {
+            if (ui->liste_rejets->item(i)->text()==s->first) {
+                qDebug()<<s->first+" is In rejets";
+                s->second.obligation= - 1;
+            }
+        }
+    }
+//Fin ponderation de la structure de la mort//
+
 
         //Maintenant qu'on à notre map pondérée, on l'utilise.
         //map_suggestion[1]["CS"]=2;
         QList<QString> alreadyused;
 
 
-
+        //Avec la structure de la mort
         for (int i = 10; i > 0; i--) {
-            for(p = map_algo.begin(); p != map_algo.end(); p++) {
-                if (p->second.first==i && !alreadyused.contains(p->first)){
+            for(s = map_all_uv.begin(); s != map_all_uv.end(); s++) {
+                if (s->second.obligation==i && !alreadyused.contains(s->first)){
+
                     //qDebug()<<"UV : "<<p->first;
                     //On ajoute les UVs aux map de semestres : 1 map contenant les UV [S1]['LO21']=TSH      1 map contenant le nb de types [S1][CS]=2
                     int j=1;
-                    if (!map_suggestion_nb[j]["total"]) map_suggestion_nb[j]["total"]=0;
-                    if (!map_suggestion_nb[j][p->second.second]) map_suggestion_nb[j][p->second.second]=0;
-
-
-                    while ( ((map_suggestion_nb[j][p->second.second]>=1/*uv max par type*/) || (map_suggestion_nb[j]["total"]>=7/*uv ax par semestre*/)) && j<=8/*semestres max autorisés*/) {        //Tant que [Semestre][type] > 3, le nombre max d'uv d'un type. Ou que le total est > 7, on passe semestre au suivant !
-                        j++;
-                        if (!map_suggestion_nb[j]["total"]){map_suggestion_nb[j]["total"]=0;}
-                        if (!map_suggestion_nb[j][p->second.second]){map_suggestion_nb[j][p->second.second]=0;}
+                    if (!map_suggestion_nb2[j]["total"].first) {
+                        map_suggestion_nb2[j]["total"].first=0;
+                        map_suggestion_nb2[j]["total"].second=0;
+                    }
+                    if (!map_suggestion_nb2[j][s->second.categorie].first) {
+                        map_suggestion_nb2[j][s->second.categorie].first=0;
+                        map_suggestion_nb2[j][s->second.categorie].second=0;
                     }
 
+                    while ( ( (map_suggestion_nb2[j][s->second.categorie].first>=3/*uv max par type*/) || ((map_suggestion_nb2[j]["CS"].first + map_suggestion_nb2[j]["TM"].first>=5/*CS+TM*/) && (s->second.categorie=="CS" || s->second.categorie=="TM")) || (map_suggestion_nb2[j]["total"].first>=7/*uv ax par semestre*/)) && j<=8/*semestres max autorisés*/) {        //Tant que [Semestre][type] > 3, le nombre max d'uv d'un type. Ou que le total est > 7, on passe semestre au suivant !
+                        j++;
+                        if (!map_suggestion_nb2[j]["total"].first) {
+                            map_suggestion_nb2[j]["total"].first=0;
+                            map_suggestion_nb2[j]["total"].second=0;
+                        }
+                        if (!map_suggestion_nb2[j][s->second.categorie].first) {
+                            map_suggestion_nb2[j][s->second.categorie].first=0;
+                            map_suggestion_nb2[j][s->second.categorie].second=0;
+                        }
+                    }
+                    //qDebug()<<"CS + TM : "<<map_suggestion_nb2[j]["CS"].first+map_suggestion_nb2[j]["TM"].first;
 
-                    //On met à jours les infos ici
+                    //On met à jour les infos ici
                     if (j<=8) {
-                    map_suggestion_nb[j][p->second.second]=map_suggestion_nb[j][p->second.second]+1;    //Dans cette map la catégorie et le nombre pour chaque catégorie d'UVs suivies par semestre
-                    map_suggestion_nb[j]["total"]=map_suggestion_nb[j]["total"]+1;
-                    map_suggestion_uv[j][p->first]=p->second.second;                                    //Dans cette map, le nom et la catégorie pour chaque UV
+                    map_suggestion_nb2[j][s->second.categorie].first=map_suggestion_nb2[j][s->second.categorie].first+1;    //Dans cette map la catégorie et le nombre pour chaque catégorie d'UVs suivies par semestre
+                    map_suggestion_nb2[j][s->second.categorie].second=map_suggestion_nb2[j][s->second.categorie].second + s->second.credit;
+                    qDebug()<<"On ajoute "<< s->second.credit <<" de type "<< s->second.categorie;
+                    map_suggestion_nb2[j]["total"].first=map_suggestion_nb2[j]["total"].first + 1;
+                    map_suggestion_nb2[j]["total"].second=map_suggestion_nb2[j]["total"].second + s->second.credit;
+                    map_suggestion_uv[j][s->first]=s->second.categorie;                                    //Dans cette map, [semestre] et le nom et la catégorie pour chaque UV
                     }
                     //qDebug()<<"semestre"<<j;
                     //qDebug()<<map_suggestion_nb[j][p->second.second];
                     //qDebug()<<map_suggestion_nb[j]["total"];
                     //qDebug()<< map_suggestion_uv[j][p->first];
-                    alreadyused.push_back(p->first);
+                    alreadyused.push_back(s->first);
                 }
             }
         }
+        //Fin structure de la mort
+
+
         //Fin for i
 
         //qDebug()<<map_suggestion_nb[1]["TSH"];
@@ -457,7 +478,8 @@ else {
     }
 
 //map_suggestion_uv à passer au constructeur de la classe qui va afficher !
-    choixprev.ajoutprev(map_suggestion_uv);
+    //choixprev.ajoutprev(map_suggestion_uv);
+    choixprev.ajoutprev(map_suggestion_uv,map_suggestion_nb2);
     choixprev.exec();
 }
 

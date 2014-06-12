@@ -29,7 +29,7 @@ public:
     void rempliruvsuivies();
 
 private:
-    QString numerodossier="8";
+    QString numerodossier="0";
     Ui::mondossier *ui;
     Connexion *c;
     dbmanager *db;
@@ -41,7 +41,6 @@ private:
     afficherchoixprev choixprev;
 
     map<QString,QString> map_pos_uv;
-    map<QString,int> map_algo_uv;
     map<QString, map<QString, QString> > uvsuivies;
 
     typedef std::map<QString, std::pair<int, QString> > Mapalgo;
@@ -50,13 +49,20 @@ private:
     typedef std::map<QString, std::pair<QString, int> > Mapcred;
     Mapcred map_credits;
 
-    typedef std::map<int, std::map<QString, int> > Mapsugg_nbtype;
-    Mapsugg_nbtype map_suggestion_nb;
+    typedef std::map<int, std::map<QString, std::pair<int, int> > > Mapsugg_nbtype2;
+    Mapsugg_nbtype2 map_suggestion_nb2;
+    //[Semestre][Cate]  : first= nbUV   second=nbcredits
 
     typedef std::map<int, std::map<QString, QString> > Mapsugg_UV;
     Mapsugg_UV map_suggestion_uv;
 
-
+    typedef struct   {
+         QString categorie;
+         int credit;
+         int obligation;
+        }detailuv;
+    typedef std::map<QString, detailuv > Map_of_Uv;
+    Map_of_Uv map_all_uv;
 
 private slots:
     void ajoutUV();
