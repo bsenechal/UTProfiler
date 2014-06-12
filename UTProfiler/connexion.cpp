@@ -2,6 +2,17 @@
 #include "dbmanager.h"
 #include "formulaire.h"
 
+/**
+  * @file connexion.cpp
+  */
+
+/**
+ * @fn  QString Connexion::connexion(QString login, QString mdp)
+ * @return QString
+ * @param QString login
+ * @param QString mdp
+ * @brief Permet la connexion d'un utilisateur. Renvoi "ok" si la connection est effectuée et un message d'erreur sinon.
+ */
 QString Connexion::connexion(QString login, QString mdp) {
     dbmanager *db = dbmanager::getInstance();
     QString res = "ok";

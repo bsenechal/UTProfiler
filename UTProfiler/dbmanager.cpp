@@ -1,6 +1,9 @@
 #include <iostream>
 #include "dbmanager.h"
 
+/**
+  * @file connexion.cpp
+  */
 
 /*void dbmanager::dbinitialise(QString dbtype, QString dbhost, QString dbuser, QString dbpasswd, QString dbname) {
    db = QSqlDatabase::addDatabase(dbtype);
@@ -8,6 +11,13 @@
 }
 */
 
+/**
+ * @fn  void dbmanager::dbinitialise(QString dbtype, QString dbname)
+ * @return void
+ * @param QString dbtype
+ * @param QString dbname
+ * @brief Initialise la base de données
+ */
 void dbmanager::dbinitialise(QString dbtype, QString dbname) {
    db = QSqlDatabase::addDatabase(dbtype);
    db.setDatabaseName(dbname);
@@ -24,7 +34,12 @@ void dbmanager::dbinitialise(QString dbtype, QString dbname) {
    }
 }
 
-
+/**
+ * @fn  QSqlQuery dbmanager::execute(QString marequete)
+ * @return QSqlQuery
+ * @param QString marequete
+ * @brief Execute la requête passée en paramètre
+ */
 QSqlQuery dbmanager::execute(QString marequete) {
    QSqlQuery query(db);
    if(query.exec(marequete))
@@ -39,6 +54,12 @@ QSqlQuery dbmanager::execute(QString marequete) {
    }
 }
 
+/**
+ * @fn  QStringList dbmanager::getColonne(QString requete)
+ * @return QStringList
+ * @param QString requete
+ * @brief Renvoi une colonne d'une table de la BDD en fonction de la requête passée en paramètre
+ */
 QStringList dbmanager::getColonne(QString requete)
 {
     QStringList liste;
