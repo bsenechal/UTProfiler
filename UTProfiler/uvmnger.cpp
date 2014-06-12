@@ -1,5 +1,9 @@
 #include "uvmnger.h"
 
+/**
+  * @file uvmnger.cpp
+  */
+
 uvmnger::uvmnger()
 {
     db = dbmanager::getInstance();

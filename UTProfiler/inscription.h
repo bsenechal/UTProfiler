@@ -1,3 +1,7 @@
+/**
+  * @file inscription.h
+  */
+
 #ifndef INSCRIPTION_H
 #define INSCRIPTION_H
 

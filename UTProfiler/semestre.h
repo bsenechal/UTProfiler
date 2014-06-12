@@ -1,3 +1,7 @@
+/**
+  * @file semestre.h
+  */
+
 #ifndef SEMESTRE_H
 #define SEMESTRE_H
 

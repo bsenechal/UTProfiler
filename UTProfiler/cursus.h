@@ -1,3 +1,7 @@
+/**
+  * @file cursus.h
+  */
+
 #ifndef CURSUS_H
 #define CURSUS_H
 

@@ -1,3 +1,7 @@
+/**
+  * @file branches.h
+  */
+
 #ifndef BRANCHES_H
 #define BRANCHES_H
 

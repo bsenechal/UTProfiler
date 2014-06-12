@@ -1,3 +1,7 @@
+/**
+  * @file connexion.h
+  */
+
 #ifndef CONNEXION_H
 #define CONNEXION_H
 

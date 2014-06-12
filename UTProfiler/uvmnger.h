@@ -7,6 +7,10 @@
 #include <iterator>
 #include <QStringList>
 
+/**
+  * @file uvmnger.h
+  */
+
 class uvmnger : public Singleton<uvmnger>
 {
     friend class Singleton<uvmnger>;

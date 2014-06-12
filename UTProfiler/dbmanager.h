@@ -1,3 +1,7 @@
+/**
+  * @file dbmanager.h
+  */
+
 #ifndef DBMANAGER_H
 #define DBMANAGER_H
 

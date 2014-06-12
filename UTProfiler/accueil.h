@@ -1,3 +1,7 @@
+/**
+  * @file accueil.h
+  */
+
 #ifndef ACCUEIL_H
 #define ACCUEIL_H
 
@@ -18,9 +22,8 @@
 #include "semestre.h"
 
 /**
-\file accueil.h
-\brief Interface d'accueil de l'application
-\class Fenêtre principal de l'appliacation. Elle permet de se connecter mais également de consulter la liste des UV en triant par cursus et par branche
+ * @brief Interface d'accueil de l'application
+ * @class Fenêtre principal de l'appliacation. Elle permet de se connecter mais également de consulter la liste des UV en triant par cursus et par branche
 */
 
 namespace Ui {

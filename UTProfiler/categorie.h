@@ -1,3 +1,7 @@
+/**
+  * @file categorie.h
+  */
+
 #ifndef CATEGORIE_H
 #define CATEGORIE_H
 

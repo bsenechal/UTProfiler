@@ -1,3 +1,7 @@
+/**
+  * @file utrofilerexception.h
+  */
+
 #ifndef UTPROFILEREXCEPTION_H
 #define UTPROFILEREXCEPTION_H
 

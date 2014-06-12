@@ -1,3 +1,7 @@
+/**
+  * @file afficherchoixprev.h
+  */
+
 #ifndef AFFICHERCHOIXPREV_H
 #define AFFICHERCHOIXPREV_H
 

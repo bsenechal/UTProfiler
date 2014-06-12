@@ -1,3 +1,7 @@
+/**
+  * @file formulaire.h
+  */
+
 #ifndef FORMULAIRE_H
 #define FORMULAIRE_H
 
