@@ -45,7 +45,7 @@
       </rect>
      </property>
      <property name="currentIndex">
-      <number>1</number>
+      <number>0</number>
      </property>
      <widget class="QWidget" name="ajout_uv">
       <property name="geometry">
@@ -474,14 +474,14 @@
        <widget class="QLabel" name="label_ajout_obligation_uv">
         <property name="geometry">
          <rect>
-          <x>100</x>
+          <x>90</x>
           <y>10</y>
           <width>71</width>
           <height>20</height>
          </rect>
         </property>
         <property name="text">
-         <string>% obligation</string>
+         <string>obligation</string>
         </property>
         <property name="alignment">
          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -496,8 +496,11 @@
           <height>22</height>
          </rect>
         </property>
+        <property name="maximum">
+         <number>10</number>
+        </property>
         <property name="value">
-         <number>50</number>
+         <number>5</number>
         </property>
        </widget>
       </widget>
@@ -1079,14 +1082,14 @@
        <widget class="QLabel" name="label_ajout_obligation_uv_2">
         <property name="geometry">
          <rect>
-          <x>80</x>
+          <x>70</x>
           <y>160</y>
           <width>71</width>
           <height>20</height>
          </rect>
         </property>
         <property name="text">
-         <string>% obligation</string>
+         <string> obligation</string>
         </property>
         <property name="alignment">
          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -1134,8 +1137,11 @@
           <height>22</height>
          </rect>
         </property>
+        <property name="maximum">
+         <number>10</number>
+        </property>
         <property name="value">
-         <number>50</number>
+         <number>5</number>
         </property>
        </widget>
        <widget class="QPushButton" name="modif_retire_branche_uv">
@@ -1349,8 +1355,8 @@
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>100</width>
-        <height>30</height>
+        <width>98</width>
+        <height>28</height>
        </rect>
       </property>
       <attribute name="label">
@@ -1481,8 +1487,8 @@
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>100</width>
-        <height>30</height>
+        <width>98</width>
+        <height>28</height>
        </rect>
       </property>
       <attribute name="label">
@@ -1769,8 +1775,8 @@
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>100</width>
-        <height>30</height>
+        <width>98</width>
+        <height>28</height>
        </rect>
       </property>
       <attribute name="label">
@@ -2021,8 +2027,8 @@
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>100</width>
-        <height>30</height>
+        <width>98</width>
+        <height>28</height>
        </rect>
       </property>
       <attribute name="label">
@@ -2241,8 +2247,8 @@
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>100</width>
-        <height>30</height>
+        <width>98</width>
+        <height>28</height>
        </rect>
       </property>
       <attribute name="label">
@@ -2425,8 +2431,8 @@
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>100</width>
-        <height>30</height>
+        <width>98</width>
+        <height>28</height>
        </rect>
       </property>
       <attribute name="label">
@@ -2619,8 +2625,8 @@
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>100</width>
-        <height>30</height>
+        <width>98</width>
+        <height>28</height>
        </rect>
       </property>
       <attribute name="label">
@@ -2777,8 +2783,8 @@
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>100</width>
-        <height>30</height>
+        <width>98</width>
+        <height>28</height>
        </rect>
       </property>
       <attribute name="label">
@@ -3146,8 +3152,8 @@
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>100</width>
-        <height>30</height>
+        <width>98</width>
+        <height>28</height>
        </rect>
       </property>
       <attribute name="label">
@@ -3479,8 +3485,8 @@
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>100</width>
-        <height>30</height>
+        <width>98</width>
+        <height>28</height>
        </rect>
       </property>
       <attribute name="label">
