@@ -9,6 +9,7 @@ QT       += sql # On rajoute SQL
 QT       -= gui # On enlève la GUI
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
+QMAKE_CXXFLAGS += -std=c++11
 
 TARGET = UTProfiler
 TEMPLATE = app

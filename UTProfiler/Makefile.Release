@@ -145,9 +145,9 @@ compiler_rcc_clean:
 	-$(DEL_FILE) release\qrc_Utc.cpp
 release/qrc_Utc.cpp: ../images/Utc.qrc \
 		../images/bandeau_utc.jpg \
+		../images/fond_inscription.png \
 		../images/fond_pg.png \
-		../images/fond_accueil.jpg \
-		../images/fond_inscription.png
+		../images/fond_accueil.jpg
 	C:\Qt\Qt5.2.1\5.2.1\mingw48_32\bin\rcc.exe -name Utc ..\images\Utc.qrc -o release\qrc_Utc.cpp
 
 compiler_moc_header_make_all: release/moc_accueil.cpp release/moc_mondossier.cpp release/moc_inscription.cpp release/moc_administration.cpp release/moc_afficherchoixprev.cpp
@@ -724,6 +724,7 @@ release/moc_mondossier.cpp: ../../../../../../Qt/Qt5.2.1/5.2.1/mingw48_32/includ
 		afficherchoixprev.h \
 		../../../../../../Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtWidgets/QWidget \
 		../../../../../../Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtCore/QDebug \
+		../../../../../../Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtWidgets/QListWidget \
 		mondossier.h
 	C:\Qt\Qt5.2.1\5.2.1\mingw48_32\bin\moc.exe $(DEFINES) -D__GNUC__ -DWIN32 $(INCPATH) mondossier.h -o release\moc_mondossier.cpp
 
@@ -1001,6 +1002,7 @@ release/moc_inscription.cpp: ../../../../../../Qt/Qt5.2.1/5.2.1/mingw48_32/inclu
 		afficherchoixprev.h \
 		../../../../../../Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtWidgets/QWidget \
 		../../../../../../Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtCore/QDebug \
+		../../../../../../Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtWidgets/QListWidget \
 		inscription.h
 	C:\Qt\Qt5.2.1\5.2.1\mingw48_32\bin\moc.exe $(DEFINES) -D__GNUC__ -DWIN32 $(INCPATH) inscription.h -o release\moc_inscription.cpp
 
@@ -1388,6 +1390,26 @@ release/moc_afficherchoixprev.cpp: ../../../../../../Qt/Qt5.2.1/5.2.1/mingw48_32
 		../../../../../../Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtWidgets/QDialog \
 		../../../../../../Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtWidgets/qdialog.h \
 		../../../../../../Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtCore/QDebug \
+		../../../../../../Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtWidgets/QListWidget \
+		../../../../../../Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtWidgets/qlistwidget.h \
+		../../../../../../Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtWidgets/qlistview.h \
+		../../../../../../Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtWidgets/qabstractitemview.h \
+		../../../../../../Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtWidgets/qabstractscrollarea.h \
+		../../../../../../Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtWidgets/qframe.h \
+		../../../../../../Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtCore/qabstractitemmodel.h \
+		../../../../../../Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtCore/qitemselectionmodel.h \
+		../../../../../../Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtWidgets/qabstractitemdelegate.h \
+		../../../../../../Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtWidgets/qstyleoption.h \
+		../../../../../../Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtWidgets/qabstractspinbox.h \
+		../../../../../../Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtGui/qvalidator.h \
+		../../../../../../Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtCore/qregularexpression.h \
+		../../../../../../Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtGui/qicon.h \
+		../../../../../../Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtWidgets/qslider.h \
+		../../../../../../Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtWidgets/qabstractslider.h \
+		../../../../../../Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtWidgets/qstyle.h \
+		../../../../../../Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtWidgets/qtabbar.h \
+		../../../../../../Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtWidgets/qtabwidget.h \
+		../../../../../../Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtWidgets/qrubberband.h \
 		afficherchoixprev.h
 	C:\Qt\Qt5.2.1\5.2.1\mingw48_32\bin\moc.exe $(DEFINES) -D__GNUC__ -DWIN32 $(INCPATH) afficherchoixprev.h -o release\moc_afficherchoixprev.cpp
 
@@ -2282,7 +2304,34 @@ release/accueil.o: accueil.cpp accueil.h \
 		categorie.h \
 		disponibilites.h \
 		etudiants.h \
-		ui_accueil.h
+		ui_accueil.h \
+		../../../../../../Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtCore/QVariant \
+		../../../../../../Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtWidgets/QAction \
+		../../../../../../Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtWidgets/qaction.h \
+		../../../../../../Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtWidgets/qactiongroup.h \
+		../../../../../../Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtWidgets/QApplication \
+		../../../../../../Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtWidgets/qapplication.h \
+		../../../../../../Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtWidgets/qdesktopwidget.h \
+		../../../../../../Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtGui/qguiapplication.h \
+		../../../../../../Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtGui/qinputmethod.h \
+		../../../../../../Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtWidgets/QButtonGroup \
+		../../../../../../Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtWidgets/qbuttongroup.h \
+		../../../../../../Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtWidgets/QHeaderView \
+		../../../../../../Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtWidgets/qheaderview.h \
+		../../../../../../Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtWidgets/QLabel \
+		../../../../../../Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtWidgets/qlabel.h \
+		../../../../../../Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtWidgets/QLineEdit \
+		../../../../../../Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtWidgets/qlineedit.h \
+		../../../../../../Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtGui/qtextcursor.h \
+		../../../../../../Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtGui/qtextformat.h \
+		../../../../../../Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtGui/qpen.h \
+		../../../../../../Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtGui/qtextoption.h \
+		../../../../../../Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtWidgets/QMenuBar \
+		../../../../../../Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtWidgets/qmenubar.h \
+		../../../../../../Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtWidgets/qmenu.h \
+		../../../../../../Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtWidgets/QStatusBar \
+		../../../../../../Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtWidgets/qstatusbar.h \
+		../../../../../../Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtWidgets/QTabWidget
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\accueil.o accueil.cpp
 
 release/mondossier.o: mondossier.cpp mondossier.h \
@@ -2558,7 +2607,37 @@ release/mondossier.o: mondossier.cpp mondossier.h \
 		afficherchoixprev.h \
 		../../../../../../Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtWidgets/QWidget \
 		../../../../../../Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtCore/QDebug \
-		ui_mondossier.h
+		../../../../../../Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtWidgets/QListWidget \
+		ui_mondossier.h \
+		../../../../../../Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtCore/QVariant \
+		../../../../../../Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtWidgets/QAction \
+		../../../../../../Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtWidgets/qaction.h \
+		../../../../../../Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtWidgets/qactiongroup.h \
+		../../../../../../Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtWidgets/QApplication \
+		../../../../../../Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtWidgets/qapplication.h \
+		../../../../../../Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtWidgets/qdesktopwidget.h \
+		../../../../../../Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtGui/qguiapplication.h \
+		../../../../../../Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtGui/qinputmethod.h \
+		../../../../../../Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtWidgets/QButtonGroup \
+		../../../../../../Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtWidgets/qbuttongroup.h \
+		../../../../../../Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtWidgets/QComboBox \
+		../../../../../../Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtWidgets/QFrame \
+		../../../../../../Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtWidgets/QGroupBox \
+		../../../../../../Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtWidgets/qgroupbox.h \
+		../../../../../../Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtWidgets/QHeaderView \
+		../../../../../../Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtWidgets/qheaderview.h \
+		../../../../../../Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtWidgets/QLabel \
+		../../../../../../Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtWidgets/qlabel.h \
+		../../../../../../Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtWidgets/QLineEdit \
+		../../../../../../Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtWidgets/qlineedit.h \
+		../../../../../../Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtGui/qtextcursor.h \
+		../../../../../../Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtGui/qtextformat.h \
+		../../../../../../Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtGui/qpen.h \
+		../../../../../../Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtGui/qtextoption.h \
+		../../../../../../Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtWidgets/QPushButton \
+		../../../../../../Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtWidgets/qpushbutton.h \
+		../../../../../../Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtWidgets/qabstractbutton.h \
+		../../../../../../Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtWidgets/QTabWidget
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\mondossier.o mondossier.cpp
 
 release/inscription.o: inscription.cpp inscription.h \
@@ -2836,7 +2915,33 @@ release/inscription.o: inscription.cpp inscription.h \
 		afficherchoixprev.h \
 		../../../../../../Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtWidgets/QWidget \
 		../../../../../../Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtCore/QDebug \
-		ui_inscription.h
+		../../../../../../Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtWidgets/QListWidget \
+		ui_inscription.h \
+		../../../../../../Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtCore/QVariant \
+		../../../../../../Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtWidgets/QAction \
+		../../../../../../Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtWidgets/qaction.h \
+		../../../../../../Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtWidgets/qactiongroup.h \
+		../../../../../../Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtWidgets/QApplication \
+		../../../../../../Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtWidgets/qapplication.h \
+		../../../../../../Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtWidgets/qdesktopwidget.h \
+		../../../../../../Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtGui/qguiapplication.h \
+		../../../../../../Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtGui/qinputmethod.h \
+		../../../../../../Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtWidgets/QButtonGroup \
+		../../../../../../Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtWidgets/qbuttongroup.h \
+		../../../../../../Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtWidgets/QComboBox \
+		../../../../../../Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtWidgets/QHeaderView \
+		../../../../../../Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtWidgets/qheaderview.h \
+		../../../../../../Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtWidgets/QLabel \
+		../../../../../../Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtWidgets/qlabel.h \
+		../../../../../../Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtWidgets/QLineEdit \
+		../../../../../../Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtWidgets/qlineedit.h \
+		../../../../../../Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtGui/qtextcursor.h \
+		../../../../../../Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtGui/qtextformat.h \
+		../../../../../../Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtGui/qpen.h \
+		../../../../../../Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtGui/qtextoption.h \
+		../../../../../../Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtWidgets/QPushButton \
+		../../../../../../Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtWidgets/qpushbutton.h \
+		../../../../../../Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtWidgets/qabstractbutton.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\inscription.o inscription.cpp
 
 release/connexion.o: connexion.cpp connexion.h \
@@ -3373,7 +3478,48 @@ release/administration.o: administration.cpp administration.h \
 		../../../../../../Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtWidgets/qmessagebox.h \
 		../../../../../../Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtWidgets/qdialog.h \
 		tools.h \
-		ui_administration.h
+		ui_administration.h \
+		../../../../../../Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtCore/QVariant \
+		../../../../../../Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtWidgets/QAction \
+		../../../../../../Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtWidgets/qaction.h \
+		../../../../../../Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtWidgets/qactiongroup.h \
+		../../../../../../Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtWidgets/QApplication \
+		../../../../../../Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtWidgets/qapplication.h \
+		../../../../../../Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtWidgets/qdesktopwidget.h \
+		../../../../../../Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtGui/qguiapplication.h \
+		../../../../../../Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtGui/qinputmethod.h \
+		../../../../../../Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtWidgets/QButtonGroup \
+		../../../../../../Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtWidgets/qbuttongroup.h \
+		../../../../../../Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtWidgets/QComboBox \
+		../../../../../../Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtWidgets/QGroupBox \
+		../../../../../../Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtWidgets/qgroupbox.h \
+		../../../../../../Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtWidgets/QHeaderView \
+		../../../../../../Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtWidgets/qheaderview.h \
+		../../../../../../Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtWidgets/QLabel \
+		../../../../../../Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtWidgets/qlabel.h \
+		../../../../../../Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtWidgets/QLayout \
+		../../../../../../Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtWidgets/qlayout.h \
+		../../../../../../Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtWidgets/qlayoutitem.h \
+		../../../../../../Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtWidgets/qboxlayout.h \
+		../../../../../../Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtWidgets/qgridlayout.h \
+		../../../../../../Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtWidgets/QLineEdit \
+		../../../../../../Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtWidgets/qlineedit.h \
+		../../../../../../Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtGui/qtextcursor.h \
+		../../../../../../Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtGui/qtextformat.h \
+		../../../../../../Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtGui/qpen.h \
+		../../../../../../Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtGui/qtextoption.h \
+		../../../../../../Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtWidgets/QPushButton \
+		../../../../../../Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtWidgets/qpushbutton.h \
+		../../../../../../Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtWidgets/qabstractbutton.h \
+		../../../../../../Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtWidgets/QSpinBox \
+		../../../../../../Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtWidgets/qspinbox.h \
+		../../../../../../Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtWidgets/QTabWidget \
+		../../../../../../Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtWidgets/QTextEdit \
+		../../../../../../Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtWidgets/qtextedit.h \
+		../../../../../../Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtGui/qtextdocument.h \
+		../../../../../../Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtWidgets/QToolBox \
+		../../../../../../Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtWidgets/qtoolbox.h \
+		../../../../../../Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtWidgets/QWidget
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\administration.o administration.cpp
 
 release/cursus.o: cursus.cpp cursus.h \
@@ -5820,7 +5966,51 @@ release/afficherchoixprev.o: afficherchoixprev.cpp afficherchoixprev.h \
 		../../../../../../Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtWidgets/QDialog \
 		../../../../../../Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtWidgets/qdialog.h \
 		../../../../../../Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtCore/QDebug \
-		ui_afficherchoixprev.h
+		../../../../../../Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtWidgets/QListWidget \
+		../../../../../../Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtWidgets/qlistwidget.h \
+		../../../../../../Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtWidgets/qlistview.h \
+		../../../../../../Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtWidgets/qabstractitemview.h \
+		../../../../../../Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtWidgets/qabstractscrollarea.h \
+		../../../../../../Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtWidgets/qframe.h \
+		../../../../../../Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtCore/qabstractitemmodel.h \
+		../../../../../../Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtCore/qitemselectionmodel.h \
+		../../../../../../Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtWidgets/qabstractitemdelegate.h \
+		../../../../../../Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtWidgets/qstyleoption.h \
+		../../../../../../Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtWidgets/qabstractspinbox.h \
+		../../../../../../Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtGui/qvalidator.h \
+		../../../../../../Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtCore/qregularexpression.h \
+		../../../../../../Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtGui/qicon.h \
+		../../../../../../Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtWidgets/qslider.h \
+		../../../../../../Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtWidgets/qabstractslider.h \
+		../../../../../../Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtWidgets/qstyle.h \
+		../../../../../../Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtWidgets/qtabbar.h \
+		../../../../../../Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtWidgets/qtabwidget.h \
+		../../../../../../Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtWidgets/qrubberband.h \
+		ui_afficherchoixprev.h \
+		../../../../../../Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtCore/QVariant \
+		../../../../../../Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtWidgets/QAction \
+		../../../../../../Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtWidgets/qaction.h \
+		../../../../../../Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtWidgets/qactiongroup.h \
+		../../../../../../Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtWidgets/QApplication \
+		../../../../../../Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtWidgets/qapplication.h \
+		../../../../../../Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtCore/qcoreapplication.h \
+		../../../../../../Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtCore/qeventloop.h \
+		../../../../../../Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtWidgets/qdesktopwidget.h \
+		../../../../../../Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtGui/qguiapplication.h \
+		../../../../../../Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtGui/qinputmethod.h \
+		../../../../../../Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtWidgets/QButtonGroup \
+		../../../../../../Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtWidgets/qbuttongroup.h \
+		../../../../../../Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtWidgets/QFrame \
+		../../../../../../Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtWidgets/QHeaderView \
+		../../../../../../Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtWidgets/qheaderview.h \
+		../../../../../../Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtWidgets/QLabel \
+		../../../../../../Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtWidgets/qlabel.h \
+		../../../../../../Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtWidgets/QVBoxLayout \
+		../../../../../../Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtWidgets/qboxlayout.h \
+		../../../../../../Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtWidgets/qlayout.h \
+		../../../../../../Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtWidgets/qlayoutitem.h \
+		../../../../../../Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtWidgets/qgridlayout.h \
+		../../../../../../Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtWidgets/QHBoxLayout
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\afficherchoixprev.o afficherchoixprev.cpp
 
 release/qrc_Utc.o: release/qrc_Utc.cpp 
