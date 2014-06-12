@@ -10,7 +10,6 @@
 #include "semestre.h"
 #include "uvmnger.h"
 #include "tools.h"
-#include "utprofilerexception.h"
 #include <QMessageBox>
 #include <QPair>
 #include "afficherchoixprev.h"

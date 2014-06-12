@@ -5,9 +5,7 @@ INPUT(
 ./release\accueil.o
 ./release\mondossier.o
 ./release\inscription.o
-./release\viewuv.o
 ./release\fenetreplus.o
-./release\detailuv.o
 ./release\insertuv.o
 ./release\connexion.o
 ./release\administration.o
@@ -25,9 +23,7 @@ INPUT(
 ./release\moc_accueil.o
 ./release\moc_mondossier.o
 ./release\moc_inscription.o
-./release\moc_viewuv.o
 ./release\moc_fenetreplus.o
-./release\moc_detailuv.o
 ./release\moc_insertuv.o
 ./release\moc_administration.o
 ./release\moc_afficherchoixprev.o

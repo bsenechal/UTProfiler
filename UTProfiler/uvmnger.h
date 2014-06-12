@@ -1,10 +1,11 @@
 #ifndef UVMNGER_H
 #define UVMNGER_H
 
-
-#include <QStringList>
 #include "singleton.h"
 #include "dbmanager.h"
+#include <map>
+#include <iterator>
+#include <QStringList>
 
 class uvmnger : public Singleton<uvmnger>
 {

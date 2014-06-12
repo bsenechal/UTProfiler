@@ -17,7 +17,6 @@
 #include "categorie.h"
 #include "disponibilites.h"
 #include "etudiants.h"
-#include "utprofilerexception.h"
 #include <QMessageBox>
 #include "tools.h"
 

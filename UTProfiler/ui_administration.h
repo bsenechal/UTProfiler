@@ -442,12 +442,13 @@ public:
         label_liste_ajout_obligation_uv->setGeometry(QRect(280, 20, 81, 16));
         label_ajout_obligation_uv = new QLabel(group_ajout_branche_uv);
         label_ajout_obligation_uv->setObjectName(QStringLiteral("label_ajout_obligation_uv"));
-        label_ajout_obligation_uv->setGeometry(QRect(100, 10, 71, 20));
+        label_ajout_obligation_uv->setGeometry(QRect(90, 10, 71, 20));
         label_ajout_obligation_uv->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
         ajout_obligation_uv = new QSpinBox(group_ajout_branche_uv);
         ajout_obligation_uv->setObjectName(QStringLiteral("ajout_obligation_uv"));
         ajout_obligation_uv->setGeometry(QRect(120, 30, 42, 22));
-        ajout_obligation_uv->setValue(50);
+        ajout_obligation_uv->setMaximum(10);
+        ajout_obligation_uv->setValue(5);
         message_ajout_uv = new QLabel(ajout_uv);
         message_ajout_uv->setObjectName(QStringLiteral("message_ajout_uv"));
         message_ajout_uv->setGeometry(QRect(10, 50, 241, 16));
@@ -600,7 +601,7 @@ public:
         label_liste_modif_obligation_uv->setGeometry(QRect(250, 170, 81, 16));
         label_ajout_obligation_uv_2 = new QLabel(group_modif_uv);
         label_ajout_obligation_uv_2->setObjectName(QStringLiteral("label_ajout_obligation_uv_2"));
-        label_ajout_obligation_uv_2->setGeometry(QRect(80, 160, 71, 20));
+        label_ajout_obligation_uv_2->setGeometry(QRect(70, 160, 71, 20));
         label_ajout_obligation_uv_2->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
         label_modif_branche_choisie_uv = new QLabel(group_modif_uv);
         label_modif_branche_choisie_uv->setObjectName(QStringLiteral("label_modif_branche_choisie_uv"));
@@ -614,7 +615,8 @@ public:
         modif_obligation_uv = new QSpinBox(group_modif_uv);
         modif_obligation_uv->setObjectName(QStringLiteral("modif_obligation_uv"));
         modif_obligation_uv->setGeometry(QRect(100, 180, 42, 22));
-        modif_obligation_uv->setValue(50);
+        modif_obligation_uv->setMaximum(10);
+        modif_obligation_uv->setValue(5);
         modif_retire_branche_uv = new QPushButton(group_modif_uv);
         modif_retire_branche_uv->setObjectName(QStringLiteral("modif_retire_branche_uv"));
         modif_retire_branche_uv->setGeometry(QRect(100, 250, 31, 31));
@@ -671,7 +673,7 @@ public:
         toolBox_dispo->addItem(ajout_dispo, QStringLiteral("Ajouter une disponibilite"));
         modifier_dispo = new QWidget();
         modifier_dispo->setObjectName(QStringLiteral("modifier_dispo"));
-        modifier_dispo->setGeometry(QRect(0, 0, 100, 30));
+        modifier_dispo->setGeometry(QRect(0, 0, 98, 28));
         titre_modifier_branche_2 = new QLabel(modifier_dispo);
         titre_modifier_branche_2->setObjectName(QStringLiteral("titre_modifier_branche_2"));
         titre_modifier_branche_2->setGeometry(QRect(20, 0, 381, 31));
@@ -706,7 +708,7 @@ public:
         toolBox_dispo->addItem(modifier_dispo, QString::fromUtf8("Modifier une disponibilit\303\251"));
         supprimer_dispo = new QWidget();
         supprimer_dispo->setObjectName(QStringLiteral("supprimer_dispo"));
-        supprimer_dispo->setGeometry(QRect(0, 0, 100, 30));
+        supprimer_dispo->setGeometry(QRect(0, 0, 98, 28));
         supprimer_disponibilite = new QPushButton(supprimer_dispo);
         supprimer_disponibilite->setObjectName(QStringLiteral("supprimer_disponibilite"));
         supprimer_disponibilite->setGeometry(QRect(480, 140, 91, 41));
@@ -781,7 +783,7 @@ public:
         toolBox_filiere->addItem(ajout_filiere, QString::fromUtf8("Ajouter une Fil\303\250re"));
         modifier_filiere = new QWidget();
         modifier_filiere->setObjectName(QStringLiteral("modifier_filiere"));
-        modifier_filiere->setGeometry(QRect(0, 0, 100, 30));
+        modifier_filiere->setGeometry(QRect(0, 0, 98, 28));
         sauvegarder_modif_filiere = new QPushButton(modifier_filiere);
         sauvegarder_modif_filiere->setObjectName(QStringLiteral("sauvegarder_modif_filiere"));
         sauvegarder_modif_filiere->setGeometry(QRect(530, 290, 101, 31));
@@ -847,7 +849,7 @@ public:
         toolBox_filiere->addItem(modifier_filiere, QString::fromUtf8("Modifier une Fili\303\250re"));
         supprimer_filiere = new QWidget();
         supprimer_filiere->setObjectName(QStringLiteral("supprimer_filiere"));
-        supprimer_filiere->setGeometry(QRect(0, 0, 100, 30));
+        supprimer_filiere->setGeometry(QRect(0, 0, 98, 28));
         supprimer_filiere_2 = new QPushButton(supprimer_filiere);
         supprimer_filiere_2->setObjectName(QStringLiteral("supprimer_filiere_2"));
         supprimer_filiere_2->setGeometry(QRect(480, 110, 91, 41));
@@ -905,7 +907,7 @@ public:
         toolBox_branche->addItem(ajout_branche, QStringLiteral("Ajouter une Branche"));
         modifier_branche = new QWidget();
         modifier_branche->setObjectName(QStringLiteral("modifier_branche"));
-        modifier_branche->setGeometry(QRect(0, 0, 100, 30));
+        modifier_branche->setGeometry(QRect(0, 0, 98, 28));
         titre_modifier_branche = new QLabel(modifier_branche);
         titre_modifier_branche->setObjectName(QStringLiteral("titre_modifier_branche"));
         titre_modifier_branche->setGeometry(QRect(20, 0, 201, 31));
@@ -954,7 +956,7 @@ public:
         toolBox_branche->addItem(modifier_branche, QStringLiteral("Modifier une Branche"));
         supprimer_branche = new QWidget();
         supprimer_branche->setObjectName(QStringLiteral("supprimer_branche"));
-        supprimer_branche->setGeometry(QRect(0, 0, 100, 30));
+        supprimer_branche->setGeometry(QRect(0, 0, 98, 28));
         supprimer_branche_2 = new QPushButton(supprimer_branche);
         supprimer_branche_2->setObjectName(QStringLiteral("supprimer_branche_2"));
         supprimer_branche_2->setGeometry(QRect(480, 110, 91, 41));
@@ -1005,7 +1007,7 @@ public:
         toolBox_cursus->addItem(ajout_cursus, QStringLiteral("Ajouter un Cursus"));
         modifier_cursus = new QWidget();
         modifier_cursus->setObjectName(QStringLiteral("modifier_cursus"));
-        modifier_cursus->setGeometry(QRect(0, 0, 100, 30));
+        modifier_cursus->setGeometry(QRect(0, 0, 98, 28));
         sauvegarder_modif_cursus = new QPushButton(modifier_cursus);
         sauvegarder_modif_cursus->setObjectName(QStringLiteral("sauvegarder_modif_cursus"));
         sauvegarder_modif_cursus->setGeometry(QRect(530, 250, 101, 31));
@@ -1047,7 +1049,7 @@ public:
         toolBox_cursus->addItem(modifier_cursus, QStringLiteral("Modifier un Cursus"));
         supprimer_cursus = new QWidget();
         supprimer_cursus->setObjectName(QStringLiteral("supprimer_cursus"));
-        supprimer_cursus->setGeometry(QRect(0, 0, 100, 30));
+        supprimer_cursus->setGeometry(QRect(0, 0, 98, 28));
         supprimer_cursus_2 = new QPushButton(supprimer_cursus);
         supprimer_cursus_2->setObjectName(QStringLiteral("supprimer_cursus_2"));
         supprimer_cursus_2->setGeometry(QRect(480, 110, 91, 41));
@@ -1143,7 +1145,7 @@ public:
         toolBox_etudiant->addItem(ajout_etudiant, QStringLiteral("Ajouter un Etudiant"));
         modifier_etudiant = new QWidget();
         modifier_etudiant->setObjectName(QStringLiteral("modifier_etudiant"));
-        modifier_etudiant->setGeometry(QRect(0, 0, 100, 30));
+        modifier_etudiant->setGeometry(QRect(0, 0, 98, 28));
         sauvegarder_modif_etudiant = new QPushButton(modifier_etudiant);
         sauvegarder_modif_etudiant->setObjectName(QStringLiteral("sauvegarder_modif_etudiant"));
         sauvegarder_modif_etudiant->setGeometry(QRect(540, 310, 101, 31));
@@ -1230,7 +1232,7 @@ public:
         toolBox_etudiant->addItem(modifier_etudiant, QStringLiteral("Modifier un Etudiant"));
         supprim_etudiant = new QWidget();
         supprim_etudiant->setObjectName(QStringLiteral("supprim_etudiant"));
-        supprim_etudiant->setGeometry(QRect(0, 0, 100, 30));
+        supprim_etudiant->setGeometry(QRect(0, 0, 98, 28));
         message_suppr_etudiant = new QLabel(supprim_etudiant);
         message_suppr_etudiant->setObjectName(QStringLiteral("message_suppr_etudiant"));
         message_suppr_etudiant->setGeometry(QRect(470, 50, 341, 16));
@@ -1287,7 +1289,7 @@ public:
         retranslateUi(Administration);
 
         onglets_admin->setCurrentIndex(0);
-        toolBox_uv->setCurrentIndex(1);
+        toolBox_uv->setCurrentIndex(0);
         toolBox_dispo->setCurrentIndex(0);
         toolBox_filiere->setCurrentIndex(0);
         toolBox_branche->setCurrentIndex(0);
@@ -1323,7 +1325,7 @@ public:
         label_ajout_branche_uv->setText(QApplication::translate("Administration", "Branche dispo", 0));
         ajout_branche_uv->setText(QApplication::translate("Administration", ">", 0));
         label_liste_ajout_obligation_uv->setText(QApplication::translate("Administration", "Obligation", 0));
-        label_ajout_obligation_uv->setText(QApplication::translate("Administration", "% obligation", 0));
+        label_ajout_obligation_uv->setText(QApplication::translate("Administration", "obligation", 0));
         message_ajout_uv->setText(QString());
         group_ajout_dispo_uv->setTitle(QApplication::translate("Administration", "Disponibilit\303\251", 0));
         label_ajout_filiere_dispo_uv_2->setText(QApplication::translate("Administration", "Disponibilit\303\251s", 0));
@@ -1354,7 +1356,7 @@ public:
         label_modif_branche_uv_2->setText(QApplication::translate("Administration", "Branche dispo", 0));
         modif_ajout_branche_uv->setText(QApplication::translate("Administration", ">", 0));
         label_liste_modif_obligation_uv->setText(QApplication::translate("Administration", "Obligation", 0));
-        label_ajout_obligation_uv_2->setText(QApplication::translate("Administration", "% obligation", 0));
+        label_ajout_obligation_uv_2->setText(QApplication::translate("Administration", " obligation", 0));
         label_modif_branche_choisie_uv->setText(QApplication::translate("Administration", "Branche choisie", 0));
         modif_retire_branche_uv->setText(QApplication::translate("Administration", "<", 0));
         message_modif_uv->setText(QString());

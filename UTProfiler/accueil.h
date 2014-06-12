@@ -11,7 +11,6 @@
 #include "connexion.h"
 #include "inscription.h"
 #include "dbmanager.h"
-#include "utprofilerexception.h"
 #include "formulaire.h"
 #include "mondossier.h"
 #include "cursus.h"

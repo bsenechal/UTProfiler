@@ -22,9 +22,7 @@ SOURCES += \
     accueil.cpp \
     mondossier.cpp \
     inscription.cpp \
-    viewuv.cpp \
     fenetreplus.cpp \
-    detailuv.cpp \
     insertuv.cpp \
     connexion.cpp \
     administration.cpp \
@@ -49,9 +47,7 @@ HEADERS  += \
     inscription.h \
     formulaire.h \
     singleton.h \
-    viewuv.h \
     fenetreplus.h \
-    detailuv.h \
     insertuv.h \
     administration.h \
     cursus.h \
@@ -69,9 +65,7 @@ FORMS    += \
     accueil.ui \
     mondossier.ui \
     inscription.ui \
-    viewuv.ui \
     fenetreplus.ui \
-    detailuv.ui \
     insertuv.ui \
     administration.ui \
     afficherchoixprev.ui

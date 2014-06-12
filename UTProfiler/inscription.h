@@ -6,7 +6,6 @@
 #include "formulaire.h"
 #include "connexion.h"
 #include "mondossier.h"
-#include "utprofilerexception.h"
 #include "cursus.h"
 #include "filieres.h"
 #include "branches.h"

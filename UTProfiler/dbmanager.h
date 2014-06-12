@@ -6,7 +6,7 @@
 #include <iostream>
 #include <QStringList>
 #define q2c(string) string.toStdString()
-
+#include "utprofilerexception.h"
 #include "singleton.h"
 
 using namespace std;

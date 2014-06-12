@@ -5,9 +5,7 @@ INPUT(
 ./debug\accueil.o
 ./debug\mondossier.o
 ./debug\inscription.o
-./debug\viewuv.o
 ./debug\fenetreplus.o
-./debug\detailuv.o
 ./debug\insertuv.o
 ./debug\connexion.o
 ./debug\administration.o
@@ -25,9 +23,7 @@ INPUT(
 ./debug\moc_accueil.o
 ./debug\moc_mondossier.o
 ./debug\moc_inscription.o
-./debug\moc_viewuv.o
 ./debug\moc_fenetreplus.o
-./debug\moc_detailuv.o
 ./debug\moc_insertuv.o
 ./debug\moc_administration.o
 ./debug\moc_afficherchoixprev.o

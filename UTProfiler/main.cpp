@@ -10,8 +10,6 @@
 #include "dbmanager.h"
 #include <QApplication>
 #include "accueil.h"
-#include "filieres.h"
-
 
 /**
  * \fn int main (int argc, char* argv[])

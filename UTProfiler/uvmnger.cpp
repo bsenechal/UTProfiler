@@ -1,7 +1,4 @@
 #include "uvmnger.h"
-#include <map>
-#include <iterator>
-
 
 uvmnger::uvmnger()
 {

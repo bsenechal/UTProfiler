@@ -1,13 +1,12 @@
 #include <iostream>
 #include "dbmanager.h"
-#include "utprofilerexception.h"
 
 
-void dbmanager::dbinitialise(QString dbtype, QString dbhost, QString dbuser, QString dbpasswd, QString dbname) {
+/*void dbmanager::dbinitialise(QString dbtype, QString dbhost, QString dbuser, QString dbpasswd, QString dbname) {
    db = QSqlDatabase::addDatabase(dbtype);
    /////////Completer
 }
-
+*/
 
 void dbmanager::dbinitialise(QString dbtype, QString dbname) {
    db = QSqlDatabase::addDatabase(dbtype);
