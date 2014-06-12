@@ -57,6 +57,10 @@ private:
     typedef std::map<int, std::map<QString, QString> > Mapsugg_UV;
     Mapsugg_UV map_suggestion_uv;
 
+    typedef std::map<int, std::map<QString, std::pair<QString, int> > > Mapsugg_UV2;
+    //[S1]["LO21"].first=categ [S1]["LO21"].second=nbcredit
+    Mapsugg_UV2 map_suggestion_uv2;
+
     typedef struct   {
          QString categorie;
          int credit;

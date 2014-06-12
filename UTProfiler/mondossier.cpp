@@ -374,6 +374,8 @@ else {
     map_algo.clear();
     map_suggestion_uv.clear();
     map_all_uv.clear();
+    map_suggestion_nb2.clear();
+
 
     while(query.next()){
         //qDebug()<<query.value(0).toString()<<" obligation : "<<query.value(1).toInt();
@@ -425,6 +427,7 @@ else {
         //Maintenant qu'on à notre map pondérée, on l'utilise.
         //map_suggestion[1]["CS"]=2;
         QList<QString> alreadyused;
+        alreadyused.clear();
 
 
         //Avec la structure de la mort
@@ -461,10 +464,13 @@ else {
                     if (j<=8) {
                     map_suggestion_nb2[j][s->second.categorie].first=map_suggestion_nb2[j][s->second.categorie].first+1;    //Dans cette map la catégorie et le nombre pour chaque catégorie d'UVs suivies par semestre
                     map_suggestion_nb2[j][s->second.categorie].second=map_suggestion_nb2[j][s->second.categorie].second + s->second.credit;
-                    qDebug()<<"On ajoute "<< s->second.credit <<" de type "<< s->second.categorie;
                     map_suggestion_nb2[j]["total"].first=map_suggestion_nb2[j]["total"].first + 1;
                     map_suggestion_nb2[j]["total"].second=map_suggestion_nb2[j]["total"].second + s->second.credit;
                     map_suggestion_uv[j][s->first]=s->second.categorie;                                    //Dans cette map, [semestre] et le nom et la catégorie pour chaque UV
+
+                    map_suggestion_uv2[j][s->first].first=s->second.categorie;
+                    map_suggestion_uv2[j][s->first].second=s->second.credit;
+                    //[S1]["LO21"].first=categ [S1]["LO21"].second=nbcredit
                     }
                     //qDebug()<<"semestre"<<j;
                     //qDebug()<<map_suggestion_nb[j][p->second.second];
@@ -487,7 +493,7 @@ else {
 
 //map_suggestion_uv à passer au constructeur de la classe qui va afficher !
     //choixprev.ajoutprev(map_suggestion_uv);
-    choixprev.ajoutprev(map_suggestion_uv,map_suggestion_nb2);
+    choixprev.ajoutprev(map_suggestion_uv2);
     choixprev.exec();
 }
 
