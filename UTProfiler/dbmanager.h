@@ -12,6 +12,7 @@
 #define q2c(string) string.toStdString()
 #include "utprofilerexception.h"
 #include "singleton.h"
+#include <QMessageBox>
 
 using namespace std;
 

@@ -11,6 +11,9 @@ afficherchoixprev::afficherchoixprev(QDialog *parent) :
     ui(new Ui::afficherchoixprev)
 {
     ui->setupUi(this);
+    db = dbmanager::getInstance();
+    btn_sauvegarder = new QPushButton("Sauvegarder");
+    QObject::connect(btn_sauvegarder, SIGNAL(clicked()), this, SLOT(sauvegarde_solutions()));
 }
 
 afficherchoixprev::~afficherchoixprev()
@@ -23,7 +26,7 @@ void afficherchoixprev::ajoutprev(Mapsugg_UV2 mapsuggestion) {
 //On parcour notre map
 
     QHBoxLayout *layout = new QHBoxLayout;
-    QHBoxLayout *layout_final = new QHBoxLayout;
+    QHBoxLayout *layout_sauvegarder = new QHBoxLayout;
     QVBoxLayout *colonne = new QVBoxLayout;
     QListWidget *l = new QListWidget;
     colonne->addWidget(new QLabel (""));
@@ -99,7 +102,37 @@ void afficherchoixprev::ajoutprev(Mapsugg_UV2 mapsuggestion) {
         layout->addLayout(colonne1);
         layout->addLayout(colonne2);
         layout->addLayout(colonne3);
-    }
+  }
 
+
+    layout_sauvegarder->addWidget(btn_sauvegarder);
+    layout->addLayout(layout_sauvegarder);
     this->setLayout(layout);
+}
+
+void afficherchoixprev::sauvegarde_solutions(){
+    QSqlQuery query;
+    QString max_id;
+    try {
+        query = db->execute("SELECT MAX(num)+1 FROM solution_semestre;");
+
+        if (query.next()){
+            max_id = query.value(0).toString();
+        }
+
+        db->execute("BEGIN;");
+
+        for (auto it = map_liste.begin(); it !=map_liste.end(); ++it) {
+            for (int i = 0 ; i < it->second.uv->count(); i++) {
+                db->execute("INSERT INTO solution_semestre VALUES ('"+ max_id +"', '"+ it->second.uv->item(i)->text() + "','" + it->second.categorie->item(i)->text() + "','" + it->second.credits->item(i)->text() + "');");
+            }
+        }
+        db->execute("COMMIT;");
+    }
+    catch (UTProfilerException u) {
+            QMessageBox msgBox;
+            db->execute("ROLLBACK");
+            msgBox.setText(u.getInfo());
+            msgBox.exec();
+   }
 }
