@@ -21,7 +21,7 @@ Accueil::Accueil(QWidget *parent) :
     c = Connexion::getInstance();
     db = dbmanager::getInstance();
     cursus = Cursus::getInstance();
-
+    dispos = Disponibilites::getInstance();
     /*! Création d'un nouvel onglet dans le tabWidget pour chaque cursus.
       * Chaque onglet est composé d'un Groupbox pour la selection des critères de tri et d'un listWidget pour l'affichage des UV
       */
@@ -31,21 +31,36 @@ Accueil::Accueil(QWidget *parent) :
         QVBoxLayout *VLayout_group = new QVBoxLayout;
         QHBoxLayout *couche1_critere = new QHBoxLayout;
         QHBoxLayout *couche2_critere = new QHBoxLayout;
+        QHBoxLayout *couche3_critere = new QHBoxLayout;
+        QHBoxLayout *couche4_critere = new QHBoxLayout;
+        QHBoxLayout *couche5_critere = new QHBoxLayout;
         QGroupBox *group = new QGroupBox;
         group->setTitle("Critères de recherche :");
         boutons[*it] = new QPushButton("Rechercher");
-        couche2_critere->addWidget(boutons[*it]);
+        couche1_critere->addWidget(new QLabel("Branches :"));
+        couche3_critere->addWidget(new QLabel("Disponibilités :"));
+        couche5_critere->addWidget(boutons[*it]);
         branches = db->getColonne("SELECT nom FROM branche WHERE nom_cursus = '" + *it +"';");
         VLayout->addWidget(group);
 
         for (QStringList::iterator it_branche=branches.begin(); it_branche!=branches.end(); ++it_branche) {
             QCheckBox *cb = new QCheckBox (*it_branche);
-            cbox[*it][*it_branche] = cb;
-            couche1_critere->addWidget(cb);
+            cbox[*it]["branches"][*it_branche] = cb;
+            couche2_critere->addWidget(cb);
+        }
+        if (!cbox[*it]["branches"].isEmpty())
+                VLayout_group->addLayout(couche1_critere);
+
+        for (QStringList::iterator it_dispos = dispos->getListe_dispos().begin() ; it_dispos != dispos->getListe_dispos().end() ; ++it_dispos){
+            QCheckBox *cb = new QCheckBox (*it_dispos);
+            cbox[*it]["dispos"][*it_dispos] = cb;
+            couche4_critere->addWidget(cb);
         }
 
-        VLayout_group->addLayout(couche1_critere);
         VLayout_group->addLayout(couche2_critere);
+        VLayout_group->addLayout(couche3_critere);
+        VLayout_group->addLayout(couche4_critere);
+        VLayout_group->addLayout(couche5_critere);
         group->setLayout(VLayout_group);
 
         liste[*it] = new QListWidget;
@@ -83,15 +98,28 @@ Accueil::~Accueil()
 void Accueil::affiche_uv() {
     QSqlQuery query;
     QString nom_cursus = cursus->getListe_cursus()[ui->tabWidget->currentIndex()-1];
-    QString res;
+    QString res, res2;
     liste[nom_cursus]->clear();
 
-    for (QMap<QString, QCheckBox*>::iterator it=cbox[nom_cursus].begin(); it!=cbox[nom_cursus].end(); ++it){
+    for (auto it = cbox[nom_cursus]["branches"].begin(); it!= cbox[nom_cursus]["branches"].end(); ++it){
         if (it.value()->isChecked())
             res.append("'" + it.key() + "',");
     }
 
-   query = db->execute("SELECT u.code, u.description, b.nom FROM UV u, branche b, assoc_branche_uv a WHERE a.code_uv = u.code AND a.nom_branche = b.nom AND b.nom IN (" + res.left(res.size()-1) + ");");
+    for (auto it=cbox[nom_cursus]["dispos"].begin(); it!=cbox[nom_cursus]["dispos"].end(); ++it){
+        if (it.value()->isChecked())
+            res2.append("'" + it.key() + "',");
+    }
+
+    try {
+    if (!res2.isNull() && !res.isNull())
+        query = db->execute("SELECT u.code, u.description, a.nom_branche FROM UV u, assoc_branche_uv a, assoc_disponibilite_uv ad WHERE ad.code_uv = u.code AND ad.nom_disponibilite IN ("+ res2.left(res2.size()-1) +") AND a.code_uv = u.code AND a.nom_branche IN (" + res.left(res.size()-1) + ");");
+    else if (res2.isNull() && !res.isNull())
+        query = db->execute("SELECT u.code, u.description, a.nom_branche FROM UV u, assoc_branche_uv a WHERE a.code_uv = u.code AND a.nom_branche IN (" + res.left(res.size()-1) + ");");
+    else if (!res2.isNull() && res.isNull())
+        query = db->execute("SELECT u.code, u.description, b.nom FROM UV u, assoc_disponibilite_uv ad WHERE ad.code_uv = u.code AND ad.nom_disponibilite IN ("+ res2.left(res2.size()-1) +");");
+    else
+        query = db->execute("SELECT u.code, u.description, a.nom_branche FROM UV u, assoc_branche_uv a, assoc_disponibilite_uv ad WHERE ad.code_uv = u.code AND a.code_uv = u.code;");
 
    while (query.next()){
        QStringList dispo = db->getColonne("SELECT nom_disponibilite FROM assoc_disponibilite_uv WHERE code_uv  = '" + query.value(0).toString() + "';");
@@ -101,6 +129,12 @@ void Accueil::affiche_uv() {
 
        liste[nom_cursus]->addItem(query.value(0).toString() + "    -    "  + query.value(1).toString() + "    -    " + query.value(2).toString() + "    - Disponible en : " + d.left(d.size()-3));
    }
+    }
+    catch (UTProfilerException u) {
+        QMessageBox msgBox;
+        msgBox.setText(u.getInfo());
+        msgBox.exec();
+    }
 }
 
 void Accueil::connexionUser() {

@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>863</width>
-    <height>431</height>
+    <width>865</width>
+    <height>519</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -20,7 +20,7 @@
       <x>0</x>
       <y>0</y>
       <width>861</width>
-      <height>391</height>
+      <height>500</height>
      </rect>
     </property>
     <property name="currentIndex">
@@ -30,29 +30,13 @@
      <attribute name="title">
       <string>Connexion</string>
      </attribute>
-     <widget class="QLabel" name="label_2">
-      <property name="geometry">
-       <rect>
-        <x>0</x>
-        <y>0</y>
-        <width>881</width>
-        <height>371</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string/>
-      </property>
-      <property name="pixmap">
-       <pixmap resource="../images/Utc.qrc">:/images/utc.jpg</pixmap>
-      </property>
-     </widget>
      <widget class="QPushButton" name="inscription">
       <property name="geometry">
        <rect>
-        <x>670</x>
-        <y>190</y>
-        <width>91</width>
-        <height>23</height>
+        <x>690</x>
+        <y>230</y>
+        <width>100</width>
+        <height>30</height>
        </rect>
       </property>
       <property name="text">
@@ -62,10 +46,10 @@
      <widget class="QLineEdit" name="input_mdp">
       <property name="geometry">
        <rect>
-        <x>660</x>
-        <y>150</y>
-        <width>113</width>
-        <height>20</height>
+        <x>650</x>
+        <y>190</y>
+        <width>150</width>
+        <height>25</height>
        </rect>
       </property>
       <property name="echoMode">
@@ -75,46 +59,62 @@
      <widget class="QLineEdit" name="input_login">
       <property name="geometry">
        <rect>
-        <x>660</x>
-        <y>120</y>
-        <width>113</width>
-        <height>20</height>
+        <x>650</x>
+        <y>150</y>
+        <width>150</width>
+        <height>25</height>
        </rect>
       </property>
      </widget>
      <widget class="QLabel" name="label_mdp">
       <property name="geometry">
        <rect>
-        <x>560</x>
-        <y>150</y>
-        <width>91</width>
-        <height>21</height>
+        <x>480</x>
+        <y>190</y>
+        <width>150</width>
+        <height>25</height>
        </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>12</pointsize>
+       </font>
       </property>
       <property name="text">
        <string>Mot de passe :</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
       </property>
      </widget>
      <widget class="QLabel" name="label_login">
       <property name="geometry">
        <rect>
-        <x>560</x>
-        <y>120</y>
-        <width>91</width>
-        <height>21</height>
+        <x>480</x>
+        <y>150</y>
+        <width>150</width>
+        <height>25</height>
        </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>12</pointsize>
+       </font>
       </property>
       <property name="text">
        <string>Login :</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
       </property>
      </widget>
      <widget class="QPushButton" name="connexion">
       <property name="geometry">
        <rect>
         <x>574</x>
-        <y>190</y>
-        <width>91</width>
-        <height>23</height>
+        <y>230</y>
+        <width>100</width>
+        <height>30</height>
        </rect>
       </property>
       <property name="text">
@@ -125,7 +125,7 @@
       <property name="geometry">
        <rect>
         <x>540</x>
-        <y>230</y>
+        <y>270</y>
         <width>281</width>
         <height>81</height>
        </rect>
@@ -144,10 +144,10 @@
      <widget class="QLabel" name="label">
       <property name="geometry">
        <rect>
-        <x>320</x>
-        <y>10</y>
-        <width>191</width>
-        <height>51</height>
+        <x>0</x>
+        <y>0</y>
+        <width>861</width>
+        <height>471</height>
        </rect>
       </property>
       <property name="font">
@@ -156,17 +156,19 @@
        </font>
       </property>
       <property name="text">
-       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:20pt;&quot;&gt;UT Profiler&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+       <string/>
+      </property>
+      <property name="pixmap">
+       <pixmap resource="../images/Utc.qrc">:/images/fond_accueil.jpg</pixmap>
       </property>
      </widget>
-     <zorder>label_2</zorder>
+     <zorder>label</zorder>
      <zorder>inscription</zorder>
      <zorder>input_mdp</zorder>
      <zorder>input_login</zorder>
      <zorder>label_mdp</zorder>
      <zorder>label_login</zorder>
      <zorder>connexion</zorder>
-     <zorder>label</zorder>
      <zorder>label_erreur</zorder>
     </widget>
    </widget>
@@ -176,8 +178,8 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>863</width>
-     <height>22</height>
+     <width>865</width>
+     <height>21</height>
     </rect>
    </property>
   </widget>

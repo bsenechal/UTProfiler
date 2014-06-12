@@ -1,6 +1,3 @@
-
-
-
 #ifndef ACCUEIL_H
 #define ACCUEIL_H
 
@@ -19,6 +16,7 @@
 #include "mondossier.h"
 #include "cursus.h"
 #include "administration.h"
+#include "semestre.h"
 
 /**
 \file accueil.h
@@ -46,9 +44,10 @@ private:
     QStringList branches;
     Administration admin;
     mondossier dossier;
+    Disponibilites *dispos;
     Ui::Accueil *ui;
     QMap<QString, QPushButton*> boutons;
-    QMap<QString, QMap<QString, QCheckBox*> >cbox;
+    QMap<QString, QMap<QString, QMap<QString, QCheckBox*> > >cbox;
     QMap<QString, QListWidget*> liste;
 
 private slots:
