@@ -1,6 +1,5 @@
 #include "inscription.h"
 #include "ui_inscription.h"
-#include <QDebug>
 
 
 Inscription::Inscription(QWidget *parent) :

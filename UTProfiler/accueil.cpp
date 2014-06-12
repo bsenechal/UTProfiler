@@ -17,7 +17,6 @@ Accueil::Accueil(QWidget *parent) :
     ui(new Ui::Accueil)
 {  
     ui->setupUi(this);
-
     c = Connexion::getInstance();
     db = dbmanager::getInstance();
     cursus = Cursus::getInstance();
@@ -97,6 +96,7 @@ Accueil::~Accueil()
 
 void Accueil::affiche_uv() {
     QSqlQuery query;
+
     QString nom_cursus = cursus->getListe_cursus()[ui->tabWidget->currentIndex()-1];
     QString res, res2;
     liste[nom_cursus]->clear();
@@ -117,7 +117,7 @@ void Accueil::affiche_uv() {
     else if (res2.isNull() && !res.isNull())
         query = db->execute("SELECT u.code, u.description, a.nom_branche FROM UV u, assoc_branche_uv a WHERE a.code_uv = u.code AND a.nom_branche IN (" + res.left(res.size()-1) + ");");
     else if (!res2.isNull() && res.isNull())
-        query = db->execute("SELECT u.code, u.description, b.nom FROM UV u, assoc_disponibilite_uv ad WHERE ad.code_uv = u.code AND ad.nom_disponibilite IN ("+ res2.left(res2.size()-1) +");");
+        query = db->execute("SELECT u.code, u.description, a.nom_branche FROM UV u, assoc_branche_uv a, assoc_disponibilite_uv ad WHERE a.code_uv = u.code AND ad.code_uv = u.code AND ad.nom_disponibilite IN ("+ res2.left(res2.size()-1) +");");
     else
         query = db->execute("SELECT u.code, u.description, a.nom_branche FROM UV u, assoc_branche_uv a, assoc_disponibilite_uv ad WHERE ad.code_uv = u.code AND a.code_uv = u.code;");
 
