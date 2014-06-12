@@ -27,6 +27,7 @@ public:
     ~mondossier();
     void remplirchoix();
     void rempliruvsuivies();
+    void initdossier();
 
 private:
     QString numerodossier="0";

@@ -26,9 +26,6 @@ mondossier::mondossier(QWidget *parent) :
     ui->modif_nom->hide();
     ui->modif_prenom->hide();
 
-    remplirchoix();
-    rempliruvsuivies();
-
     ui->comboBox_cursus->addItem("");
     ui->comboBox_cursus->addItems(cursus->getListe_cursus());
     ui->comboBox_note->addItems(db->getColonne("SELECT Note FROM Note;"));
@@ -53,6 +50,18 @@ mondossier::mondossier(QWidget *parent) :
     QObject::connect(ui->comboBox_filiere, SIGNAL(currentIndexChanged(int)), this, SLOT(add_critere_filiere()));
     QObject::connect(ui->liste_selection_UV, SIGNAL(currentRowChanged(int)), this, SLOT(enable_credits()));
     QObject::connect(ui->suggestion_uv, SIGNAL(clicked()), this, SLOT(generer_suggestion()));
+}
+
+void mondossier::initdossier() {
+    QSqlQuery query;
+    query = db->execute("SELECT id_dossier FROM Dossier WHERE login_etudiant='" + c->getLogin() + "';");
+    if(query.next()) {
+        qDebug()<<"Init du dossier";
+        this->numerodossier=query.value(0).toString();
+    }
+
+    remplirchoix();
+    rempliruvsuivies();
 }
 
 void mondossier::enable_credits() {
@@ -109,11 +118,6 @@ void mondossier::ajoutUV() {
 void mondossier::maj_dossier() {
     QSqlQuery query;
 
-    query = db->execute("SELECT id_dossier FROM Dossier WHERE login_etudiant='" + c->getLogin() + "';");
-
-    if(query.next()) {
-        this->numerodossier=query.value(0).toString();
-    }
 
     ui->login->clear();
     ui->nom->clear();
@@ -299,6 +303,8 @@ void mondossier::rempliruvsuivies(){
     if (!this->numerodossier.isNull()) {
     //Fenetre des UVs suivies
     query = db->execute("SELECT code_uv, note,  semestre, nom_categorie, nbcredits, assoc_categorie_UV.id_acatu FROM UV_suivies, assoc_categorie_UV WHERE UV_suivies.id_acatu=assoc_categorie_UV.id_acatu AND UV_suivies.id_dossier="+this->numerodossier+" ORDER BY assoc_categorie_UV.id_acatu;");
+qDebug()<<"Remplissage des UVs";
+
 
     QString idsvg;
     QString maligne="";
@@ -327,11 +333,13 @@ void mondossier::rempliruvsuivies(){
         }
            idsvg=query.value(5).toString();
      }
-    ui->liste_uv_suivies->addItem(uv);
-    ui->liste_notes->addItem(note);
-    ui->liste_semestres->addItem(semestre);
-    ui->liste_credits->addItem(maligne);
-    ui->liste_possibilite_uv->addItem(idsvg);
+    if (uv!=""){
+        ui->liste_uv_suivies->addItem(uv);
+        ui->liste_notes->addItem(note);
+        ui->liste_semestres->addItem(semestre);
+        ui->liste_credits->addItem(maligne);
+        ui->liste_possibilite_uv->addItem(idsvg);
+    }
     }
     //Fin UVs suivies
 }

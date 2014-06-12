@@ -155,6 +155,7 @@ void Accueil::connexionUser() {
 
             if (query.next()) {
                 dossier.maj_dossier();
+                dossier.initdossier();
                 if (query.value(0).toString() == "true") {
                     admin.show();
                     dossier.show();
