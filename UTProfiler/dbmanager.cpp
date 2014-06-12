@@ -2,7 +2,7 @@
 #include "dbmanager.h"
 
 /**
-  * @file connexion.cpp
+  * @file dbmanager.cpp
   */
 
 /*void dbmanager::dbinitialise(QString dbtype, QString dbhost, QString dbuser, QString dbpasswd, QString dbname) {
