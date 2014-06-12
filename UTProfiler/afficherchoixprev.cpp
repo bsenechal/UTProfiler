@@ -112,19 +112,26 @@ void afficherchoixprev::ajoutprev(Mapsugg_UV2 mapsuggestion) {
 
 void afficherchoixprev::sauvegarde_solutions(){
     QSqlQuery query;
-    QString max_id;
+    QString max_id_semestre, max_id_solution;
     try {
         query = db->execute("SELECT MAX(num)+1 FROM solution_semestre;");
 
         if (query.next()){
-            max_id = query.value(0).toString();
+            max_id_semestre = query.value(0).toString();
+        }
+
+        query = db->execute("SELECT MAX(id_solution)+1 FROM solution_choixprev;");
+
+        if (query.next()){
+            max_id_solution = query.value(0).toString();
         }
 
         db->execute("BEGIN;");
 
         for (auto it = map_liste.begin(); it !=map_liste.end(); ++it) {
+            db->execute("INSERT INTO solution_choixprev (id_solution, id_solution_semestre) VALUES ('"+ max_id_solution +"', '"+ it->first + "');");
             for (int i = 0 ; i < it->second.uv->count(); i++) {
-                db->execute("INSERT INTO solution_semestre VALUES ('"+ max_id +"', '"+ it->second.uv->item(i)->text() + "','" + it->second.categorie->item(i)->text() + "','" + it->second.credits->item(i)->text() + "');");
+                db->execute("INSERT INTO solution_semestre VALUES ('"+ max_id_semestre +"', '"+ it->second.uv->item(i)->text() + "','" + it->second.categorie->item(i)->text() + "','" + it->second.credits->item(i)->text() + "');");
             }
         }
         db->execute("COMMIT;");
