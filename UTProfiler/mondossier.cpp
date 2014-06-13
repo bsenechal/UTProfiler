@@ -375,6 +375,7 @@ else {
     map_suggestion_uv.clear();
     map_all_uv.clear();
     map_suggestion_nb2.clear();
+    map_suggestion_uv2.clear();
 
     int cs_necessaire=30;
     int tm_necessaire=30;
@@ -416,12 +417,14 @@ else {
         }
         for (int i = 0; i < ui->liste_preferences->count(); i++) {
             if (ui->liste_preferences->item(i)->text()==s->first) {
+                qDebug()<<s->first+" is In preferences";
                 s->second.obligation=s->second.obligation + 4;
                if (s->second.obligation>10) s->second.obligation=10;
             }
         }
         for (int i = 0; i < ui->liste_rejets->count(); i++) {
             if (ui->liste_rejets->item(i)->text()==s->first) {
+                qDebug()<<s->first+" is In rejets";
                 s->second.obligation= - 1;
             }
         }
