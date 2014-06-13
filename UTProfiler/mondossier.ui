@@ -486,19 +486,6 @@
       <string>Sauvegarder les modifications</string>
      </property>
     </widget>
-    <widget class="QLineEdit" name="modif_login">
-     <property name="enabled">
-      <bool>true</bool>
-     </property>
-     <property name="geometry">
-      <rect>
-       <x>240</x>
-       <y>150</y>
-       <width>200</width>
-       <height>30</height>
-      </rect>
-     </property>
-    </widget>
     <widget class="QLineEdit" name="modif_nom">
      <property name="enabled">
       <bool>true</bool>
@@ -627,7 +614,6 @@
     <zorder>label_email</zorder>
     <zorder>titre_mesinfos</zorder>
     <zorder>sauvegarder_modif</zorder>
-    <zorder>modif_login</zorder>
     <zorder>modif_nom</zorder>
     <zorder>modif_date_naiss</zorder>
     <zorder>modif_prenom</zorder>

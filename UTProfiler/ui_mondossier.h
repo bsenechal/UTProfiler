@@ -55,7 +55,6 @@ public:
     QLabel *titre_mesinfos;
     QLabel *fond;
     QPushButton *sauvegarder_modif;
-    QLineEdit *modif_login;
     QLineEdit *modif_nom;
     QLineEdit *modif_date_naiss;
     QLineEdit *modif_prenom;
@@ -239,10 +238,6 @@ public:
         sauvegarder_modif = new QPushButton(mes_infos);
         sauvegarder_modif->setObjectName(QStringLiteral("sauvegarder_modif"));
         sauvegarder_modif->setGeometry(QRect(130, 400, 211, 31));
-        modif_login = new QLineEdit(mes_infos);
-        modif_login->setObjectName(QStringLiteral("modif_login"));
-        modif_login->setEnabled(true);
-        modif_login->setGeometry(QRect(240, 150, 200, 30));
         modif_nom = new QLineEdit(mes_infos);
         modif_nom->setObjectName(QStringLiteral("modif_nom"));
         modif_nom->setEnabled(true);
@@ -298,7 +293,6 @@ public:
         label_email->raise();
         titre_mesinfos->raise();
         sauvegarder_modif->raise();
-        modif_login->raise();
         modif_nom->raise();
         modif_date_naiss->raise();
         modif_prenom->raise();

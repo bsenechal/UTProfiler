@@ -20,7 +20,6 @@ mondossier::mondossier(QWidget *parent) :
     ui->modif_semestre->hide();
     ui->modif_date_naiss->hide();
     ui->modif_email->hide();
-    ui->modif_login->hide();
     ui->modif_cursus->hide();
     ui->modif_branche->hide();
     ui->modif_filiere->hide();
@@ -162,7 +161,6 @@ void mondossier::sauvegarder_modif(){
         ui->modif_semestre->hide();
         ui->modif_date_naiss->hide();
         ui->modif_email->hide();
-        ui->modif_login->hide();
         ui->modif_cursus->hide();
         ui->modif_filiere->hide();
         ui->modif_nom->hide();
@@ -183,6 +181,7 @@ void mondossier::modifier_infos() {
     QSqlQuery query;
 
     ui->modif_filiere->clear();
+    ui->modif_filiere->addItem("");
     ui->modif_filiere->addItems(filieres->getListe_filieres());
 
     ui->modif_cursus->clear();
@@ -200,7 +199,6 @@ void mondossier::modifier_infos() {
         ui->modif_semestre->show();
         ui->modif_date_naiss->show();   ui->modif_date_naiss->setText(query.value(5).toString());
         ui->modif_email->show();        ui->modif_email->setText(query.value(6).toString());
-        ui->modif_login->show();        ui->modif_login->setText(query.value(0).toString());
         ui->modif_cursus->show();
         ui->modif_filiere->show();
         ui->modif_nom->show();          ui->modif_nom->setText(query.value(2).toString());
@@ -458,7 +456,7 @@ qDebug()<<"Total : "<<total_total;
         for (int i = 0; i < ui->liste_preferences->count(); i++) {
             if (ui->liste_preferences->item(i)->text()==s->first) {
                 qDebug()<<s->first+" is In preferences";
-                s->second.obligation=s->second.obligation + 4;
+                s->second.obligation=s->second.obligation + 3;
                if (s->second.obligation>10) s->second.obligation=10;
             }
         }
@@ -501,7 +499,7 @@ qDebug()<<"Total : "<<total_total;
                                 map_suggestion_nb2[j][s->second.categorie].second=0;
                             }
 
-                            while ( ( (map_suggestion_nb2[j][s->second.categorie].first>=3/*uv max par type*/) || ((map_suggestion_nb2[j]["CS"].first + map_suggestion_nb2[j]["TM"].first>=5/*CS+TM*/) && (s->second.categorie=="CS" || s->second.categorie=="TM")) || (map_suggestion_nb2[j]["total"].first>=7/*uv ax par semestre*/)) && j<=8/*semestres max autorisés*/) {        //Tant que [Semestre][type] > 3, le nombre max d'uv d'un type. Ou que le total est > 7, on passe semestre au suivant !
+                            while ( (map_suggestion_nb2[j]["total"].second > 32 || (map_suggestion_nb2[j][s->second.categorie].first>=3/*uv max par type*/) || ((map_suggestion_nb2[j]["CS"].first + map_suggestion_nb2[j]["TM"].first>=5/*CS+TM*/) && (s->second.categorie=="CS" || s->second.categorie=="TM")) || (map_suggestion_nb2[j]["total"].first>=7/*uv ax par semestre*/)) && j<=8/*semestres max autorisés*/) {        //Tant que [Semestre][type] > 3, le nombre max d'uv d'un type. Ou que le total est > 7, on passe semestre au suivant !
                                 j++;
                                 if (!map_suggestion_nb2[j]["total"].first) {
                                     map_suggestion_nb2[j]["total"].first=0;
