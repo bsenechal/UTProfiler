@@ -19,8 +19,8 @@
 
 QT_BEGIN_MOC_NAMESPACE
 struct qt_meta_stringdata_mondossier_t {
-    QByteArrayData data[22];
-    char stringdata[326];
+    QByteArrayData data[25];
+    char stringdata[403];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -50,7 +50,10 @@ QT_MOC_LITERAL(17, 242, 19),
 QT_MOC_LITERAL(18, 262, 16),
 QT_MOC_LITERAL(19, 279, 18),
 QT_MOC_LITERAL(20, 298, 14),
-QT_MOC_LITERAL(21, 313, 11)
+QT_MOC_LITERAL(21, 313, 25),
+QT_MOC_LITERAL(22, 339, 25),
+QT_MOC_LITERAL(23, 365, 24),
+QT_MOC_LITERAL(24, 390, 11)
     },
     "mondossier\0ajoutUV\0\0sauvegarder_choix\0"
     "ajoutPreference\0ajoutRejet\0ajoutExigence\0"
@@ -60,7 +63,9 @@ QT_MOC_LITERAL(21, 313, 11)
     "add_critere_branche\0add_critere_filiere\0"
     "add_critere_cursus\0sauvegarder_dossier\0"
     "suppr_UV_suivies\0generer_suggestion\0"
-    "voirsuggestion\0maj_dossier\0"
+    "voirsuggestion\0add_choix_critere_branche\0"
+    "add_choix_critere_filiere\0"
+    "add_choix_critere_cursus\0maj_dossier\0"
 };
 #undef QT_MOC_LITERAL
 
@@ -70,7 +75,7 @@ static const uint qt_meta_data_mondossier[] = {
        7,       // revision
        0,       // classname
        0,    0, // classinfo
-      20,   14, // methods
+      23,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -78,28 +83,34 @@ static const uint qt_meta_data_mondossier[] = {
        0,       // signalCount
 
  // slots: name, argc, parameters, tag, flags
-       1,    0,  114,    2, 0x08,
-       3,    0,  115,    2, 0x08,
-       4,    0,  116,    2, 0x08,
-       5,    0,  117,    2, 0x08,
-       6,    0,  118,    2, 0x08,
-       7,    0,  119,    2, 0x08,
-       8,    0,  120,    2, 0x08,
-       9,    0,  121,    2, 0x08,
-      10,    0,  122,    2, 0x08,
-      11,    0,  123,    2, 0x08,
-      12,    0,  124,    2, 0x08,
-      13,    0,  125,    2, 0x08,
-      14,    0,  126,    2, 0x08,
-      15,    0,  127,    2, 0x08,
-      16,    0,  128,    2, 0x08,
-      17,    0,  129,    2, 0x08,
-      18,    0,  130,    2, 0x08,
-      19,    0,  131,    2, 0x08,
-      20,    0,  132,    2, 0x08,
-      21,    0,  133,    2, 0x0a,
+       1,    0,  129,    2, 0x08,
+       3,    0,  130,    2, 0x08,
+       4,    0,  131,    2, 0x08,
+       5,    0,  132,    2, 0x08,
+       6,    0,  133,    2, 0x08,
+       7,    0,  134,    2, 0x08,
+       8,    0,  135,    2, 0x08,
+       9,    0,  136,    2, 0x08,
+      10,    0,  137,    2, 0x08,
+      11,    0,  138,    2, 0x08,
+      12,    0,  139,    2, 0x08,
+      13,    0,  140,    2, 0x08,
+      14,    0,  141,    2, 0x08,
+      15,    0,  142,    2, 0x08,
+      16,    0,  143,    2, 0x08,
+      17,    0,  144,    2, 0x08,
+      18,    0,  145,    2, 0x08,
+      19,    0,  146,    2, 0x08,
+      20,    0,  147,    2, 0x08,
+      21,    0,  148,    2, 0x08,
+      22,    0,  149,    2, 0x08,
+      23,    0,  150,    2, 0x08,
+      24,    0,  151,    2, 0x0a,
 
  // slots: parameters
+    QMetaType::Void,
+    QMetaType::Void,
+    QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
@@ -148,7 +159,10 @@ void mondossier::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         case 16: _t->suppr_UV_suivies(); break;
         case 17: _t->generer_suggestion(); break;
         case 18: _t->voirsuggestion(); break;
-        case 19: _t->maj_dossier(); break;
+        case 19: _t->add_choix_critere_branche(); break;
+        case 20: _t->add_choix_critere_filiere(); break;
+        case 21: _t->add_choix_critere_cursus(); break;
+        case 22: _t->maj_dossier(); break;
         default: ;
         }
     }
@@ -180,13 +194,13 @@ int mondossier::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 20)
+        if (_id < 23)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 20;
+        _id -= 23;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 20)
+        if (_id < 23)
             *reinterpret_cast<int*>(_a[0]) = -1;
-        _id -= 20;
+        _id -= 23;
     }
     return _id;
 }
