@@ -153,7 +153,7 @@ public:
         comboBox_semestre->setGeometry(QRect(190, 400, 111, 22));
         label_semestre = new QLabel(Inscription);
         label_semestre->setObjectName(QStringLiteral("label_semestre"));
-        label_semestre->setGeometry(QRect(90, 400, 90, 20));
+        label_semestre->setGeometry(QRect(79, 400, 101, 20));
         label_semestre->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
         label = new QLabel(Inscription);
         label->setObjectName(QStringLiteral("label"));

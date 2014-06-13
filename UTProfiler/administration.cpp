@@ -182,7 +182,7 @@ void Administration::maj_admin() {
 /* Gestion des utilisateurs */
 void Administration::maj_role() {
     ui->liste_utilisateurs->addItems(db->getColonne("SELECT login FROM Etudiant WHERE admin = 'false'"));
-    ui->liste_modif_credits_uv->addItems(db->getColonne("SELECT login FROM Etudiant WHERE admin = 'true'"));
+    ui->liste_administrateurs->addItems(db->getColonne("SELECT login FROM Etudiant WHERE admin = 'true'"));
 }
 
 
@@ -192,6 +192,7 @@ void Administration::retire_administrateur() { Tools::switch_current_item(ui->li
 void Administration::sauvegarder_role() {
     try {
         db->execute("BEGIN;");
+        db->execute("UPDATE Etudiant SET admin = 'false';");
         for (int i = 0 ; i < ui->liste_administrateurs->count() ; i++){
             db->execute("UPDATE Etudiant SET admin = 'true' WHERE login = '" + ui->liste_administrateurs->item(i)->text() + "';");
         }

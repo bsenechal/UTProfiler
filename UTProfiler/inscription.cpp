@@ -30,8 +30,6 @@ Inscription::Inscription(QWidget *parent) :
     ui->comboBox_branche->addItems(branches->getListe_branches());
     ui->comboBox_cursus->addItem("");
     ui->comboBox_cursus->addItems(cursus->getListe_cursus());
-    ui->comboBox_semestre->addItem("");
-    ui->comboBox_semestre->addItems(semestres->getListe_semestres());
     ui->comboBox_filiere->addItem("");
     ui->comboBox_filiere->addItems(filieres->getListe_filieres());
 

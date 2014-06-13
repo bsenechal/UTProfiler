@@ -8,7 +8,7 @@ QT       += core gui
 QT       += sql # On rajoute SQL
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
-QMAKE_CXXFLAGS += -std=c++11
+#QMAKE_CXXFLAGS += -std=c++11
 
 TARGET = UTProfiler
 TEMPLATE = app

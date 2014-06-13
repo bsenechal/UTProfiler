@@ -24,13 +24,11 @@ QString Connexion::connexion(QString login, QString mdp) {
         formulaire<QString>::verif_text(mdp, "Mot de passe");
         error = false;
     }
-
     catch (FormulaireException e) {
         res = e.getinfo();
     }
     if (!error) {
         query = db->execute("SELECT * FROM Etudiant WHERE login='" + login + "' AND passwd='" + mdp + "';");
-
         if(query.next()){
                this->setLogin(query.value(0).toString());
                this->setPasswd(query.value(1).toString());

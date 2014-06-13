@@ -56,7 +56,7 @@ public:
         Connexion->setObjectName(QStringLiteral("Connexion"));
         inscription = new QPushButton(Connexion);
         inscription->setObjectName(QStringLiteral("inscription"));
-        inscription->setGeometry(QRect(690, 230, 90, 25));
+        inscription->setGeometry(QRect(710, 230, 101, 41));
         input_mdp = new QLineEdit(Connexion);
         input_mdp->setObjectName(QStringLiteral("input_mdp"));
         input_mdp->setGeometry(QRect(650, 190, 125, 22));
@@ -78,7 +78,7 @@ public:
         label_login->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
         connexion = new QPushButton(Connexion);
         connexion->setObjectName(QStringLiteral("connexion"));
-        connexion->setGeometry(QRect(574, 230, 90, 25));
+        connexion->setGeometry(QRect(590, 230, 101, 41));
         label_erreur = new QLabel(Connexion);
         label_erreur->setObjectName(QStringLiteral("label_erreur"));
         label_erreur->setGeometry(QRect(540, 270, 281, 81));
@@ -89,10 +89,7 @@ public:
         label_erreur->setFont(font1);
         label = new QLabel(Connexion);
         label->setObjectName(QStringLiteral("label"));
-        label->setGeometry(QRect(0, 0, 861, 471));
-        QFont font2;
-        font2.setPointSize(16);
-        label->setFont(font2);
+        label->setGeometry(QRect(1, -15, 881, 471));
         label->setPixmap(QPixmap(QString::fromUtf8(":/images/fond_accueil.jpg")));
         tabWidget->addTab(Connexion, QString());
         label->raise();
@@ -100,13 +97,13 @@ public:
         input_mdp->raise();
         input_login->raise();
         label_mdp->raise();
-        label_login->raise();
         connexion->raise();
         label_erreur->raise();
+        label_login->raise();
         Accueil->setCentralWidget(centralwidget);
         menubar = new QMenuBar(Accueil);
         menubar->setObjectName(QStringLiteral("menubar"));
-        menubar->setGeometry(QRect(0, 0, 865, 21));
+        menubar->setGeometry(QRect(0, 0, 865, 22));
         Accueil->setMenuBar(menubar);
         statusbar = new QStatusBar(Accueil);
         statusbar->setObjectName(QStringLiteral("statusbar"));
@@ -124,8 +121,8 @@ public:
     {
         Accueil->setWindowTitle(QApplication::translate("Accueil", "MainWindow", 0));
         inscription->setText(QApplication::translate("Accueil", "Inscription", 0));
-        label_mdp->setText(QApplication::translate("Accueil", "Mot de passe :", 0));
-        label_login->setText(QApplication::translate("Accueil", "Login :", 0));
+        label_mdp->setText(QApplication::translate("Accueil", "Mot de passe", 0));
+        label_login->setText(QApplication::translate("Accueil", "Login", 0));
         connexion->setText(QApplication::translate("Accueil", "Connexion", 0));
         label_erreur->setText(QString());
         label->setText(QString());
