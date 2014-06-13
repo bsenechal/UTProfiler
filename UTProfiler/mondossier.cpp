@@ -347,9 +347,12 @@ void mondossier::rempliruvsuivies(){
 
     while (query.next()) {
         uv=query.value(0).toString();
+
         note=query.value(1).toString();
         semestre=query.value(2).toString();
         qDebug()<<uv;
+        qDebug()<<note;
+        qDebug()<<semestre;
 
         if ((query.value(5).toString())==idsvg) {
             maligne=maligne+" & "+query.value(3).toString()+" : "+query.value(4).toString();
@@ -357,6 +360,8 @@ void mondossier::rempliruvsuivies(){
         else {
             if(maligne!=""){
             //Si on a finis avec cette ligne la, on fait nos inserts !
+                qDebug()<<"Insertion de : "<<uv;
+
                 ui->liste_uv_suivies->addItem(uv);
                 ui->liste_notes->addItem(note);
                 ui->liste_semestres->addItem(semestre);
