@@ -19,8 +19,8 @@
 
 QT_BEGIN_MOC_NAMESPACE
 struct qt_meta_stringdata_mondossier_t {
-    QByteArrayData data[18];
-    char stringdata[248];
+    QByteArrayData data[22];
+    char stringdata[326];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -39,22 +39,28 @@ QT_MOC_LITERAL(6, 65, 13),
 QT_MOC_LITERAL(7, 79, 15),
 QT_MOC_LITERAL(8, 95, 10),
 QT_MOC_LITERAL(9, 106, 13),
-QT_MOC_LITERAL(10, 120, 11),
-QT_MOC_LITERAL(11, 132, 17),
-QT_MOC_LITERAL(12, 150, 14),
-QT_MOC_LITERAL(13, 165, 14),
-QT_MOC_LITERAL(14, 180, 14),
-QT_MOC_LITERAL(15, 195, 14),
-QT_MOC_LITERAL(16, 210, 19),
-QT_MOC_LITERAL(17, 230, 16)
+QT_MOC_LITERAL(10, 120, 17),
+QT_MOC_LITERAL(11, 138, 14),
+QT_MOC_LITERAL(12, 153, 14),
+QT_MOC_LITERAL(13, 168, 14),
+QT_MOC_LITERAL(14, 183, 19),
+QT_MOC_LITERAL(15, 203, 19),
+QT_MOC_LITERAL(16, 223, 18),
+QT_MOC_LITERAL(17, 242, 19),
+QT_MOC_LITERAL(18, 262, 16),
+QT_MOC_LITERAL(19, 279, 18),
+QT_MOC_LITERAL(20, 298, 14),
+QT_MOC_LITERAL(21, 313, 11)
     },
     "mondossier\0ajoutUV\0\0sauvegarder_choix\0"
     "ajoutPreference\0ajoutRejet\0ajoutExigence\0"
     "supprPreference\0supprRejet\0supprExigence\0"
-    "maj_dossier\0sauvegarder_modif\0"
-    "modifier_infos\0enable_branche\0"
-    "enable_filiere\0enable_credits\0"
-    "sauvegarder_dossier\0suppr_UV_suivies\0"
+    "sauvegarder_modif\0modifier_infos\0"
+    "enable_branche\0enable_credits\0"
+    "add_critere_branche\0add_critere_filiere\0"
+    "add_critere_cursus\0sauvegarder_dossier\0"
+    "suppr_UV_suivies\0generer_suggestion\0"
+    "voirsuggestion\0maj_dossier\0"
 };
 #undef QT_MOC_LITERAL
 
@@ -64,7 +70,7 @@ static const uint qt_meta_data_mondossier[] = {
        7,       // revision
        0,       // classname
        0,    0, // classinfo
-      16,   14, // methods
+      20,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -72,24 +78,32 @@ static const uint qt_meta_data_mondossier[] = {
        0,       // signalCount
 
  // slots: name, argc, parameters, tag, flags
-       1,    0,   94,    2, 0x0a,
-       3,    0,   95,    2, 0x0a,
-       4,    0,   96,    2, 0x0a,
-       5,    0,   97,    2, 0x0a,
-       6,    0,   98,    2, 0x0a,
-       7,    0,   99,    2, 0x0a,
-       8,    0,  100,    2, 0x0a,
-       9,    0,  101,    2, 0x0a,
-      10,    0,  102,    2, 0x0a,
-      11,    0,  103,    2, 0x0a,
-      12,    0,  104,    2, 0x0a,
-      13,    0,  105,    2, 0x0a,
-      14,    0,  106,    2, 0x0a,
-      15,    0,  107,    2, 0x0a,
-      16,    0,  108,    2, 0x0a,
-      17,    0,  109,    2, 0x0a,
+       1,    0,  114,    2, 0x08,
+       3,    0,  115,    2, 0x08,
+       4,    0,  116,    2, 0x08,
+       5,    0,  117,    2, 0x08,
+       6,    0,  118,    2, 0x08,
+       7,    0,  119,    2, 0x08,
+       8,    0,  120,    2, 0x08,
+       9,    0,  121,    2, 0x08,
+      10,    0,  122,    2, 0x08,
+      11,    0,  123,    2, 0x08,
+      12,    0,  124,    2, 0x08,
+      13,    0,  125,    2, 0x08,
+      14,    0,  126,    2, 0x08,
+      15,    0,  127,    2, 0x08,
+      16,    0,  128,    2, 0x08,
+      17,    0,  129,    2, 0x08,
+      18,    0,  130,    2, 0x08,
+      19,    0,  131,    2, 0x08,
+      20,    0,  132,    2, 0x08,
+      21,    0,  133,    2, 0x0a,
 
  // slots: parameters
+    QMetaType::Void,
+    QMetaType::Void,
+    QMetaType::Void,
+    QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
@@ -123,14 +137,18 @@ void mondossier::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         case 5: _t->supprPreference(); break;
         case 6: _t->supprRejet(); break;
         case 7: _t->supprExigence(); break;
-        case 8: _t->maj_dossier(); break;
-        case 9: _t->sauvegarder_modif(); break;
-        case 10: _t->modifier_infos(); break;
-        case 11: _t->enable_branche(); break;
-        case 12: _t->enable_filiere(); break;
-        case 13: _t->enable_credits(); break;
-        case 14: _t->sauvegarder_dossier(); break;
-        case 15: _t->suppr_UV_suivies(); break;
+        case 8: _t->sauvegarder_modif(); break;
+        case 9: _t->modifier_infos(); break;
+        case 10: _t->enable_branche(); break;
+        case 11: _t->enable_credits(); break;
+        case 12: _t->add_critere_branche(); break;
+        case 13: _t->add_critere_filiere(); break;
+        case 14: _t->add_critere_cursus(); break;
+        case 15: _t->sauvegarder_dossier(); break;
+        case 16: _t->suppr_UV_suivies(); break;
+        case 17: _t->generer_suggestion(); break;
+        case 18: _t->voirsuggestion(); break;
+        case 19: _t->maj_dossier(); break;
         default: ;
         }
     }
@@ -162,13 +180,13 @@ int mondossier::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 16)
+        if (_id < 20)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 16;
+        _id -= 20;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 16)
+        if (_id < 20)
             *reinterpret_cast<int*>(_a[0]) = -1;
-        _id -= 16;
+        _id -= 20;
     }
     return _id;
 }

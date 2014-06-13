@@ -90,6 +90,7 @@ private slots:
     void sauvegarder_dossier();
     void suppr_UV_suivies();
     void generer_suggestion();
+    void voirsuggestion();
 
 public slots :
     void maj_dossier();

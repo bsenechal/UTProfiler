@@ -117,6 +117,7 @@ public:
     QPushButton *suggestion_uv;
     QListWidget *liste_solutions;
     QLabel *label_selection_uv_2;
+    QPushButton *voir_suggestion;
     QLabel *label;
 
     void setupUi(QDialog *mondossier)
@@ -496,6 +497,9 @@ public:
         label_selection_uv_2 = new QLabel(choix);
         label_selection_uv_2->setObjectName(QStringLiteral("label_selection_uv_2"));
         label_selection_uv_2->setGeometry(QRect(820, 30, 61, 20));
+        voir_suggestion = new QPushButton(choix);
+        voir_suggestion->setObjectName(QStringLiteral("voir_suggestion"));
+        voir_suggestion->setGeometry(QRect(800, 400, 81, 61));
         onglets_dossier->addTab(choix, QString());
         fond_3->raise();
         add_exigence->raise();
@@ -517,6 +521,7 @@ public:
         suggestion_uv->raise();
         liste_solutions->raise();
         label_selection_uv_2->raise();
+        voir_suggestion->raise();
         label = new QLabel(mondossier);
         label->setObjectName(QStringLiteral("label"));
         label->setGeometry(QRect(0, 0, 911, 61));
@@ -593,6 +598,7 @@ public:
         fond_3->setText(QString());
         suggestion_uv->setText(QApplication::translate("mondossier", "G\303\251n\303\251rer une suggestion d'UVs", 0));
         label_selection_uv_2->setText(QApplication::translate("mondossier", "Solutions", 0));
+        voir_suggestion->setText(QApplication::translate("mondossier", "Voir", 0));
         onglets_dossier->setTabText(onglets_dossier->indexOf(choix), QApplication::translate("mondossier", "Mes Choix", 0));
         label->setText(QString());
     } // retranslateUi

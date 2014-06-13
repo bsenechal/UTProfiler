@@ -45,6 +45,7 @@ private:
 public:
     explicit afficherchoixprev(QDialog *parent = 0);
     void ajoutprev(Mapsugg_UV2 mapsuggestion);
+    void afficherfrombase(QString solution);
     ~afficherchoixprev();
 private slots:
     void sauvegarde_solutions();

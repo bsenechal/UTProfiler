@@ -1292,6 +1292,19 @@
       <string>Solutions</string>
      </property>
     </widget>
+    <widget class="QPushButton" name="voir_suggestion">
+     <property name="geometry">
+      <rect>
+       <x>800</x>
+       <y>400</y>
+       <width>81</width>
+       <height>61</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Voir</string>
+     </property>
+    </widget>
     <zorder>fond_3</zorder>
     <zorder>add_exigence</zorder>
     <zorder>label_titre_choix</zorder>
@@ -1312,6 +1325,7 @@
     <zorder>suggestion_uv</zorder>
     <zorder>liste_solutions</zorder>
     <zorder>label_selection_uv_2</zorder>
+    <zorder>voir_suggestion</zorder>
    </widget>
   </widget>
   <widget class="QLabel" name="label">

@@ -50,6 +50,8 @@ mondossier::mondossier(QWidget *parent) :
     QObject::connect(ui->comboBox_filiere, SIGNAL(currentIndexChanged(int)), this, SLOT(add_critere_filiere()));
     QObject::connect(ui->liste_selection_UV, SIGNAL(currentRowChanged(int)), this, SLOT(enable_credits()));
     QObject::connect(ui->suggestion_uv, SIGNAL(clicked()), this, SLOT(generer_suggestion()));
+    QObject::connect(ui->voir_suggestion, SIGNAL(clicked()), this, SLOT(voirsuggestion()));
+
 }
 
 void mondossier::initdossier() {
@@ -62,6 +64,7 @@ void mondossier::initdossier() {
 
     remplirchoix();
     rempliruvsuivies();
+    remplirlistesolutions();
 }
 
 void mondossier::enable_credits() {
@@ -538,9 +541,18 @@ mondossier::~mondossier()
 
 
 void mondossier::remplirlistesolutions(){
+    ui->liste_solutions->clear();
+    qDebug()<<"remplir soluc";
     QSqlQuery query;
-    query = db->execute("SELECT DISTINCT id_solution FROM solution_choixprev;");
+    query = db->execute("SELECT DISTINCT id_solution FROM assoc_solution_dossier WHERE id_dossier="+this->numerodossier+";");
     while(query.next()){
         ui->liste_solutions->addItem(query.value(0).toString());
+    }
+}
+
+void mondossier::voirsuggestion(){
+    if (ui->liste_solutions->currentItem()){
+    choixprev.afficherfrombase(ui->liste_solutions->currentItem()->text());
+    choixprev.exec();
     }
 }
