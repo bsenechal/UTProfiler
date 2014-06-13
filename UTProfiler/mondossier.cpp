@@ -456,7 +456,7 @@ else {
 
                             //qDebug()<<"UV : "<<p->first;
                             //On ajoute les UVs aux map de semestres : 1 map contenant les UV [S1]['LO21']=TSH      1 map contenant le nb de types [S1][CS]=2
-                            int j=1;
+                            int j=3;
                             if (!map_suggestion_nb2[j]["total"].first) {
                                 map_suggestion_nb2[j]["total"].first=0;
                                 map_suggestion_nb2[j]["total"].second=0;
