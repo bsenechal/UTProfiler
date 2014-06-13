@@ -39,7 +39,6 @@ private:
     Cursus *cursus;
     Semestre *semestres;
     uvmnger *uvm;
-    afficherchoixprev choixprev;
 
     void remplirlistesolutions();
 

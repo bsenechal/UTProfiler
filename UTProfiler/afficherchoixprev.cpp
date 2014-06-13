@@ -41,7 +41,6 @@ void afficherchoixprev::ajoutprev(Mapsugg_UV2 mapsuggestion) {
     int i=0;
     for(p = mapsuggestion.begin(); p != mapsuggestion.end(); p++)
     {
-        qDebug()<<i++;
         QString sem = QString::number(p->first);
         int total_cs = 0;
         int total_tm = 0;
@@ -69,10 +68,8 @@ void afficherchoixprev::ajoutprev(Mapsugg_UV2 mapsuggestion) {
         colonne2->addWidget(map_liste[sem].categorie);
         colonne3->addWidget(map_liste[sem].credits);
 
-        //qDebug()<<"Semestre "<<p->first;
         std::map<QString, std::pair<QString, int> >::iterator r;
         for(r = p->second.begin(); r != p->second.end(); r++){
-            //qDebug()<<"uv "<<r->first;
             QString uv=r->first;
             QString type=r->second.first;
             QString nbcd=QString::number(r->second.second);
@@ -120,7 +117,6 @@ void afficherchoixprev::ajoutprev(Mapsugg_UV2 mapsuggestion) {
 
 
 void afficherchoixprev::sauvegarde_solutions(){
-    qDebug()<<"ici";
     QString id_dossier;
     QString id_solution;
     Connexion *c = Connexion::getInstance();
@@ -174,7 +170,6 @@ void afficherchoixprev::sauvegarde_solutions(){
 
 
 void afficherchoixprev::afficherfrombase(QString solution) {
-    qDebug()<<solution;
 //map_suggestion_nb [semestre][Categorie] first=nbUv  second=credits
 //On parcour notre map
 
@@ -227,7 +222,6 @@ void afficherchoixprev::afficherfrombase(QString solution) {
         QSqlQuery query2;
         query2 = db->execute("select uv, categorie, credits from solution_semestre where id_solution="+solution+" AND num_semestre="+sem+";");
         while (query2.next()){
-            //qDebug()<<"uv "<<r->first;
             QString uv=query2.value(0).toString();
             QString type=query2.value(1).toString();
             QString nbcd=query2.value(2).toString();

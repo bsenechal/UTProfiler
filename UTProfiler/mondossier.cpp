@@ -58,7 +58,6 @@ void mondossier::initdossier() {
     QSqlQuery query;
     query = db->execute("SELECT id_dossier FROM Dossier WHERE login_etudiant='" + c->getLogin() + "';");
     if(query.next()) {
-        qDebug()<<"Init du dossier";
         this->numerodossier=query.value(0).toString();
     }
 
@@ -292,7 +291,6 @@ void mondossier::remplirchoix(){
 
         for (int i = 0; i < ui->liste_choix_uv->count(); i++) {
             if(ui->liste_choix_uv->item(i)->text()==query.value(0).toString()) {
-                qDebug()<<ui->liste_choix_uv->item(i);
                 delete ui->liste_choix_uv->item(i);
             };
         }
@@ -306,7 +304,6 @@ void mondossier::rempliruvsuivies(){
     if (!this->numerodossier.isNull()) {
     //Fenetre des UVs suivies
     query = db->execute("SELECT code_uv, note,  semestre, nom_categorie, nbcredits, assoc_categorie_UV.id_acatu FROM UV_suivies, assoc_categorie_UV WHERE UV_suivies.id_acatu=assoc_categorie_UV.id_acatu AND UV_suivies.id_dossier="+this->numerodossier+" ORDER BY assoc_categorie_UV.id_acatu;");
-qDebug()<<"Remplissage des UVs";
 
 
     QString idsvg;
@@ -390,7 +387,6 @@ else {
     int total_total=0;
 
     while(query.next()){
-        //qDebug()<<query.value(0).toString()<<" obligation : "<<query.value(1).toInt();
         bool alreadymade=false;
          for (int i = 0; i < ui->liste_uv_suivies->count(); i++) {
             if ( (ui->liste_uv_suivies->item(i)->text()==query.value(0).toString()) && ((ui->liste_notes->item(i)->text()!="F"/*obtenue*/)||(ui->liste_notes->item(i)->text()!="FX"/*obtenue*/))) alreadymade=true;
@@ -409,7 +405,6 @@ else {
     // Avec la structure de la mort //
     map<QString, detailuv >::iterator s;
     for(s = map_all_uv.begin(); s != map_all_uv.end(); s++) {
-        //qDebug()<<s->first<<" de categorie : "<<s->second.categorie<<" donne "<<s->second.credit<<" credits. Obligation : "<<s->second.obligation;
 
         for (int i = 0; i < ui->liste_exigences->count(); i++) {
             if (ui->liste_exigences->item(i)->text()==s->first) {
@@ -421,14 +416,12 @@ else {
         }
         for (int i = 0; i < ui->liste_preferences->count(); i++) {
             if (ui->liste_preferences->item(i)->text()==s->first) {
-                qDebug()<<s->first+" is In preferences";
                 s->second.obligation=s->second.obligation + 4;
                if (s->second.obligation>10) s->second.obligation=10;
             }
         }
         for (int i = 0; i < ui->liste_rejets->count(); i++) {
             if (ui->liste_rejets->item(i)->text()==s->first) {
-                qDebug()<<s->first+" is In rejets";
                 s->second.obligation= - 1;
             }
         }
@@ -454,7 +447,6 @@ else {
 
                         if (s->second.obligation==i && !alreadyused.contains(s->first)){
 
-                            //qDebug()<<"UV : "<<p->first;
                             //On ajoute les UVs aux map de semestres : 1 map contenant les UV [S1]['LO21']=TSH      1 map contenant le nb de types [S1][CS]=2
                             int j=3;
                             if (!map_suggestion_nb2[j]["total"].first) {
@@ -477,7 +469,6 @@ else {
                                     map_suggestion_nb2[j][s->second.categorie].second=0;
                                 }
                             }
-                            //qDebug()<<"CS + TM : "<<map_suggestion_nb2[j]["CS"].first+map_suggestion_nb2[j]["TM"].first;
 
                             //On met à jour les infos ici
                             if (j<=8) {
@@ -506,17 +497,12 @@ else {
 
                             //[S1]["LO21"].first=categ [S1]["LO21"].second=nbcredit
                             }
-                            //qDebug()<<"semestre"<<j;
-                            //qDebug()<<map_suggestion_nb[j][p->second.second];
-                            //qDebug()<<map_suggestion_nb[j]["total"];
-                            //qDebug()<< map_suggestion_uv[j][p->first];
                             alreadyused.push_back(s->first);
                         }
 
                 }//Fin if condition d'obtentions
                 else {
-                    qDebug()<<"Toutes les conditions sont remplies";
-                    qDebug()<<"CS : "<<total_cs<<" TM : "<<total_tm<<" TSH : "<<total_tsh<<" Total : "<<total_total;
+
                 }
 
             }
@@ -529,6 +515,7 @@ else {
 
 //map_suggestion_uv à passer au constructeur de la classe qui va afficher !
     //choixprev.ajoutprev(map_suggestion_uv);
+    afficherchoixprev choixprev;
     choixprev.ajoutprev(map_suggestion_uv2);
     choixprev.exec();
 }
@@ -542,7 +529,6 @@ mondossier::~mondossier()
 
 void mondossier::remplirlistesolutions(){
     ui->liste_solutions->clear();
-    qDebug()<<"remplir soluc";
     QSqlQuery query;
     query = db->execute("SELECT DISTINCT id_solution FROM assoc_solution_dossier WHERE id_dossier="+this->numerodossier+";");
     while(query.next()){
@@ -552,7 +538,8 @@ void mondossier::remplirlistesolutions(){
 
 void mondossier::voirsuggestion(){
     if (ui->liste_solutions->currentItem()){
-    choixprev.afficherfrombase(ui->liste_solutions->currentItem()->text());
-    choixprev.exec();
+        afficherchoixprev choixprev;
+        choixprev.afficherfrombase(ui->liste_solutions->currentItem()->text());
+        choixprev.exec();
     }
 }
