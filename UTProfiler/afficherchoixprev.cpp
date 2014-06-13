@@ -4,6 +4,8 @@
 #include <QVBoxLayout>
 #include <QHBoxLayout>
 #include <QLabel>
+#include <QSpacerItem>
+#include <QGroupBox>
 
 
 afficherchoixprev::afficherchoixprev(QDialog *parent) :
@@ -25,13 +27,14 @@ afficherchoixprev::~afficherchoixprev()
 void afficherchoixprev::ajoutprev(Mapsugg_UV2 mapsuggestion) {
 //map_suggestion_nb [semestre][Categorie] first=nbUv  second=credits
 //On parcour notre map
-
     QHBoxLayout *layout = new QHBoxLayout;
     QHBoxLayout *layout_sauvegarder = new QHBoxLayout;
     QVBoxLayout *colonne = new QVBoxLayout;
-    QListWidget *l = new QListWidget;
+    QHBoxLayout *l = new QHBoxLayout;
+    QGroupBox *group = new QGroupBox;
     colonne->addWidget(new QLabel (""));
-    colonne->addWidget(l);
+    colonne->addWidget(new QLabel (""));
+    colonne->addSpacerItem(new QSpacerItem(50,202));
     colonne->addWidget(new QLabel ("Total CS"));
     colonne->addWidget(new QLabel ("Total TM"));
     colonne->addWidget(new QLabel ("Total TSH"));
@@ -39,10 +42,11 @@ void afficherchoixprev::ajoutprev(Mapsugg_UV2 mapsuggestion) {
 
     layout->addLayout(colonne);
     Mapsugg_UV2 ::iterator p;
-    int i=0;
+
     for(p = mapsuggestion.begin(); p != mapsuggestion.end(); p++)
     {
         QString sem = QString::number(p->first);
+        group = new QGroupBox;
         int total_cs = 0;
         int total_tm = 0;
         int total_credits = 0;
@@ -52,6 +56,12 @@ void afficherchoixprev::ajoutprev(Mapsugg_UV2 mapsuggestion) {
         QVBoxLayout *colonne1 = new QVBoxLayout;
         QVBoxLayout *colonne2 = new QVBoxLayout;
         QVBoxLayout *colonne3 = new QVBoxLayout;
+        QString nom_semestre;
+
+        nom_semestre = "Semestre n°" + sem;
+        colonne1->addWidget(new QLabel (nom_semestre));
+        colonne2->addWidget(new QLabel (""));
+        colonne3->addWidget(new QLabel (""));
 
         colonne1->addWidget(new QLabel ("UV"));
         colonne2->addWidget(new QLabel ("Categorie"));
@@ -61,9 +71,12 @@ void afficherchoixprev::ajoutprev(Mapsugg_UV2 mapsuggestion) {
         map_liste[sem].categorie = new QListWidget;
         map_liste[sem].credits = new QListWidget;
 
-        map_liste[sem].uv->setMaximumWidth(50);
-        map_liste[sem].categorie->setMaximumWidth(50);
-        map_liste[sem].credits->setMaximumWidth(25);
+        map_liste[sem].uv->setMaximumHeight(200);
+        map_liste[sem].categorie->setMaximumHeight(200);
+        map_liste[sem].credits->setMaximumHeight(200);
+        map_liste[sem].uv->setMaximumWidth(60);
+        map_liste[sem].categorie->setMaximumWidth(60);
+        map_liste[sem].credits->setMaximumWidth(30);
 
         colonne1->addWidget(map_liste[sem].uv);
         colonne2->addWidget(map_liste[sem].categorie);
@@ -102,12 +115,15 @@ void afficherchoixprev::ajoutprev(Mapsugg_UV2 mapsuggestion) {
         layout->addLayout(colonne1);
         layout->addLayout(colonne2);
         layout->addLayout(colonne3);
+
+        group->setLayout(layout);
+        l->addWidget(group);
   }
 
 
     layout_sauvegarder->addWidget(btn_sauvegarder);
     layout->addLayout(layout_sauvegarder);
-    this->setLayout(layout);
+    this->setLayout(l);
 }
 
 
