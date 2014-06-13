@@ -126,17 +126,18 @@ void afficherchoixprev::ajoutprev(Mapsugg_UV2 mapsuggestion) {
     layout = new QHBoxLayout;
     colonne->addWidget(new QLabel (""));
     colonne->addWidget(new QLabel (""));
-    colonne->addSpacerItem(new QSpacerItem(50,202));
+    colonne->addSpacerItem(new QSpacerItem(50,82));
+    colonne->addWidget(btn_sauvegarder);
+    colonne->addSpacerItem(new QSpacerItem(50,82));
     colonne->addWidget(new QLabel ("Total : " + QString::number(cred_cs)));
     colonne->addWidget(new QLabel ("Total : " + QString::number(cred_tm)));
     colonne->addWidget(new QLabel ("Total :" + QString::number(cred_tsh)));
     colonne->addWidget(new QLabel ("Total : " + QString::number(cred_tot)));
+
     layout->addLayout(colonne);
     group->setLayout(layout);
     l->addWidget(group);
 
-    layout_sauvegarder->addWidget(btn_sauvegarder);
-    layout->addLayout(layout_sauvegarder);
     this->setLayout(l);
 }
 
@@ -191,43 +192,43 @@ void afficherchoixprev::sauvegarde_solutions(){
 }
 
 
-
-
-
-
-
-
-
-
-
 void afficherchoixprev::afficherfrombase(QString solution) {
 //map_suggestion_nb [semestre][Categorie] first=nbUv  second=credits
 //On parcour notre map
-
+    int cred_cs = 0;
+    int cred_tm = 0;
+    int cred_tsh = 0;
+    int cred_tot = 0;
     QHBoxLayout *layout = new QHBoxLayout;
-    QHBoxLayout *layout_sauvegarder = new QHBoxLayout;
     QVBoxLayout *colonne = new QVBoxLayout;
-    QListWidget *l = new QListWidget;
+    QHBoxLayout *l = new QHBoxLayout;
+    QGroupBox *group = new QGroupBox;
     colonne->addWidget(new QLabel (""));
-    colonne->addWidget(l);
+    colonne->addWidget(new QLabel (""));
+    colonne->addSpacerItem(new QSpacerItem(50,202));
     colonne->addWidget(new QLabel ("Total CS"));
     colonne->addWidget(new QLabel ("Total TM"));
     colonne->addWidget(new QLabel ("Total TSH"));
     colonne->addWidget(new QLabel ("Total "));
 
     layout->addLayout(colonne);
+    group->setLayout(layout);
+    l->addWidget(group);
 
 
     QSqlQuery query;
     query = db->execute("select distinct num_semestre from solution_semestre where id_solution="+solution+"");
 
     while (query.next()) {
-
         QString sem = query.value(0).toString();
+        group = new QGroupBox;
+        group->setTitle("Semestre n°" + sem);
+        layout = new QHBoxLayout;
         int total_cs = 0;
         int total_tm = 0;
         int total_credits = 0;
         int total_tsh = 0;
+
 
 
         QVBoxLayout *colonne1 = new QVBoxLayout;
@@ -244,7 +245,7 @@ void afficherchoixprev::afficherfrombase(QString solution) {
 
         map_liste[sem].uv->setMaximumWidth(50);
         map_liste[sem].categorie->setMaximumWidth(50);
-        map_liste[sem].credits->setMaximumWidth(25);
+        map_liste[sem].credits->setMaximumWidth(30);
 
         colonne1->addWidget(map_liste[sem].uv);
         colonne2->addWidget(map_liste[sem].categorie);
@@ -261,13 +262,13 @@ void afficherchoixprev::afficherfrombase(QString solution) {
             map_liste[sem].credits->addItem(nbcd);
             map_liste[sem].categorie->addItem(type);
 
-            if (type == "CS")
-                total_cs += nbcd.toInt();
-            else if (type == "TM")
-                total_tm += nbcd.toInt();
-            else if (type == "TSH")
-                total_tsh += nbcd.toInt();
+            if (type == "CS") { total_cs += nbcd.toInt(); cred_cs += nbcd.toInt(); }
 
+            else if (type == "TM") { total_tm += nbcd.toInt(); cred_tm += nbcd.toInt(); }
+
+            else if (type == "TSH") { total_tsh += nbcd.toInt(); cred_tsh += nbcd.toInt(); }
+
+            cred_tot += nbcd.toInt();
             total_credits += nbcd.toInt();
         }
 
@@ -280,14 +281,29 @@ void afficherchoixprev::afficherfrombase(QString solution) {
             colonne2->addWidget(new QLabel (""));
             colonne3->addWidget(new QLabel (""));
         }
-
         layout->addLayout(colonne1);
         layout->addLayout(colonne2);
         layout->addLayout(colonne3);
+
+        group->setLayout(layout);
+        l->addWidget(group);
   }
 
+    group = new QGroupBox;
+    colonne = new QVBoxLayout;
+    layout = new QHBoxLayout;
+    colonne->addWidget(new QLabel (""));
+    colonne->addWidget(new QLabel (""));
+    colonne->addSpacerItem(new QSpacerItem(50,200));
+    colonne->addWidget(new QLabel ("Total : " + QString::number(cred_cs)));
+    colonne->addWidget(new QLabel ("Total : " + QString::number(cred_tm)));
+    colonne->addWidget(new QLabel ("Total : " + QString::number(cred_tsh)));
+    colonne->addWidget(new QLabel ("Total : " + QString::number(cred_tot)));
 
-    layout_sauvegarder->addWidget(btn_sauvegarder);
-    layout->addLayout(layout_sauvegarder);
-    this->setLayout(layout);
+
+    layout->addLayout(colonne);
+    group->setLayout(layout);
+    l->addWidget(group);
+
+    this->setLayout(l);
 }
