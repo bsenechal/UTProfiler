@@ -28,6 +28,8 @@ mondossier::mondossier(QWidget *parent) :
 
     ui->comboBox_cursus->addItem("");
     ui->comboBox_cursus->addItems(cursus->getListe_cursus());
+    ui->comboBox_choix_cursus->addItem("");
+    ui->comboBox_choix_cursus->addItems(cursus->getListe_cursus());
     ui->comboBox_note->addItems(db->getColonne("SELECT Note FROM Note;"));
     ui->comboBox_semestre->addItems(semestres->getListe_semestres());
     QObject::connect(ui->ajout_uv, SIGNAL(clicked()), this, SLOT(ajoutUV()));
@@ -51,6 +53,9 @@ mondossier::mondossier(QWidget *parent) :
     QObject::connect(ui->liste_selection_UV, SIGNAL(currentRowChanged(int)), this, SLOT(enable_credits()));
     QObject::connect(ui->suggestion_uv, SIGNAL(clicked()), this, SLOT(generer_suggestion()));
     QObject::connect(ui->voir_suggestion, SIGNAL(clicked()), this, SLOT(voirsuggestion()));
+    QObject::connect(ui->comboBox_choix_cursus, SIGNAL(currentIndexChanged(int)), this, SLOT(add_choix_critere_cursus()));
+    QObject::connect(ui->comboBox_choix_branche, SIGNAL(currentIndexChanged(int)), this, SLOT(add_choix_critere_branche()));
+    QObject::connect(ui->comboBox_choix_filiere, SIGNAL(currentIndexChanged(int)), this, SLOT(add_choix_critere_filiere()));
 
 }
 
@@ -99,6 +104,26 @@ void mondossier::add_critere_cursus() {
 
     Tools::maj_liste(ui->liste_selection_UV, db->execute("SELECT a.code_uv FROM assoc_branche_uv a, branche b WHERE b.nom = a.nom_branche AND b.nom_cursus = '" + ui->comboBox_cursus->currentText() + "';"));
 }
+
+
+
+
+void mondossier::add_choix_critere_filiere() {
+    Tools::maj_liste(ui->liste_choix_uv, db->execute("SELECT u.Code FROM UV u, assoc_branche_uv a, branche b, assoc_filiere_uv afu, filiere f WHERE u.code = a.code_uv AND b.nom = a.nom_branche AND afu.code_uv = u.code AND afu.nom_filiere = f.nom AND b.nom_cursus = '" + ui->comboBox_choix_cursus->currentText() + "' AND b.nom = '" + ui->comboBox_branche->currentText() + "' AND f.nom = '" + ui->comboBox_filiere->currentText() + "';"));
+}
+
+void mondossier::add_choix_critere_branche() {
+   Tools::enable_combobox(ui->comboBox_choix_filiere, filieres->getFilieresFromBranche(ui->comboBox_choix_branche->currentText()));
+
+   Tools::maj_liste(ui->liste_choix_uv, db->execute("SELECT a.code_uv FROM assoc_branche_uv a, branche b WHERE b.nom = a.nom_branche AND b.nom_cursus = '" + ui->comboBox_choix_cursus->currentText() + "' AND b.nom = '" + ui->comboBox_choix_branche->currentText() + "';"));
+}
+
+void mondossier::add_choix_critere_cursus() {
+    Tools::enable_combobox(ui->comboBox_choix_branche, branches->getBranchesFromCursus(ui->comboBox_choix_cursus->currentText()));
+
+    Tools::maj_liste(ui->liste_choix_uv, db->execute("SELECT a.code_uv FROM assoc_branche_uv a, branche b WHERE b.nom = a.nom_branche AND b.nom_cursus = '" + ui->comboBox_choix_cursus->currentText() + "';"));
+}
+
 
 
 

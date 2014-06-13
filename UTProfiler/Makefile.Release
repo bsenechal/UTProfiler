@@ -144,10 +144,10 @@ compiler_rcc_make_all: release/qrc_Utc.cpp
 compiler_rcc_clean:
 	-$(DEL_FILE) release\qrc_Utc.cpp
 release/qrc_Utc.cpp: ../images/Utc.qrc \
-		../images/fond_accueil.jpg \
-		../images/bandeau_utc.jpg \
 		../images/fond_inscription.png \
-		../images/fond_pg.png
+		../images/fond_accueil.jpg \
+		../images/fond_pg.png \
+		../images/bandeau_utc.jpg
 	C:\Qt\Qt5.2.1\5.2.1\mingw48_32\bin\rcc.exe -name Utc ..\images\Utc.qrc -o release\qrc_Utc.cpp
 
 compiler_moc_header_make_all: release/moc_accueil.cpp release/moc_mondossier.cpp release/moc_inscription.cpp release/moc_administration.cpp release/moc_afficherchoixprev.cpp

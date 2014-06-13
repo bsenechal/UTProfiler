@@ -145,8 +145,8 @@ compiler_rcc_clean:
 	-$(DEL_FILE) debug\qrc_Utc.cpp
 debug/qrc_Utc.cpp: ../images/Utc.qrc \
 		../images/fond_accueil.jpg \
-		../images/fond_pg.png \
 		../images/fond_inscription.png \
+		../images/fond_pg.png \
 		../images/bandeau_utc.jpg
 	C:\Qt\Qt5.2.1\5.2.1\mingw48_32\bin\rcc.exe -name Utc ..\images\Utc.qrc -o debug\qrc_Utc.cpp
 

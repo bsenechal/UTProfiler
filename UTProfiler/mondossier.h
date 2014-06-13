@@ -90,6 +90,9 @@ private slots:
     void suppr_UV_suivies();
     void generer_suggestion();
     void voirsuggestion();
+    void add_choix_critere_branche();
+    void add_choix_critere_filiere();
+    void add_choix_critere_cursus();
 
 public slots :
     void maj_dossier();

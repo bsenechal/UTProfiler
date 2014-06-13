@@ -1060,9 +1060,9 @@
      <property name="geometry">
       <rect>
        <x>210</x>
-       <y>50</y>
+       <y>70</y>
        <width>151</width>
-       <height>321</height>
+       <height>301</height>
       </rect>
      </property>
     </widget>
@@ -1080,7 +1080,7 @@
      <property name="geometry">
       <rect>
        <x>210</x>
-       <y>30</y>
+       <y>50</y>
        <width>151</width>
        <height>16</height>
       </rect>
@@ -1095,7 +1095,7 @@
        <x>500</x>
        <y>180</y>
        <width>151</width>
-       <height>81</height>
+       <height>71</height>
       </rect>
      </property>
     </widget>
@@ -1152,7 +1152,7 @@
      <property name="geometry">
       <rect>
        <x>20</x>
-       <y>170</y>
+       <y>310</y>
        <width>161</width>
        <height>41</height>
       </rect>
@@ -1291,6 +1291,94 @@
       <string>Voir</string>
      </property>
     </widget>
+    <widget class="QGroupBox" name="group_choix_criteres_recherche">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>70</y>
+       <width>171</width>
+       <height>201</height>
+      </rect>
+     </property>
+     <property name="title">
+      <string>Critères de recherche</string>
+     </property>
+     <widget class="QLabel" name="label_choix_cursus">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>30</y>
+        <width>46</width>
+        <height>22</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Cursus</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_choix_filiere">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>150</y>
+        <width>46</width>
+        <height>22</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Filiere</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_choix_branche">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>90</y>
+        <width>51</width>
+        <height>22</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Branche</string>
+      </property>
+     </widget>
+     <widget class="QComboBox" name="comboBox_choix_cursus">
+      <property name="geometry">
+       <rect>
+        <x>60</x>
+        <y>30</y>
+        <width>91</width>
+        <height>22</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QComboBox" name="comboBox_choix_filiere">
+      <property name="enabled">
+       <bool>false</bool>
+      </property>
+      <property name="geometry">
+       <rect>
+        <x>60</x>
+        <y>150</y>
+        <width>91</width>
+        <height>22</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QComboBox" name="comboBox_choix_branche">
+      <property name="enabled">
+       <bool>false</bool>
+      </property>
+      <property name="geometry">
+       <rect>
+        <x>60</x>
+        <y>90</y>
+        <width>91</width>
+        <height>22</height>
+       </rect>
+      </property>
+     </widget>
+    </widget>
     <zorder>fond_3</zorder>
     <zorder>add_exigence</zorder>
     <zorder>label_titre_choix</zorder>
@@ -1312,6 +1400,7 @@
     <zorder>liste_solutions</zorder>
     <zorder>label_selection_uv_2</zorder>
     <zorder>voir_suggestion</zorder>
+    <zorder>group_choix_criteres_recherche</zorder>
    </widget>
   </widget>
   <widget class="QLabel" name="label">

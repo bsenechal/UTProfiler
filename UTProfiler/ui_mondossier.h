@@ -117,6 +117,13 @@ public:
     QListWidget *liste_solutions;
     QLabel *label_selection_uv_2;
     QPushButton *voir_suggestion;
+    QGroupBox *group_choix_criteres_recherche;
+    QLabel *label_choix_cursus;
+    QLabel *label_choix_filiere;
+    QLabel *label_choix_branche;
+    QComboBox *comboBox_choix_cursus;
+    QComboBox *comboBox_choix_filiere;
+    QComboBox *comboBox_choix_branche;
     QLabel *label;
 
     void setupUi(QDialog *mondossier)
@@ -438,16 +445,16 @@ public:
         label_titre_choix->setFont(font3);
         liste_choix_uv = new QListWidget(choix);
         liste_choix_uv->setObjectName(QStringLiteral("liste_choix_uv"));
-        liste_choix_uv->setGeometry(QRect(210, 50, 151, 321));
+        liste_choix_uv->setGeometry(QRect(210, 70, 151, 301));
         liste_exigences = new QListWidget(choix);
         liste_exigences->setObjectName(QStringLiteral("liste_exigences"));
         liste_exigences->setGeometry(QRect(500, 70, 151, 81));
         label_selection_uv = new QLabel(choix);
         label_selection_uv->setObjectName(QStringLiteral("label_selection_uv"));
-        label_selection_uv->setGeometry(QRect(210, 30, 151, 16));
+        label_selection_uv->setGeometry(QRect(210, 50, 151, 16));
         liste_preferences = new QListWidget(choix);
         liste_preferences->setObjectName(QStringLiteral("liste_preferences"));
-        liste_preferences->setGeometry(QRect(500, 180, 151, 81));
+        liste_preferences->setGeometry(QRect(500, 180, 151, 71));
         liste_rejets = new QListWidget(choix);
         liste_rejets->setObjectName(QStringLiteral("liste_rejets"));
         liste_rejets->setGeometry(QRect(500, 290, 151, 81));
@@ -462,7 +469,7 @@ public:
         label_rejets->setGeometry(QRect(500, 270, 151, 16));
         sauvegarder_choix = new QPushButton(choix);
         sauvegarder_choix->setObjectName(QStringLiteral("sauvegarder_choix"));
-        sauvegarder_choix->setGeometry(QRect(10, 170, 181, 61));
+        sauvegarder_choix->setGeometry(QRect(20, 310, 161, 41));
         add_preference = new QPushButton(choix);
         add_preference->setObjectName(QStringLiteral("add_preference"));
         add_preference->setGeometry(QRect(410, 200, 51, 41));
@@ -484,16 +491,39 @@ public:
         fond_3->setPixmap(QPixmap(QString::fromUtf8(":/images/fond_pg.png")));
         suggestion_uv = new QPushButton(choix);
         suggestion_uv->setObjectName(QStringLiteral("suggestion_uv"));
-        suggestion_uv->setGeometry(QRect(200, 400, 271, 61));
+        suggestion_uv->setGeometry(QRect(220, 410, 231, 41));
         liste_solutions = new QListWidget(choix);
         liste_solutions->setObjectName(QStringLiteral("liste_solutions"));
-        liste_solutions->setGeometry(QRect(820, 60, 51, 321));
+        liste_solutions->setGeometry(QRect(760, 60, 101, 251));
         label_selection_uv_2 = new QLabel(choix);
         label_selection_uv_2->setObjectName(QStringLiteral("label_selection_uv_2"));
-        label_selection_uv_2->setGeometry(QRect(820, 30, 61, 20));
+        label_selection_uv_2->setGeometry(QRect(760, 40, 61, 20));
         voir_suggestion = new QPushButton(choix);
         voir_suggestion->setObjectName(QStringLiteral("voir_suggestion"));
-        voir_suggestion->setGeometry(QRect(800, 400, 81, 61));
+        voir_suggestion->setGeometry(QRect(760, 330, 101, 31));
+        group_choix_criteres_recherche = new QGroupBox(choix);
+        group_choix_criteres_recherche->setObjectName(QStringLiteral("group_choix_criteres_recherche"));
+        group_choix_criteres_recherche->setGeometry(QRect(20, 70, 171, 201));
+        label_choix_cursus = new QLabel(group_choix_criteres_recherche);
+        label_choix_cursus->setObjectName(QStringLiteral("label_choix_cursus"));
+        label_choix_cursus->setGeometry(QRect(10, 30, 46, 22));
+        label_choix_filiere = new QLabel(group_choix_criteres_recherche);
+        label_choix_filiere->setObjectName(QStringLiteral("label_choix_filiere"));
+        label_choix_filiere->setGeometry(QRect(10, 150, 46, 22));
+        label_choix_branche = new QLabel(group_choix_criteres_recherche);
+        label_choix_branche->setObjectName(QStringLiteral("label_choix_branche"));
+        label_choix_branche->setGeometry(QRect(10, 90, 51, 22));
+        comboBox_choix_cursus = new QComboBox(group_choix_criteres_recherche);
+        comboBox_choix_cursus->setObjectName(QStringLiteral("comboBox_choix_cursus"));
+        comboBox_choix_cursus->setGeometry(QRect(60, 30, 91, 22));
+        comboBox_choix_filiere = new QComboBox(group_choix_criteres_recherche);
+        comboBox_choix_filiere->setObjectName(QStringLiteral("comboBox_choix_filiere"));
+        comboBox_choix_filiere->setEnabled(false);
+        comboBox_choix_filiere->setGeometry(QRect(60, 150, 91, 22));
+        comboBox_choix_branche = new QComboBox(group_choix_criteres_recherche);
+        comboBox_choix_branche->setObjectName(QStringLiteral("comboBox_choix_branche"));
+        comboBox_choix_branche->setEnabled(false);
+        comboBox_choix_branche->setGeometry(QRect(60, 90, 91, 22));
         onglets_dossier->addTab(choix, QString());
         fond_3->raise();
         add_exigence->raise();
@@ -516,6 +546,7 @@ public:
         liste_solutions->raise();
         label_selection_uv_2->raise();
         voir_suggestion->raise();
+        group_choix_criteres_recherche->raise();
         label = new QLabel(mondossier);
         label->setObjectName(QStringLiteral("label"));
         label->setGeometry(QRect(0, 0, 911, 61));
@@ -525,7 +556,7 @@ public:
 
         retranslateUi(mondossier);
 
-        onglets_dossier->setCurrentIndex(0);
+        onglets_dossier->setCurrentIndex(2);
 
 
         QMetaObject::connectSlotsByName(mondossier);
@@ -593,6 +624,10 @@ public:
         suggestion_uv->setText(QApplication::translate("mondossier", "G\303\251n\303\251rer une suggestion d'UVs", 0));
         label_selection_uv_2->setText(QApplication::translate("mondossier", "Solutions", 0));
         voir_suggestion->setText(QApplication::translate("mondossier", "Voir", 0));
+        group_choix_criteres_recherche->setTitle(QApplication::translate("mondossier", "Crit\303\250res de recherche", 0));
+        label_choix_cursus->setText(QApplication::translate("mondossier", "Cursus", 0));
+        label_choix_filiere->setText(QApplication::translate("mondossier", "Filiere", 0));
+        label_choix_branche->setText(QApplication::translate("mondossier", "Branche", 0));
         onglets_dossier->setTabText(onglets_dossier->indexOf(choix), QApplication::translate("mondossier", "Mes Choix", 0));
         label->setText(QString());
     } // retranslateUi
