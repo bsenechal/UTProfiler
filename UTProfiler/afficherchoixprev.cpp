@@ -11,6 +11,7 @@ afficherchoixprev::afficherchoixprev(QDialog *parent) :
     ui(new Ui::afficherchoixprev)
 {
     ui->setupUi(this);
+    this->setWindowTitle("UTProfiler : Génération de choix d'UV");
     db = dbmanager::getInstance();
     btn_sauvegarder = new QPushButton("Sauvegarder");
     QObject::connect(btn_sauvegarder, SIGNAL(clicked()), this, SLOT(sauvegarde_solutions()));

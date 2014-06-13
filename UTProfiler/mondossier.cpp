@@ -7,6 +7,7 @@ mondossier::mondossier(QWidget *parent) :
     ui(new Ui::mondossier)
 {
     ui->setupUi(this);
+    this->setWindowTitle("UTProfiler : Mon dossier");
     cursus = Cursus::getInstance();
     filieres = Filieres::getInstance();
     branches = Branches::getInstance();

@@ -144,6 +144,9 @@ void Accueil::affiche_uv() {
 void Accueil::connexionUser() {
         QSqlQuery query;
 
+        if (c->getLogin() != NULL)
+            Connexion::kill();
+
         QString res = c->connexion(ui->input_login->text(), ui->input_mdp->text());
 
         if (res != "ok") {
