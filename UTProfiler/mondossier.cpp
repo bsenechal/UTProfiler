@@ -66,10 +66,17 @@ void mondossier::initdossier() {
         this->numerodossier=query.value(0).toString();
     }
 
+    ui->liste_uv_suivies->clear();
+    ui->liste_notes->clear();
+    ui->liste_semestres->clear();
+    ui->liste_credits->clear();
+    ui->liste_possibilite_uv->clear();
+
     remplirchoix();
     rempliruvsuivies();
     remplirlistesolutions();
 }
+
 
 void mondossier::enable_credits() {
     QStringList combinaisons;
@@ -96,13 +103,13 @@ void mondossier::add_critere_filiere() {
 void mondossier::add_critere_branche() {
    Tools::enable_combobox(ui->comboBox_filiere, filieres->getFilieresFromBranche(ui->comboBox_branche->currentText()));
 
-   Tools::maj_liste(ui->liste_selection_UV, db->execute("SELECT a.code_uv FROM assoc_branche_uv a, branche b WHERE b.nom = a.nom_branche AND b.nom_cursus = '" + ui->comboBox_cursus->currentText() + "' AND b.nom = '" + ui->comboBox_branche->currentText() + "';"));
+   Tools::maj_liste(ui->liste_selection_UV, db->execute("SELECT a.code_uv FROM assoc_branche_uv a, branche b WHERE b.nom = a.nom_branche AND b.nom_cursus = '" + ui->comboBox_cursus->currentText() + "' AND b.nom = '" + ui->comboBox_branche->currentText() + "' order by a.code_uv;"));
 }
 
 void mondossier::add_critere_cursus() {
     Tools::enable_combobox(ui->comboBox_branche, branches->getBranchesFromCursus(ui->comboBox_cursus->currentText()));
 
-    Tools::maj_liste(ui->liste_selection_UV, db->execute("SELECT a.code_uv FROM assoc_branche_uv a, branche b WHERE b.nom = a.nom_branche AND b.nom_cursus = '" + ui->comboBox_cursus->currentText() + "';"));
+    Tools::maj_liste(ui->liste_selection_UV, db->execute("SELECT a.code_uv FROM assoc_branche_uv a, branche b WHERE b.nom = a.nom_branche AND b.nom_cursus = '" + ui->comboBox_cursus->currentText() + "' order by a.code_uv;"));
 }
 
 
@@ -143,6 +150,8 @@ void mondossier::ajoutUV() {
 }
 
 void mondossier::maj_dossier() {
+
+
     QSqlQuery query;
 
     remplirlistesolutions();
@@ -332,14 +341,15 @@ void mondossier::rempliruvsuivies(){
 
     QString idsvg;
     QString maligne="";
-    QString uv=query.value(0).toString();
-    QString note=query.value(1).toString();
-    QString semestre=query.value(2).toString();
+    QString uv;
+    QString note;
+    QString semestre;
 
     while (query.next()) {
         uv=query.value(0).toString();
         note=query.value(1).toString();
         semestre=query.value(2).toString();
+        qDebug()<<uv;
 
         if ((query.value(5).toString())==idsvg) {
             maligne=maligne+" & "+query.value(3).toString()+" : "+query.value(4).toString();
