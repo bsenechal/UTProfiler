@@ -491,7 +491,7 @@ qDebug()<<"Total : "<<total_total;
                         if (s->second.obligation==i && !alreadyused.contains(s->first)){
 
                             //On ajoute les UVs aux map de semestres : 1 map contenant les UV [S1]['LO21']=TSH      1 map contenant le nb de types [S1][CS]=2
-                            int j=ui->semestre->text().toInt();
+                            int j=ui->semestre->text().toInt()+1;
                             if (!map_suggestion_nb2[j]["total"].first) {
                                 map_suggestion_nb2[j]["total"].first=0;
                                 map_suggestion_nb2[j]["total"].second=0;

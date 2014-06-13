@@ -6,7 +6,6 @@
 QT       += core
 QT       += core gui
 QT       += sql # On rajoute SQL
-QT       -= gui # On enlève la GUI
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 QMAKE_CXXFLAGS += -std=c++11

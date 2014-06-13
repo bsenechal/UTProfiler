@@ -41,12 +41,16 @@ void afficherchoixprev::ajoutprev(Mapsugg_UV2 mapsuggestion) {
     colonne->addWidget(new QLabel ("Total "));
 
     layout->addLayout(colonne);
+    group->setLayout(layout);
+    l->addWidget(group);
     Mapsugg_UV2 ::iterator p;
 
     for(p = mapsuggestion.begin(); p != mapsuggestion.end(); p++)
     {
         QString sem = QString::number(p->first);
         group = new QGroupBox;
+        group->setTitle("Semestre n°" + sem);
+        layout = new QHBoxLayout;
         int total_cs = 0;
         int total_tm = 0;
         int total_credits = 0;
@@ -56,12 +60,6 @@ void afficherchoixprev::ajoutprev(Mapsugg_UV2 mapsuggestion) {
         QVBoxLayout *colonne1 = new QVBoxLayout;
         QVBoxLayout *colonne2 = new QVBoxLayout;
         QVBoxLayout *colonne3 = new QVBoxLayout;
-        QString nom_semestre;
-
-        nom_semestre = "Semestre n°" + sem;
-        colonne1->addWidget(new QLabel (nom_semestre));
-        colonne2->addWidget(new QLabel (""));
-        colonne3->addWidget(new QLabel (""));
 
         colonne1->addWidget(new QLabel ("UV"));
         colonne2->addWidget(new QLabel ("Categorie"));

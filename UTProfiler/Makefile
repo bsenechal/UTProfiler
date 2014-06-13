@@ -168,8 +168,8 @@ Makefile: UTProfiler.pro ../../../../../../Qt/Qt5.2.1/5.2.1/mingw48_32/mkspecs/w
 		../../../../../../Qt/Qt5.2.1/5.2.1/mingw48_32/mkspecs/features/lex.prf \
 		UTProfiler.pro \
 		C:/Qt/Qt5.2.1/5.2.1/mingw48_32/lib/Qt5Widgets.prl \
-		C:/Qt/Qt5.2.1/5.2.1/mingw48_32/lib/Qt5Gui.prl \
 		C:/Qt/Qt5.2.1/5.2.1/mingw48_32/lib/Qt5Sql.prl \
+		C:/Qt/Qt5.2.1/5.2.1/mingw48_32/lib/Qt5Gui.prl \
 		C:/Qt/Qt5.2.1/5.2.1/mingw48_32/lib/Qt5Core.prl
 	$(QMAKE) -spec win32-g++ CONFIG+=debug CONFIG+=declarative_debug CONFIG+=qml_debug -o Makefile UTProfiler.pro
 ..\..\..\..\..\..\Qt\Qt5.2.1\5.2.1\mingw48_32\mkspecs\features\spec_pre.prf:
@@ -281,8 +281,8 @@ Makefile: UTProfiler.pro ../../../../../../Qt/Qt5.2.1/5.2.1/mingw48_32/mkspecs/w
 ..\..\..\..\..\..\Qt\Qt5.2.1\5.2.1\mingw48_32\mkspecs\features\lex.prf:
 UTProfiler.pro:
 C:/Qt/Qt5.2.1/5.2.1/mingw48_32/lib/Qt5Widgets.prl:
-C:/Qt/Qt5.2.1/5.2.1/mingw48_32/lib/Qt5Gui.prl:
 C:/Qt/Qt5.2.1/5.2.1/mingw48_32/lib/Qt5Sql.prl:
+C:/Qt/Qt5.2.1/5.2.1/mingw48_32/lib/Qt5Gui.prl:
 C:/Qt/Qt5.2.1/5.2.1/mingw48_32/lib/Qt5Core.prl:
 qmake: FORCE
 	@$(QMAKE) -spec win32-g++ CONFIG+=debug CONFIG+=declarative_debug CONFIG+=qml_debug -o Makefile UTProfiler.pro
