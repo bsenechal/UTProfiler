@@ -363,6 +363,13 @@ void mondossier::suppr_UV_suivies() {
 
 
 void mondossier::generer_suggestion() {
+QString maligne;
+QStringList maliste;
+QString moncredit;
+QString cate;
+QString nbcred;
+
+
 
 if (ui->branche->text()=="") {
     QMessageBox msgBox;
@@ -387,6 +394,38 @@ else {
     int total_tm=0;
     int total_tsh=0;
     int total_total=0;
+
+
+    for (int i = 0; i < ui->liste_credits->count(); i++) {
+       maligne = ui->liste_credits->item(i)->text();
+       maliste=maligne.split("&");
+
+       for (int j=0; j < maliste.length(); j++) {
+           qDebug()<<"Maliste ";
+           moncredit=maliste[j];
+           cate=moncredit.split(":")[0].trimmed();
+           nbcred=moncredit.split(":")[1].trimmed();
+
+           if (cate=="TSH") {
+               total_tsh=total_tsh + nbcred.toInt();
+               total_total=total_total + nbcred.toInt();
+           }
+           if (cate=="CS") {
+               total_cs=total_cs + nbcred.toInt();
+               total_total=total_total + nbcred.toInt();
+           }
+           if (cate=="TM") {
+               total_tm=total_tm + nbcred.toInt();
+               total_total=total_total + nbcred.toInt();
+           }
+
+           }
+       }
+qDebug()<<"CS : "<<total_cs;
+qDebug()<<"TM : "<<total_tm;
+qDebug()<<"TSH : "<<total_tsh;
+qDebug()<<"Total : "<<total_total;
+
 
     while(query.next()){
         bool alreadymade=false;
@@ -452,7 +491,7 @@ else {
                         if (s->second.obligation==i && !alreadyused.contains(s->first)){
 
                             //On ajoute les UVs aux map de semestres : 1 map contenant les UV [S1]['LO21']=TSH      1 map contenant le nb de types [S1][CS]=2
-                            int j=3;
+                            int j=ui->semestre->text().toInt();
                             if (!map_suggestion_nb2[j]["total"].first) {
                                 map_suggestion_nb2[j]["total"].first=0;
                                 map_suggestion_nb2[j]["total"].second=0;

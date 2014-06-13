@@ -531,7 +531,7 @@ public:
 
         retranslateUi(mondossier);
 
-        onglets_dossier->setCurrentIndex(2);
+        onglets_dossier->setCurrentIndex(0);
 
 
         QMetaObject::connectSlotsByName(mondossier);
