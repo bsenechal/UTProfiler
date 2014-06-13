@@ -112,13 +112,13 @@ void Accueil::affiche_uv() {
 
     try {
         if (!res2.isNull() && !res.isNull())
-            query = db->execute("SELECT DISTINCT u.code, u.description, a.nom_branche FROM UV u, assoc_branche_uv a, assoc_disponibilite_uv ad WHERE ad.code_uv = u.code AND ad.nom_disponibilite IN ("+ res2.left(res2.size()-1) +") AND a.code_uv = u.code AND a.nom_branche IN (" + res.left(res.size()-1) + ");");
+            query = db->execute("SELECT DISTINCT u.code, u.description, a.nom_branche FROM UV u, assoc_branche_uv a, assoc_disponibilite_uv ad WHERE ad.code_uv = u.code AND ad.nom_disponibilite IN ("+ res2.left(res2.size()-1) +") AND a.code_uv = u.code AND a.nom_branche IN (" + res.left(res.size()-1) + ") ORDER BY u.code;");
         else if (res2.isNull() && !res.isNull())
-            query = db->execute("SELECT DISTINCT u.code, u.description, a.nom_branche FROM UV u, assoc_branche_uv a WHERE a.code_uv = u.code AND a.nom_branche IN (" + res.left(res.size()-1) + ");");
+            query = db->execute("SELECT DISTINCT u.code, u.description, a.nom_branche FROM UV u, assoc_branche_uv a WHERE a.code_uv = u.code AND a.nom_branche IN (" + res.left(res.size()-1) + ") ORDER BY u.code;");
         else if (!res2.isNull() && res.isNull())
-            query = db->execute("SELECT DISTINCT u.code, u.description, a.nom_branche FROM UV u, assoc_branche_uv a, assoc_disponibilite_uv ad WHERE a.code_uv = u.code AND ad.code_uv = u.code AND ad.nom_disponibilite IN ("+ res2.left(res2.size()-1) +");");
+            query = db->execute("SELECT DISTINCT u.code, u.description, a.nom_branche FROM UV u, assoc_branche_uv a, assoc_disponibilite_uv ad WHERE a.code_uv = u.code AND ad.code_uv = u.code AND ad.nom_disponibilite IN ("+ res2.left(res2.size()-1) +") ORDER BY u.code;");
         else
-            query = db->execute("SELECT DISTINCT u.code, u.description, a.nom_branche FROM UV u, assoc_branche_uv a, branche b WHERE u.code=a.code_uv AND a.nom_branche = b.nom AND b.nom_cursus = '" + nom_cursus + "';");
+            query = db->execute("SELECT DISTINCT u.code, u.description, a.nom_branche FROM UV u, assoc_branche_uv a, branche b WHERE u.code=a.code_uv AND a.nom_branche = b.nom AND b.nom_cursus = '" + nom_cursus + "' ORDER BY u.code;");
 
    while (query.next()){
        QStringList dispo = db->getColonne("SELECT DISTINCT nom_disponibilite FROM assoc_disponibilite_uv WHERE code_uv  = '" + query.value(0).toString() + "';");
