@@ -26,7 +26,7 @@ public:
     {
         if (afficherchoixprev->objectName().isEmpty())
             afficherchoixprev->setObjectName(QStringLiteral("afficherchoixprev"));
-        afficherchoixprev->resize(969, 464);
+        afficherchoixprev->resize(304, 207);
 
         retranslateUi(afficherchoixprev);
 

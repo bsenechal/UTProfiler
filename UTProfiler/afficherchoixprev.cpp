@@ -27,6 +27,10 @@ afficherchoixprev::~afficherchoixprev()
 void afficherchoixprev::ajoutprev(Mapsugg_UV2 mapsuggestion) {
 //map_suggestion_nb [semestre][Categorie] first=nbUv  second=credits
 //On parcour notre map
+    int cred_cs = 0;
+    int cred_tm = 0;
+    int cred_tsh = 0;
+    int cred_tot = 0;
     QHBoxLayout *layout = new QHBoxLayout;
     QHBoxLayout *layout_sauvegarder = new QHBoxLayout;
     QVBoxLayout *colonne = new QVBoxLayout;
@@ -90,13 +94,13 @@ void afficherchoixprev::ajoutprev(Mapsugg_UV2 mapsuggestion) {
             map_liste[sem].credits->addItem(nbcd);
             map_liste[sem].categorie->addItem(type);
 
-            if (type == "CS")
-                total_cs += r->second.second;
-            else if (type == "TM")
-                total_tm += r->second.second;
-            else if (type == "TSH")
-                total_tsh += r->second.second;
+            if (type == "CS") { total_cs += r->second.second; cred_cs += r->second.second; }
 
+            else if (type == "TM") { total_tm += r->second.second; cred_tm  += r->second.second; }
+
+            else if (type == "TSH") { total_tsh += r->second.second; cred_tsh += r->second.second; }
+
+            cred_tot += r->second.second;
             total_credits += r->second.second;
         }
 
@@ -117,7 +121,19 @@ void afficherchoixprev::ajoutprev(Mapsugg_UV2 mapsuggestion) {
         group->setLayout(layout);
         l->addWidget(group);
   }
-
+    group = new QGroupBox;
+    colonne = new QVBoxLayout;
+    layout = new QHBoxLayout;
+    colonne->addWidget(new QLabel (""));
+    colonne->addWidget(new QLabel (""));
+    colonne->addSpacerItem(new QSpacerItem(50,202));
+    colonne->addWidget(new QLabel ("Total : " + QString::number(cred_cs)));
+    colonne->addWidget(new QLabel ("Total : " + QString::number(cred_tm)));
+    colonne->addWidget(new QLabel ("Total :" + QString::number(cred_tsh)));
+    colonne->addWidget(new QLabel ("Total : " + QString::number(cred_tot)));
+    layout->addLayout(colonne);
+    group->setLayout(layout);
+    l->addWidget(group);
 
     layout_sauvegarder->addWidget(btn_sauvegarder);
     layout->addLayout(layout_sauvegarder);
