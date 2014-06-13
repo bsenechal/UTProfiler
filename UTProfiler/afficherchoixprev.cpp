@@ -121,11 +121,19 @@ void afficherchoixprev::ajoutprev(Mapsugg_UV2 mapsuggestion) {
 
 void afficherchoixprev::sauvegarde_solutions(){
     qDebug()<<"ici";
+    QString id_dossier;
+    QString id_solution;
+    Connexion *c = Connexion::getInstance();
 
     QSqlQuery query;
-    QString id_solution;
+    query = db->execute("SELECT id_dossier FROM Dossier WHERE login_etudiant='" + c->getLogin() + "';");
+    if(query.next()) {
+        id_dossier=query.value(0).toString();
+    }
+
+
     try {
-        query = db->execute("SELECT MAX(id_solution)+1 From assoc_solution_dossier WHERE id_dossier=8 ");
+        query = db->execute("SELECT MAX(id_solution)+1 From assoc_solution_dossier WHERE id_dossier="+id_dossier+" ");
 
         if (query.next()){
             id_solution = query.value(0).toString();
@@ -133,7 +141,7 @@ void afficherchoixprev::sauvegarde_solutions(){
         if (id_solution=="") id_solution="0";
 
 
-        db->execute("INSERT INTO assoc_solution_dossier(id_solution, id_dossier) VALUES("+id_solution+", 8);");
+        db->execute("INSERT INTO assoc_solution_dossier(id_solution, id_dossier) VALUES("+id_solution+", "+id_dossier+");");
 
         db->execute("BEGIN;");
         int cpt_sem=0;

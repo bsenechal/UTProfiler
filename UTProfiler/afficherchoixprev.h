@@ -7,6 +7,7 @@
 #include <QListWidget>
 #include <QPushButton>
 #include "dbmanager.h"
+#include "connexion.h"
 
 namespace Ui {
 class afficherchoixprev;
