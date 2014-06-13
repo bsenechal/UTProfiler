@@ -368,8 +368,12 @@ QString cate;
 QString nbcred;
 
 
-
-if (ui->branche->text()=="") {
+if(ui->cursus->text()!="Ingenieur" && ui->cursus->text()!="Tronc Commun") {
+    QMessageBox msgBox;
+    msgBox.setText("L'auto-Completion de dossier n'est disponible que pour les Cursus Ingénieur et Tronc Commun..\nRendez vous à la V2 pour plus de possibilitées !");
+    msgBox.exec();
+}
+else if (ui->branche->text()=="") {
     QMessageBox msgBox;
     msgBox.setText("Vous n'avez pas rempli de branche dans 'Mes Informations'\n \nNous ne pouvons pas vous suggerer de dossier prévisionnel !");
     msgBox.exec();
@@ -383,11 +387,30 @@ else {
     map_suggestion_nb2.clear();
     map_suggestion_uv2.clear();
 
-    int cs_necessaire=30;
-    int tm_necessaire=30;
-    int cs_et_tm_necessaire=84;
-    int tsh_necessaire=28;
-    int total_necessaire=120; //Hors stage
+    int cs_necessaire;
+    int tm_necessaire;
+    int cs_et_tm_necessaire;
+    int tsh_necessaire;
+    int total_necessaire;
+
+    if (ui->cursus->text()=="Ingenieur") {
+        cs_necessaire=30;
+        tm_necessaire=30;
+        cs_et_tm_necessaire=84;
+        tsh_necessaire=28;
+        total_necessaire=120; //Hors stage
+    }
+
+    else if (ui->cursus->text()=="Tronc Commun") {
+        cs_necessaire=48;
+        tm_necessaire=24;
+        cs_et_tm_necessaire=72;
+        tsh_necessaire=24;
+        total_necessaire=96; //Hors stage
+    }
+
+
+
     int total_cs=0;
     int total_tm=0;
     int total_tsh=0;
@@ -551,14 +574,12 @@ qDebug()<<"Total : "<<total_total;
         //Fin structure de la mort
 
 
-
-    }
-
 //map_suggestion_uv à passer au constructeur de la classe qui va afficher !
     //choixprev.ajoutprev(map_suggestion_uv);
     afficherchoixprev choixprev;
     choixprev.ajoutprev(map_suggestion_uv2);
     choixprev.exec();
+    }
 }
 
 
