@@ -182,6 +182,9 @@ void afficherchoixprev::sauvegarde_solutions(){
         }
         db->execute("COMMIT;");
 
+        QMessageBox msgBox;
+        msgBox.setText("Vous avez bien sauvegardé ce choix !");
+        msgBox.exec();
     }
     catch (UTProfilerException u) {
             QMessageBox msgBox;

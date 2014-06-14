@@ -716,16 +716,6 @@
       <string>Ajouter une UV</string>
      </property>
     </widget>
-    <widget class="QListWidget" name="liste_selection_UV">
-     <property name="geometry">
-      <rect>
-       <x>80</x>
-       <y>160</y>
-       <width>111</width>
-       <height>211</height>
-      </rect>
-     </property>
-    </widget>
     <widget class="QListWidget" name="liste_uv_suivies">
      <property name="geometry">
       <rect>
@@ -888,10 +878,10 @@
     <widget class="QListWidget" name="liste_possibilite_uv">
      <property name="geometry">
       <rect>
-       <x>790</x>
-       <y>10</y>
-       <width>91</width>
-       <height>71</height>
+       <x>840</x>
+       <y>40</y>
+       <width>41</width>
+       <height>41</height>
       </rect>
      </property>
     </widget>
@@ -996,6 +986,17 @@
       </property>
      </widget>
     </widget>
+    <widget class="QListWidget" name="liste_selection_UV">
+     <property name="geometry">
+      <rect>
+       <x>80</x>
+       <y>160</y>
+       <width>131</width>
+       <height>211</height>
+      </rect>
+     </property>
+    </widget>
+    <zorder>liste_possibilite_uv</zorder>
     <zorder>fond_2</zorder>
     <zorder>label_2</zorder>
     <zorder>label_3</zorder>
@@ -1004,7 +1005,6 @@
     <zorder>label_5</zorder>
     <zorder>line</zorder>
     <zorder>ajout_uv</zorder>
-    <zorder>liste_selection_UV</zorder>
     <zorder>liste_uv_suivies</zorder>
     <zorder>liste_notes</zorder>
     <zorder>label_6</zorder>
@@ -1017,9 +1017,9 @@
     <zorder>liste_credits</zorder>
     <zorder>label_18</zorder>
     <zorder>sauvegarder_dossier</zorder>
-    <zorder>liste_possibilite_uv</zorder>
     <zorder>suppri_UV_suivies</zorder>
     <zorder>group_criteres_recherche</zorder>
+    <zorder>liste_selection_UV</zorder>
    </widget>
    <widget class="QWidget" name="choix">
     <attribute name="title">

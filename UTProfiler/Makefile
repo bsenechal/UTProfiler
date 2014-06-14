@@ -527,9 +527,9 @@ compiler_rcc_clean:
 	-$(DEL_FILE) qrc_Utc.cpp
 qrc_Utc.cpp: ../images/Utc.qrc \
 		../images/fond_pg.png \
-		../images/fond_accueil.jpg \
 		../images/bandeau_utc.jpg \
-		../images/fond_inscription.png
+		../images/fond_inscription.png \
+		../images/fond_accueil.jpg
 	/Users/David/Qt5.2.1/5.2.1/clang_64/bin/rcc -name Utc ../images/Utc.qrc -o qrc_Utc.cpp
 
 compiler_moc_header_make_all: moc_accueil.cpp moc_mondossier.cpp moc_inscription.cpp moc_administration.cpp moc_afficherchoixprev.cpp

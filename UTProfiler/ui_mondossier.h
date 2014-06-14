@@ -72,7 +72,6 @@ public:
     QLabel *label_5;
     QFrame *line;
     QPushButton *ajout_uv;
-    QListWidget *liste_selection_UV;
     QListWidget *liste_uv_suivies;
     QListWidget *liste_notes;
     QLabel *label_6;
@@ -95,6 +94,7 @@ public:
     QComboBox *comboBox_cursus;
     QComboBox *comboBox_filiere;
     QComboBox *comboBox_branche;
+    QListWidget *liste_selection_UV;
     QWidget *choix;
     QPushButton *add_exigence;
     QLabel *label_titre_choix;
@@ -334,9 +334,6 @@ public:
         ajout_uv = new QPushButton(tab_info_perso);
         ajout_uv->setObjectName(QStringLiteral("ajout_uv"));
         ajout_uv->setGeometry(QRect(240, 350, 141, 31));
-        liste_selection_UV = new QListWidget(tab_info_perso);
-        liste_selection_UV->setObjectName(QStringLiteral("liste_selection_UV"));
-        liste_selection_UV->setGeometry(QRect(80, 160, 111, 211));
         liste_uv_suivies = new QListWidget(tab_info_perso);
         liste_uv_suivies->setObjectName(QStringLiteral("liste_uv_suivies"));
         liste_uv_suivies->setGeometry(QRect(430, 120, 91, 201));
@@ -382,7 +379,7 @@ public:
         sauvegarder_dossier->setGeometry(QRect(750, 350, 141, 31));
         liste_possibilite_uv = new QListWidget(tab_info_perso);
         liste_possibilite_uv->setObjectName(QStringLiteral("liste_possibilite_uv"));
-        liste_possibilite_uv->setGeometry(QRect(790, 10, 91, 71));
+        liste_possibilite_uv->setGeometry(QRect(840, 40, 41, 41));
         suppri_UV_suivies = new QPushButton(tab_info_perso);
         suppri_UV_suivies->setObjectName(QStringLiteral("suppri_UV_suivies"));
         suppri_UV_suivies->setGeometry(QRect(830, 120, 31, 21));
@@ -409,7 +406,11 @@ public:
         comboBox_branche->setObjectName(QStringLiteral("comboBox_branche"));
         comboBox_branche->setEnabled(false);
         comboBox_branche->setGeometry(QRect(190, 20, 69, 22));
+        liste_selection_UV = new QListWidget(tab_info_perso);
+        liste_selection_UV->setObjectName(QStringLiteral("liste_selection_UV"));
+        liste_selection_UV->setGeometry(QRect(80, 160, 131, 211));
         onglets_dossier->addTab(tab_info_perso, QString());
+        liste_possibilite_uv->raise();
         fond_2->raise();
         label_2->raise();
         label_3->raise();
@@ -418,7 +419,6 @@ public:
         label_5->raise();
         line->raise();
         ajout_uv->raise();
-        liste_selection_UV->raise();
         liste_uv_suivies->raise();
         liste_notes->raise();
         label_6->raise();
@@ -431,9 +431,9 @@ public:
         liste_credits->raise();
         label_18->raise();
         sauvegarder_dossier->raise();
-        liste_possibilite_uv->raise();
         suppri_UV_suivies->raise();
         group_criteres_recherche->raise();
+        liste_selection_UV->raise();
         choix = new QWidget();
         choix->setObjectName(QStringLiteral("choix"));
         add_exigence = new QPushButton(choix);

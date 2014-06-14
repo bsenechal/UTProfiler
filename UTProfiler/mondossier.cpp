@@ -97,18 +97,18 @@ void mondossier::enable_credits() {
 
 
 void mondossier::add_critere_filiere() {
-    Tools::maj_liste(ui->liste_selection_UV, db->execute("SELECT DISTINCT u.Code FROM UV u, assoc_branche_uv a, branche b, assoc_filiere_uv afu, filiere f WHERE u.code = a.code_uv AND b.nom = a.nom_branche AND afu.code_uv = u.code AND afu.nom_filiere = f.nom AND b.nom_cursus = '" + ui->comboBox_cursus->currentText() + "' AND b.nom = '" + ui->comboBox_branche->currentText() + "' AND f.nom = '" + ui->comboBox_filiere->currentText() + "' order by(u.Code);"));
+    if (ui->comboBox_branche->currentText()!=""){
+        Tools::maj_liste(ui->liste_selection_UV, db->execute("SELECT DISTINCT u.Code FROM UV u, assoc_branche_uv a, branche b, assoc_filiere_uv afu, filiere f WHERE u.code = a.code_uv AND b.nom = a.nom_branche AND afu.code_uv = u.code AND afu.nom_filiere = f.nom AND b.nom_cursus = '" + ui->comboBox_cursus->currentText() + "' AND b.nom = '" + ui->comboBox_branche->currentText() + "' AND f.nom = '" + ui->comboBox_filiere->currentText() + "' order by(u.Code);"));
+    }
 }
 
 void mondossier::add_critere_branche() {
-   Tools::enable_combobox(ui->comboBox_filiere, filieres->getFilieresFromBranche(ui->comboBox_branche->currentText()));
-
-   Tools::maj_liste(ui->liste_selection_UV, db->execute("SELECT DISTINCT a.code_uv FROM assoc_branche_uv a, branche b WHERE b.nom = a.nom_branche AND b.nom_cursus = '" + ui->comboBox_cursus->currentText() + "' AND b.nom = '" + ui->comboBox_branche->currentText() + "' order by(a.code_uv);"));
+       Tools::enable_combobox(ui->comboBox_filiere, filieres->getFilieresFromBranche(ui->comboBox_branche->currentText()));
+       Tools::maj_liste(ui->liste_selection_UV, db->execute("SELECT DISTINCT a.code_uv FROM assoc_branche_uv a, branche b WHERE b.nom = a.nom_branche AND b.nom_cursus = '" + ui->comboBox_cursus->currentText() + "' AND b.nom = '" + ui->comboBox_branche->currentText() + "' order by(a.code_uv);"));
 }
 
 void mondossier::add_critere_cursus() {
     Tools::enable_combobox(ui->comboBox_branche, branches->getBranchesFromCursus(ui->comboBox_cursus->currentText()));
-
     Tools::maj_liste(ui->liste_selection_UV, db->execute("SELECT DISTINCT a.code_uv FROM assoc_branche_uv a, branche b WHERE b.nom = a.nom_branche AND b.nom_cursus = '" + ui->comboBox_cursus->currentText() + "' order by(a.code_uv);"));
 }
 
@@ -332,56 +332,84 @@ void mondossier::remplirchoix(){
     //Fin fenetre des choix
 }
 
+
+
+
+
+
 void mondossier::rempliruvsuivies(){
     QSqlQuery query;
-    if (!this->numerodossier.isNull()) {
-    //Fenetre des UVs suivies
-    query = db->execute("SELECT code_uv, note,  semestre, nom_categorie, nbcredits, assoc_categorie_UV.id_acatu FROM UV_suivies, assoc_categorie_UV WHERE UV_suivies.id_acatu=assoc_categorie_UV.id_acatu AND UV_suivies.id_dossier="+this->numerodossier+" ORDER BY assoc_categorie_UV.id_acatu;");
-
-
-    QString idsvg;
+    QString idprec, idcour;
     QString maligne="";
     QString uv;
     QString note;
     QString semestre;
+    QString cate, cred;
+
+    if (!this->numerodossier.isNull()) {
+    //Fenetre des UVs suivies
+    query = db->execute("SELECT code_uv, note,  semestre, nom_categorie, nbcredits, assoc_categorie_UV.id_acatu FROM UV_suivies, assoc_categorie_UV WHERE UV_suivies.id_acatu=assoc_categorie_UV.id_acatu AND UV_suivies.id_dossier="+this->numerodossier+" ORDER BY assoc_categorie_UV.id_acatu;");
 
     while (query.next()) {
-        uv=query.value(0).toString();
 
-        note=query.value(1).toString();
-        semestre=query.value(2).toString();
-        qDebug()<<uv;
-        qDebug()<<note;
-        qDebug()<<semestre;
+        idcour=query.value(5).toString();
 
-        if ((query.value(5).toString())==idsvg) {
-            maligne=maligne+" & "+query.value(3).toString()+" : "+query.value(4).toString();
-        }
-        else {
-            if(maligne!=""){
-            //Si on a finis avec cette ligne la, on fait nos inserts !
-                qDebug()<<"Insertion de : "<<uv;
 
+
+        //SI c'est pas le même id, c'est une nouvelle ligne
+            //On insert la precedente
+            //On commence la nouvelle
+        //SI c'est le même ID : on continue à mettre les données
+
+        if (idcour != idprec) {
+            if (maligne!="") {                          //Si on est pas dans la 1er itération de l'algo
+                //On insert la precedente
                 ui->liste_uv_suivies->addItem(uv);
                 ui->liste_notes->addItem(note);
                 ui->liste_semestres->addItem(semestre);
                 ui->liste_credits->addItem(maligne);
-                ui->liste_possibilite_uv->addItem(idsvg);
+                ui->liste_possibilite_uv->addItem(idprec);
             }
-            maligne=""+query.value(3).toString()+" : "+query.value(4).toString();
+
+
+            //On récupère les nouvelles valeurs
+            uv=query.value(0).toString();
+            note=query.value(1).toString();
+            semestre=query.value(2).toString();
+            cate=query.value(3).toString();
+            cred=query.value(4).toString();
+            maligne=cate+" : "+cred;
+            qDebug()<<maligne;
+
         }
-           idsvg=query.value(5).toString();
+        else {
+            uv=query.value(0).toString();
+            note=query.value(1).toString();
+            semestre=query.value(2).toString();
+            cate=query.value(3).toString();
+            cred=query.value(4).toString();
+            maligne=maligne+" & "+cate+" : "+cred;
+            qDebug()<<maligne;
+        }
+        idprec=idcour;
      }
-    if (uv!=""){
+
+    if (uv!="") {                          //On insère la dernière iteration. On sera dans aucun des cas ci dessus
+        //On insert la precedente
         ui->liste_uv_suivies->addItem(uv);
         ui->liste_notes->addItem(note);
         ui->liste_semestres->addItem(semestre);
         ui->liste_credits->addItem(maligne);
-        ui->liste_possibilite_uv->addItem(idsvg);
+        ui->liste_possibilite_uv->addItem(idprec);
     }
+
     }
     //Fin UVs suivies
 }
+
+
+
+
 
 
 
